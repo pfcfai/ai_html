@@ -387,10 +387,10 @@ $('#polar').click(function () {
 <div id="pricerank2"  style="width: 600px; height: 400px; margin: 0 auto"></div>
 </div>
 <script type="text/javascript">
+Highcharts.getJSON('https://pfcfactweb.azurewebsites.net/homeapi/?format=json', function (data) {
   var chart = Highcharts.chart('pricerank2', {
-
     title: {
-        text: '股票期貨排行'
+        text: '海外期貨排行'
     },
 /*
     subtitle: {
@@ -398,18 +398,19 @@ $('#polar').click(function () {
     },
 */
     xAxis: {
-        categories: ['聯發科', '群創', '環球晶', '中美晶', '智原', '友達', '宏達電', '台積電', '玉晶光', 'TPK','京元電','智邦']
+        categories: data.sort.symbol
     },
 
     series: [{
         type: 'column',
         colorByPoint: true,
-        data: [8.36,5.08,4.92,4.22,3.32,3.07,-0.15,-0.2,-0.24,-0.36,-0.44,-0.66],
+        data: data.sort.pct,
         showInLegend: false
     }]
 
 });
-
+});
+/*
 /*
 $('#plain').click(function () {
     chart.update({
@@ -471,26 +472,11 @@ $('#polar').click(function () {
   <thead>
     <tr>
       <th scope="col">商品</th>
-      <th scope="col">漲跌</th>
       <th scope="col">漲跌幅</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <td>小道瓊</td>
-      <td>+201</td>
-      <td>1.2%</td>
-    </tr>
-    <tr>
-      <td>日經</td>
-      <td>+132</td>
-      <td>0.89%</td>
-    </tr>
-    <tr>
-      <td>德指</td>
-      <td>+50</td>
-      <td>0.2%</td>
-    </tr>
+  <tbody id="t_equityindex">
+ 
   </tbody>
 </table>
 </div>
@@ -507,26 +493,11 @@ $('#polar').click(function () {
   <thead>
     <tr>
       <th scope="col">商品</th>
-      <th scope="col">漲跌</th>
       <th scope="col">漲跌幅</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <td>輕原油</td>
-      <td>+201</td>
-      <td>1.2%</td>
-    </tr>
-    <tr>
-      <td>天然氣</td>
-      <td>+132</td>
-      <td>0.89%</td>
-    </tr>
-    <tr>
-      <td>布倫特油</td>
-      <td>+50</td>
-      <td>0.2%</td>
-    </tr>
+  <tbody id="t_energy">
+    
   </tbody>
 </table>
 </div></p>
@@ -542,26 +513,11 @@ $('#polar').click(function () {
   <thead>
     <tr>
       <th scope="col">商品</th>
-      <th scope="col">漲跌</th>
       <th scope="col">漲跌幅</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <td>玉米</td>
-      <td>+201</td>
-      <td>1.2%</td>
-    </tr>
-    <tr>
-      <td>黃豆</td>
-      <td>+132</td>
-      <td>0.89%</td>
-    </tr>
-    <tr>
-      <td>小麥</td>
-      <td>+50</td>
-      <td>0.2%</td>
-    </tr>
+  <tbody id="t_agricultural">
+    
   </tbody>
 </table>
 </div></p>
@@ -582,26 +538,11 @@ $('#polar').click(function () {
   <thead>
     <tr>
       <th scope="col">商品</th>
-      <th scope="col">漲跌</th>
       <th scope="col">漲跌幅</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <td>歐元</td>
-      <td>+201</td>
-      <td>1.2%</td>
-    </tr>
-    <tr>
-      <td>澳幣</td>
-      <td>+132</td>
-      <td>0.89%</td>
-    </tr>
-    <tr>
-      <td>日圓</td>
-      <td>+50</td>
-      <td>0.2%</td>
-    </tr>
+    <tbody id="t_fx">
+    
   </tbody>
 </table>
 </div></p>
@@ -618,26 +559,11 @@ $('#polar').click(function () {
   <thead>
     <tr>
       <th scope="col">商品</th>
-      <th scope="col">漲跌</th>
       <th scope="col">漲跌幅</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <td>黃金</td>
-      <td>+201</td>
-      <td>1.2%</td>
-    </tr>
-    <tr>
-      <td>高級銅</td>
-      <td>+132</td>
-      <td>0.89%</td>
-    </tr>
-    <tr>
-      <td>白銀</td>
-      <td>+50</td>
-      <td>0.2%</td>
-    </tr>
+  <tbody id="t_metals">
+   
   </tbody>
 </table>
 </div></p>
@@ -653,26 +579,11 @@ $('#polar').click(function () {
   <thead>
     <tr>
       <th scope="col">商品</th>
-      <th scope="col">漲跌</th>
       <th scope="col">漲跌幅</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <td>5年債</td>
-      <td>+201</td>
-      <td>1.2%</td>
-    </tr>
-    <tr>
-      <td>2年債</td>
-      <td>+132</td>
-      <td>0.89%</td>
-    </tr>
-    <tr>
-      <td>10年債</td>
-      <td>+50</td>
-      <td>0.2%</td>
-    </tr>
+  <tbody id="t_interestrates">
+    
   </tbody>
 </table>
 </div></p>
@@ -688,7 +599,29 @@ $('#polar').click(function () {
 </div>
 <hr>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
+<script>
+    $(document).ready(function (){
+            $.getJSON('https://pfcfactweb.azurewebsites.net/homeapi/?format=json', function (data) {
+              
+              for(var j=0;j<6;j++){
+                var classfy = Object.keys(data.quote)[j]
+                var temp = data.quote[classfy];
+                var tableData=''
+                 //動態增加5個td,並且把data陣列的五個值賦給每個td
+                 for(var i=0;i<3;i++){
+                    
+                  tableData+="<tr>"+"<th>"+temp.symbol[i]+"</th>"+"<td>"+temp.pct[i]+'%'+"</td>"+"</tr>"
+                 }
+                 //tableData+="</tr>"
+                 //現在tableData已經生成好了，把他賦值給上面的tbody
+                 //console.log(tableData)
+                 $("#t_"+classfy).html(tableData)
+                 console.log("#t_"+classfy)
+            }})
+    })
+</script>
 
 <!--影音嵌入-->
  <div class="row" id="sortable">
@@ -853,7 +786,7 @@ Highcharts.chart('container', {
 </footer>
   <!-- FOOTER結束 -->
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="https://getbootstrap.com/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
     </body>
 </html>
