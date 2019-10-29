@@ -138,7 +138,7 @@
 //$.getJSON( "http://127.0.0.1:8080/api/sort/?format=json", function( data ) {
 //  console.log(data);
 //});
-$.getJSON('https://www.highcharts.com/samples/data/aapl-ohlc.json', function (data) {
+$.getJSON('https://pfcfaitest.azurewebsites.net/ai/S1', function (data) {
     console.log(data);
     // create the chart
     Highcharts.stockChart('hicharts0', {
@@ -149,17 +149,17 @@ $.getJSON('https://www.highcharts.com/samples/data/aapl-ohlc.json', function (da
         },
 
         title: {
-            text: '商品一技術線圖'
+            text: '欣陸 3703'
         },
 
         series: [{
             type: 'candlestick',
-            name: '小道瓊',
+            name: '欣陸 3703',
             data: data,
             dataGrouping: {
                 units: [
                     [
-                        'week', // unit name
+                        'day', // unit name
                         [1] // allowed multiples
                     ], [
                         'month',
@@ -171,7 +171,7 @@ $.getJSON('https://www.highcharts.com/samples/data/aapl-ohlc.json', function (da
     });
 });
 
-$.getJSON('https://www.highcharts.com/samples/data/aapl-ohlc.json', function (data) {
+$.getJSON('https://pfcfaitest.azurewebsites.net/ai/S2', function (data) {
     console.log(data);
     // create the chart
     Highcharts.stockChart('hicharts1', {
@@ -182,17 +182,17 @@ $.getJSON('https://www.highcharts.com/samples/data/aapl-ohlc.json', function (da
         },
 
         title: {
-            text: '商品二技術線圖'
+            text: '商之器 8409'
         },
 
         series: [{
             type: 'candlestick',
-            name: '小道瓊',
+            name: '商之器 8409',
             data: data,
             dataGrouping: {
                 units: [
                     [
-                        'week', // unit name
+                        'day', // unit name
                         [1] // allowed multiples
                     ], [
                         'month',
@@ -204,7 +204,7 @@ $.getJSON('https://www.highcharts.com/samples/data/aapl-ohlc.json', function (da
     });
 });
 
-$.getJSON('https://www.highcharts.com/samples/data/aapl-ohlc.json', function (data) {
+$.getJSON('https://pfcfaitest.azurewebsites.net/ai/S3', function (data) {
     console.log(data);
     // create the chart
     Highcharts.stockChart('hicharts2', {
@@ -215,17 +215,17 @@ $.getJSON('https://www.highcharts.com/samples/data/aapl-ohlc.json', function (da
         },
 
         title: {
-            text: '商品三技術線圖'
+            text: '燦坤 2430'
         },
 
         series: [{
             type: 'candlestick',
-            name: '小道瓊',
+            name: '燦坤 2430',
             data: data,
             dataGrouping: {
                 units: [
                     [
-                        'week', // unit name
+                        'day', // unit name
                         [1] // allowed multiples
                     ], [
                         'month',

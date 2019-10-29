@@ -138,7 +138,7 @@
 //$.getJSON( "http://127.0.0.1:8080/api/sort/?format=json", function( data ) {
 //  console.log(data);
 //});
-$.getJSON('https://www.highcharts.com/samples/data/aapl-ohlc.json', function (data) {
+$.getJSON('https://pfcfaitest.azurewebsites.net/ai_reg/?format=json', function (data) {
     console.log(data);
     // create the chart
     Highcharts.stockChart('hicharts0', {
@@ -149,17 +149,17 @@ $.getJSON('https://www.highcharts.com/samples/data/aapl-ohlc.json', function (da
         },
 
         title: {
-            text: '商品一技術線圖'
+            text: data.stronglong1.stock_name
         },
 
         series: [{
             type: 'candlestick',
-            name: '小道瓊',
-            data: data,
+            name: data.stronglong1.stock_name,
+            data: data.stronglong1.data,
             dataGrouping: {
                 units: [
                     [
-                        'week', // unit name
+                        'day', // unit name
                         [1] // allowed multiples
                     ], [
                         'month',
@@ -171,7 +171,7 @@ $.getJSON('https://www.highcharts.com/samples/data/aapl-ohlc.json', function (da
     });
 });
 
-$.getJSON('https://www.highcharts.com/samples/data/aapl-ohlc.json', function (data) {
+$.getJSON('https://pfcfaitest.azurewebsites.net/ai_reg/?format=json', function (data) {
     console.log(data);
     // create the chart
     Highcharts.stockChart('hicharts1', {
@@ -182,17 +182,17 @@ $.getJSON('https://www.highcharts.com/samples/data/aapl-ohlc.json', function (da
         },
 
         title: {
-            text: '商品二技術線圖'
+            text: data.stronglong2.stock_name
         },
 
         series: [{
             type: 'candlestick',
-            name: '小道瓊',
-            data: data,
+            name: data.stronglong2.stock_name,
+            data: data.stronglong2.data,
             dataGrouping: {
                 units: [
                     [
-                        'week', // unit name
+                        'day', // unit name
                         [1] // allowed multiples
                     ], [
                         'month',
@@ -204,7 +204,8 @@ $.getJSON('https://www.highcharts.com/samples/data/aapl-ohlc.json', function (da
     });
 });
 
-$.getJSON('https://www.highcharts.com/samples/data/aapl-ohlc.json', function (data) {
+
+$.getJSON('https://pfcfaitest.azurewebsites.net/ai_reg/?format=json', function (data) {
     console.log(data);
     // create the chart
     Highcharts.stockChart('hicharts2', {
@@ -215,17 +216,17 @@ $.getJSON('https://www.highcharts.com/samples/data/aapl-ohlc.json', function (da
         },
 
         title: {
-            text: '商品三技術線圖'
+            text: data.stronglong3.stock_name
         },
 
         series: [{
             type: 'candlestick',
-            name: '小道瓊',
-            data: data,
+            name: data.stronglong3.stock_name,
+            data: data.stronglong3.data,
             dataGrouping: {
                 units: [
                     [
-                        'week', // unit name
+                        'day', // unit name
                         [1] // allowed multiples
                     ], [
                         'month',
