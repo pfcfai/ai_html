@@ -228,25 +228,49 @@ height: 100%;}
 
 
 <!-- 跑馬燈內容 -->
-  <div class="marqee">
+  <div id="eco_run" class="marqee" >
+   
+    </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function (){
+            $.getJSON('https://pfcfactweb.azurewebsites.net/eco_run/?format=json', function (data) {
+              var num =data.length;
+              var tableData ="<ul>"
+              for(var i=0;i<num;i++){
+                    
+                  tableData+="<li>"+data[i]+"</li>"+"<li>|</li>"
+                 }
+                 tableData+="</ul>"
+                 //現在tableData已經生成好了，把他賦值給上面的tbody
+                 //console.log(tableData)
+                 $("#eco_run").html(tableData)
+   
+            })
+    })
+</script>
+  <!-- 跑馬燈內容結束 -->
+<!-- 跑馬燈內容 
+  <div id="eco_run" class="marqee" >
       <ul>
-        <li>非農就業數據(美國) 220K</li>
+        <li>初領失業救濟金人數 (美國) 數據期間: 截至10月12日 (週數據) 實際值  : 214k 預估值  : 215k  </li>
                 <li>|</li>
-        <li>初領失業救濟金人數(美國) 0.7%</li>
+        <li>初領失業救濟金人數(美國) 期間:2月 實際值 :220K 預估值 :160K</li>
                 <li>|</li>
-        <li>工業生產(月比)(日本) -3.3%</li>
+        <li>工業生產(月比)(日本) 期間:2月 實際值 :220K 預估值 :160K</li>
                 <li>|</li>
-        <li>GDP季調(歐元區) 0.2%</li>
+        <li>GDP季調(歐元區) 期間:2月 實際值 :220K 預估值 :160K</li>
                 <li>|</li>
-        <li>CPI(年比)(英國) 2.1%</li>
+        <li>CPI(年比)(英國) 期間:2月 實際值 :220K 預估值 :160K</li>
                 <li>|</li>
-        <li>GDP季調(德國) -0.1%</li>
+        <li>GDP季調(德國) 期間:2月 實際值 :220K 預估值 :160K</li>
                 <li>|</li>
-        <li>核心機器訂單(日本) 13.9%</li>
+        <li>核心機器訂單(日本) 期間:2月 實際值 :220K 預估值 :160K</li>
       </ul>
     </div>
-  <!-- 跑馬燈內容結束 -->
-
+   跑馬燈內容結束 -->
 
 <main role="main" class="container">
 
