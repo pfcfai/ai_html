@@ -1359,10 +1359,12 @@ Highcharts.chart('eventgraph2', {
         }],
 
     xAxis: {
+        type: 'datetime',
+
         labels: {
-            format: '{value}'
+ 
         },
-        minRange: 5,
+
         title: {
             text: '日期'
         }
@@ -1381,7 +1383,7 @@ Highcharts.chart('eventgraph2', {
     },
 
     tooltip: {
-        headerFormat: '日期: {point.x}<br>',
+        xDateFormat: '%B %e, %Y',
         pointFormat: '{point.y}',
         shared: true
     },
