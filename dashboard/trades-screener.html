@@ -259,7 +259,7 @@
 
   </div>
 <script type="text/javascript">
-    Highcharts.getJSON('http://127.0.0.1:8000/homeapi/?format=json', function (data) {
+    Highcharts.getJSON('https://pfcfactweb.azurewebsites.net/homeapi/?format=json', function (data) {
          var chart = Highcharts.chart('rankbar', {
 
             title: {
@@ -378,7 +378,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
     $(document).ready(function (){
-            $.getJSON('http://127.0.0.1:8000/homeapi/?format=json', function (data) {
+            $.getJSON('https://pfcfactweb.azurewebsites.net/homeapi/?format=json', function (data) {
               
               for(var j=0;j<6;j++){
                 var classfy = Object.keys(data.quote)[j]
