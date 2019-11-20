@@ -754,7 +754,7 @@ Highcharts.chart('eventgraph', {
     </script>
 
 <hr class="featurette-divider">
-<div class="row">
+<div class="row" style="background-color: #D9E1E8">
 <div class="col-md-4">
     <h2 class="featurette-heading"> <span class="text-muted">中美貿易戰對美股影響分析</span></h2>
         <p>2018年起中美雙方開始出現貿易爭端，雙方不斷互相課徵關稅的情形下，影響全球貿易動向及經濟發展，同樣地也對國際股市造成影響。
@@ -762,7 +762,9 @@ Highcharts.chart('eventgraph', {
 </p>
 </div>
 <div class="col-md-8">
+
     <div id="eventgraph2"></div>
+
 </div>
 </div>
     <script type="text/javascript">
@@ -1251,6 +1253,7 @@ var elevationData = [
 Highcharts.chart('eventgraph2', {
 
     chart: {
+        backgroundColor: null,
         type: 'area',
         zoomType: 'x',
         panning: true,
@@ -1261,7 +1264,7 @@ Highcharts.chart('eventgraph2', {
     },
 
     accessibility: {
-        description: 'An annotated line graph illustrates the 8th stage of the 2017 Tour de France cycling race from the start point in Dole to the finish line at Station des Rousses. Altitude is plotted on the Y-axis at increments of 500m and distance is plotted on the X-axis in increments of 25 kilometers. The line graph is interactive, and the user can trace the altitude level at every 100-meter point along the stage. The graph is shaded below the data line to visualize the mountainous altitudes encountered on the 187.5-kilometre stage. The three largest climbs are highlighted at Col de la Joux, Côte de Viry and the final 11.7-kilometer, 6.4% gradient climb to Montée de la Combe de Laisia Les Molunes which peaks at 1200 meters above sea level. The stage passes through the villages of Arbois, Montrond, Bonlieu, Chassal and Saint-Claude along the route.'
+        description: ''
     },
 
     title: {
@@ -1356,10 +1359,12 @@ Highcharts.chart('eventgraph2', {
         }],
 
     xAxis: {
+        type: 'datetime',
+
         labels: {
-            format: '{value}'
+ 
         },
-        minRange: 5,
+
         title: {
             text: '日期'
         }
@@ -1378,7 +1383,7 @@ Highcharts.chart('eventgraph2', {
     },
 
     tooltip: {
-        headerFormat: '日期: {point.x}<br>',
+        xDateFormat: '%B %e, %Y',
         pointFormat: '{point.y}',
         shared: true
     },
