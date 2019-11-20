@@ -84,7 +84,7 @@
           transition-delay: 0.2s;
           }
           .blur{
-          opacity: 0.6;}
+          opacity: 0.9;}
 
           .blur:hover{
           opacity: 1;
@@ -160,7 +160,25 @@ height: 100%;}
       a:hover {
         color:#F7984B;
       }
-      
+
+      .carousel-control-prev-icon,
+      .carousel-control-next-icon {
+        background-image: none;
+    }
+
+      .carousel-control-next-icon:after
+    {
+      content: '>';
+      font-size: 55px;
+      color: red;
+    }
+
+      .carousel-control-prev-icon:after {
+      content: '<';
+      font-size: 55px;
+      color: red;
+    }
+
     </style>
     
     <!-- highcharts -->
@@ -484,6 +502,156 @@ $('#polar').click(function () {
       <small style="color:orange" >DELAYED QUOTES</small>
     </div>
   </div>
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <div class="mx-auto">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+<div class="card-deck">
+  <div class="card shadow-sm blur">
+    <img src="pic/stock.jpg" class="card-img-top" alt="..." width="340px" height="200px">
+    <div class="card-body"> 
+      <h5 class="card-title">指數期貨  Equity Index</h5>
+      <p class="card-text"><div id="div1">
+<table class="table table-sm table-hover">
+  <thead>
+    <tr>
+      <th scope="col">商品</th>
+      <th scope="col">漲跌幅</th>
+    </tr>
+  </thead>
+  <tbody id="t_equityindex">
+ 
+  </tbody>
+</table>
+</div>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+
+  <div class="card shadow-sm blur">
+    <img src="pic/oil.jpg" class="card-img-top" alt="..." width="340px" height="200px">
+    <div class="card-body">
+      <h5 class="card-title">能源期貨  Energy</h5>
+      <p class="card-text"><div id="div1">
+<table class="table table-sm table-hover">
+  <thead>
+    <tr>
+      <th scope="col">商品</th>
+      <th scope="col">漲跌幅</th>
+    </tr>
+  </thead>
+  <tbody id="t_energy">
+    
+  </tbody>
+</table>
+</div></p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+  <div class="card shadow-sm blur">
+    <img src="pic/wheat.jpg" class="card-img-top" alt="..." width="340px" height="200px">
+    <div class="card-body">
+      <h5 class="card-title">農產品期貨  Agricultural</h5>
+      <p class="card-text"><div id="div1">
+<table class="table table-sm table-hover">
+  <thead>
+    <tr>
+      <th scope="col">商品</th>
+      <th scope="col">漲跌幅</th>
+    </tr>
+  </thead>
+  <tbody id="t_agricultural">
+    
+  </tbody>
+</table>
+</div></p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+
+</div>
+    </div>
+    <div class="carousel-item">
+      <div class="card-deck">
+
+  <div class="card shadow-sm blur">
+    <img src="pic/coin.jpg" class="card-img-top" alt="..." width="340px" height="200px">
+    <div class="card-body"> 
+      <h5 class="card-title">匯率期貨  FX</h5>
+      <p class="card-text"><div id="div1">
+<table class="table table-sm table-hover">
+  <thead>
+    <tr>
+      <th scope="col">商品</th>
+      <th scope="col">漲跌幅</th>
+    </tr>
+  </thead>
+    <tbody id="t_fx">
+    
+  </tbody>
+</table>
+</div></p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+
+  <div class="card shadow-sm blur">
+    <img src="pic/metal.jpg" class="card-img-top" alt="..." width="340px" height="200px">
+    <div class="card-body">
+      <h5 class="card-title">金屬期貨  Metals</h5>
+      <p class="card-text"><div id="div1">
+<table class="table table-sm table-hover">
+  <thead>
+    <tr>
+      <th scope="col">商品</th>
+      <th scope="col">漲跌幅</th>
+    </tr>
+  </thead>
+  <tbody id="t_metals">
+   
+  </tbody>
+</table>
+</div></p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+  <div class="card shadow-sm blur">
+<img src="pic/rates.jpg" class="card-img-top" alt="..." width="340px" height="200px">
+    <div class="card-body">
+      <h5 class="card-title">利率期貨  Interest Rates</h5>
+      <p class="card-text"><div id="div1">
+<table class="table table-sm table-hover">
+  <thead>
+    <tr>
+      <th scope="col">商品</th>
+      <th scope="col">漲跌幅</th>
+    </tr>
+  </thead>
+  <tbody id="t_interestrates">
+    
+  </tbody>
+</table>
+</div></p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+
+</div>
+    </div>
+
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+  </div>
+</div>
+
+ <!-- 
 <div class="row">
 <div class="card-deck">
   <div class="card shadow-sm blur">
@@ -613,7 +781,7 @@ $('#polar').click(function () {
       <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
     </div>
   </div>
-
+-->
 </div>
   <div></div>
 </section>
