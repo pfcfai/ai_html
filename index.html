@@ -42,11 +42,11 @@
    
 
       header {
-              background-color: #666;
+              background-color: #FFFAFA;
               padding: 30px;
               text-align: center;
               font-size: 35px;
-              color: white;
+              color: black;
               }
     /* 共用css結束 */
 
@@ -424,7 +424,7 @@ $('#polar').click(function () {
 </script>
 </div>
 -->
-<div class="row justify-content-center">
+<div class="row justify-content-left">
 <div id="pricerank2"  style="width: 600px; height: 400px; margin: 0 auto"></div>
 </div>
 <script type="text/javascript">
@@ -495,6 +495,7 @@ $('#polar').click(function () {
 
   <div class="container">
 <hr>
+<header></header>
   <div class="d-flex align-items-center p-3 my-3 text-black-50 rounded shadow-sm">
     <!--<img class="mr-3" src="https://getbootstrap.com//docs/4.3/assets/brand/bootstrap-outline.svg" alt="" width="48" height="48">-->
     <div class="lh-100">
@@ -813,8 +814,13 @@ $('#polar').click(function () {
             }})
     })
 </script>
-
+<header>
+  <h2>=推薦影音=</h2>
+  <h4 style="color: gray">watch video</h4>
+</header>
 <!--影音嵌入-->
+
+
  <div class="row" id="sortable">
  
       <div class="col-md-4">
@@ -840,9 +846,10 @@ $('#polar').click(function () {
 <!--影音嵌入結束-->
   </div><!-- /.container -->
 </main>
+<header></header>
 
 <a href="https://www.pfcf.com.tw/eventweb/programing-trading-multicharts-api/"><img src="./pic/banner.png" width="100%"></a>
-
+<header></header>
 <!-- 商品熱力圖 -->
 <div id="container" style="height: 400px; min-width: 310px; max-width: 800px; margin: 0 auto ;"></div>
 
@@ -906,8 +913,7 @@ Highcharts.chart('container', {
 </script>
 <!-- 商品熱力圖結束 -->
 
-<hr>
-
+<header></header>
 
   <!-- FOOTER -->
 <footer class="footer mt-auto py-3" style="background-color: #E2E2E2">
