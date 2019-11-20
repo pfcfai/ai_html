@@ -40,7 +40,13 @@
       td{
         height: 40px;
       }
-
+      header {
+              background-color: #FFFAFA;
+              padding: 30px;
+              text-align: center;
+              font-size: 35px;
+              color: black;
+              }
       #div1
       {
        width:400px;
@@ -80,6 +86,7 @@
     margin: 0 auto;
   }
 }
+/* 儀錶板結束 */
       a:link {
         color: #959696;
       }
@@ -89,7 +96,7 @@
       a:hover {
         color:#F7984B;
       }
-/* 儀錶板結束 */
+
     </style>
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.com/docs/4.3/examples/sticky-footer-navbar/sticky-footer-navbar.css" rel="stylesheet">
@@ -207,7 +214,7 @@
 
 
 <hr class="featurette-divider"> 
-
+<header></header>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
@@ -271,13 +278,13 @@ var gaugeOptions = {
     }
 };
 
-// The speed gauge
+// 擺盪指標
 var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
     yAxis: {
         min: 0,
         max: 200,
         title: {
-            text: 'Speed'
+            text: '擺盪指標'
         }
     },
 
@@ -292,23 +299,23 @@ var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptio
             format:
                 '<div style="text-align:center">' +
                 '<span style="font-size:25px">{y}</span><br/>' +
-                '<span style="font-size:12px;opacity:0.4">km/h</span>' +
+                '<span style="font-size:12px;opacity:0.4">加總</span>' +
                 '</div>'
         },
         tooltip: {
-            valueSuffix: ' km/h'
+            valueSuffix: ' 加總'
         }
     }]
 
 }));
 
-// The RPM gauge
+// 移動平均線
 var chartRpm = Highcharts.chart('container-rpm', Highcharts.merge(gaugeOptions, {
     yAxis: {
         min: 0,
         max: 5,
         title: {
-            text: 'RPM'
+            text: '移動平均線'
         }
     },
 
@@ -320,53 +327,20 @@ var chartRpm = Highcharts.chart('container-rpm', Highcharts.merge(gaugeOptions, 
                 '<div style="text-align:center">' +
                 '<span style="font-size:25px">{y:.1f}</span><br/>' +
                 '<span style="font-size:12px;opacity:0.4">' +
-                '* 1000 / min' +
+                '加總' +
                 '</span>' +
                 '</div>'
         },
         tooltip: {
-            valueSuffix: ' revolutions/min'
+            valueSuffix: '加總'
         }
     }]
 
 }));
 
-// Bring life to the dials
-setInterval(function () {
-    // Speed
-    var point,
-        newVal,
-        inc;
-
-    if (chartSpeed) {
-        point = chartSpeed.series[0].points[0];
-        inc = Math.round((Math.random() - 0.5) * 100);
-        newVal = point.y + inc;
-
-        if (newVal < 0 || newVal > 200) {
-            newVal = point.y - inc;
-        }
-
-        point.update(newVal);
-    }
-
-    // RPM
-    if (chartRpm) {
-        point = chartRpm.series[0].points[0];
-        inc = Math.random() - 0.5;
-        newVal = point.y + inc;
-
-        if (newVal < 0 || newVal > 5) {
-            newVal = point.y - inc;
-        }
-
-        point.update(newVal);
-    }
-}, 2000);  
-
 </script>
 
-<div class="row">
+<div class="row justify-content-center">
 
  <div id="div1">
 <br><b>台指期貨</b></br>
