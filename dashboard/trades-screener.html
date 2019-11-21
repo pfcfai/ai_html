@@ -67,6 +67,16 @@
         float: left;
         margin-right: 20px; 
       }
+
+      a:link {
+        color: #959696;
+      }
+      a:visited {
+        color: #959696;
+      }
+      a:hover {
+        color:#F7984B;
+      }
     </style>
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.com/docs/4.3/examples/sticky-footer-navbar/sticky-footer-navbar.css" rel="stylesheet">
@@ -93,22 +103,10 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <!--<a class="dropdown-item" href="./dashboard/technical-analysis.html">**商品櫥窗</a>-->
-          <a class="dropdown-item" href="./dashboard/technical-indicators.html"><img src="../pic/icon-01.png"> 多空指標</a>
-          <a class="dropdown-item" href="./dashboard/ai-patterns.html"><img src="../pic/icon-02.png"> AI模型</a>
+          <a class="dropdown-item" href="./technical-indicators.html"><img src="../pic/icon-01.png"> 多空指標</a>
+          <a class="dropdown-item" href="./ai-patterns.html"><img src="../pic/icon-02.png"> AI模型</a>
           <!--<a class="dropdown-item" href="./dashboard/products-screener.html">熱門商品排行</a>-->
-          <a class="dropdown-item" href="./dashboard/trades-screener.html"><img src="../pic/icon-03.png"> 漲跌排行</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          影音文章
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <!--<a class="dropdown-item" href="./blog/trading-strategy.html">**交易策略</a>-->
-          <!--<a class="dropdown-item" href="./blog/dailyreport.html">**每日觀點</a>-->
-          <!--<a class="dropdown-item" href="./blog/blog.html">**專題報導</a>-->
-          <a class="dropdown-item" href="./blog/livestream.html"><img src="../pic/icon-04.png"> 線上直播</a>
-          <!--<a class="dropdown-item" href="./blog/vlog.html">VLOG</a>-->
+          <a class="dropdown-item" href="#"><img src="../pic/icon-03.png"> 漲跌排行</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -118,13 +116,13 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <!--<a class="dropdown-item" href="#">經濟數據</a>-->
           <!--<a class="dropdown-item" href="#">籌碼資料</a>-->
-          <a class="dropdown-item" href="#"><img src="../pic/icon-13.png"> 財經日曆</a>
-          <a class="dropdown-item" href="./ecodatabase/event-research.html"><img src="../pic/icon-14.png"> 事件分析研究</a>
-          <a class="dropdown-item" href="./ecodatabase/holiday-calendar.html"><img src="../pic/icon-05.png"> 假期公告</a>
+          <a class="dropdown-item" href="../ecodatabase/event-calendar.html"><img src="../pic/icon-13.png"> 財經日曆</a>
+          <a class="dropdown-item" href="../ecodatabase/event-research.html"><img src="../pic/icon-14.png"> 事件分析研究</a>
+          <a class="dropdown-item" href="../ecodatabase/holiday-calendar.html"><img src="../pic/icon-05.png"> 假期公告</a>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./learningmap.html">學習地圖</a>
+        <a class="nav-link" href="../learningmap.html">學習地圖</a>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">關於我們</a>
@@ -153,7 +151,30 @@
     <div class="col">
     <div id="div1">
     <div id="rankbar" style="min-width: 100px; width:300px; height: 400px; margin: 0"></div>
+<script type="text/javascript">
+ var chart = Highcharts.chart('rankbar', {
 
+    title: {
+        text: '股票期貨排行'
+    },
+/*
+    subtitle: {
+        text: 'Plain'
+    },
+*/
+    xAxis: {
+        categories: ['聯發科', '群創', '環球晶', '中美晶', '智原', '友達', '宏達電', '台積電', '玉晶光', 'TPK','京元電','智邦']
+    },
+
+    series: [{
+        type: 'column',
+        colorByPoint: true,
+        data: [8.36,5.08,4.92,4.22,3.32,3.07,-0.15,-0.2,-0.24,-0.36,-0.44,-0.66],
+        showInLegend: false
+    }]
+
+});
+</script>
 
 <div style="width:200px">
 <table id="datatable" class="table table-hover table-sm">
@@ -163,8 +184,32 @@
             <th>漲跌幅</th>
         </tr>
     </thead>
-    <tbody id="t_equityindex">
+    <tbody>
+        <tr>
+            <th>道瓊</th>
+            <td>5</td>
 
+        </tr>
+        <tr>
+            <th>日經</th>
+            <td>4</td>
+
+        </tr>
+        <tr>
+            <th>摩台</th>
+            <td>-3</td>
+
+        </tr>
+        <tr>
+            <th>德指</th>
+            <td>2</td>
+
+        </tr>
+        <tr>
+            <th>恆生</th>
+            <td>1</td>
+
+        </tr>
     </tbody>
 </table>
 </div>
@@ -172,7 +217,30 @@
 
 <div id="div2">
 <div id="rankbar2" style="min-width: 100px; width:300px; height: 400px; margin: 0"></div>
+<script type="text/javascript">
+ var chart = Highcharts.chart('rankbar2', {
 
+    title: {
+        text: '股票期貨排行'
+    },
+/*
+    subtitle: {
+        text: 'Plain'
+    },
+*/
+    xAxis: {
+        categories: ['聯發科', '群創', '環球晶', '中美晶', '智原', '友達', '宏達電', '台積電', '玉晶光', 'TPK','京元電','智邦']
+    },
+
+    series: [{
+        type: 'column',
+        colorByPoint: true,
+        data: [8.36,5.08,4.92,4.22,3.32,3.07,-0.15,-0.2,-0.24,-0.36,-0.44,-0.66],
+        showInLegend: false
+    }]
+
+});
+</script>
 
 <div style="width:200px">
 <table id="datatable2" class="table table-hover table-sm">
@@ -182,8 +250,37 @@
             <th>漲跌幅</th>
         </tr>
     </thead>
-    <tbody id="t_fx">
-        
+    <tbody>
+        <tr>
+            <th>美元</th>
+            <td>6</td>
+
+        </tr>
+        <tr>
+            <th>日圓</th>
+            <td>5</td>
+
+        </tr>
+        <tr>
+            <th>英鎊</th>
+            <td>4</td>
+
+        </tr>
+        <tr>
+            <th>歐元</th>
+            <td>3</td>
+
+        </tr>
+        <tr>
+            <th>澳幣</th>
+            <td>2</td>
+
+        </tr>
+        <tr>
+            <th>瑞郎</th>
+            <td>1</td>
+
+        </tr>
     </tbody>
 </table>
 </div>
@@ -191,7 +288,30 @@
 
 <div id="div3">
 <div id="rankbar3" style="min-width: 100px; width:300px; height: 400px; margin: 0"></div>
+<script type="text/javascript">
+ var chart = Highcharts.chart('rankbar3', {
 
+    title: {
+        text: '股票期貨排行'
+    },
+/*
+    subtitle: {
+        text: 'Plain'
+    },
+*/
+    xAxis: {
+        categories: ['聯發科', '群創', '環球晶', '中美晶', '智原', '友達', '宏達電', '台積電', '玉晶光', 'TPK','京元電','智邦']
+    },
+
+    series: [{
+        type: 'column',
+        colorByPoint: true,
+        data: [8.36,5.08,4.92,4.22,3.32,3.07,-0.15,-0.2,-0.24,-0.36,-0.44,-0.66],
+        showInLegend: false
+    }]
+
+});
+</script>
 
 <div style="width:200px">
 <table id="datatable3" class="table table-hover table-sm">
@@ -201,8 +321,43 @@
             <th>漲跌幅</th>
         </tr>
     </thead>
-    <tbody id="t_agricultural">
-       
+    <tbody>
+        <tr>
+            <th>黃豆</th>
+            <td>9</td>
+        </tr>
+        <tr>
+            <th>小麥</th>
+            <td>7</td>
+        </tr>
+        <tr>
+            <th>玉米</th>
+            <td>6</td>
+        </tr>
+        <tr>
+            <th>可可</th>
+            <td>5</td>
+        </tr>
+        <tr>
+            <th>咖啡</th>
+            <td>5</td>
+        </tr>
+        <tr>
+            <th>棉花</th>
+            <td>3.2</td>
+        </tr>
+                <tr>
+            <th>咖啡</th>
+            <td>2</td>
+        </tr>
+                <tr>
+            <th>橡膠</th>
+            <td>1.5</td>
+        </tr>
+        <tr>
+            <th>黃豆粉</th>
+            <td>1</td>
+        </tr>
     </tbody>
 </table>
 </div>
@@ -213,7 +368,30 @@
     <div class="col">
     <div id="div1">
     <div id="rankbar4" style="min-width: 100px; width:300px; height: 400px; margin: 0"></div>
+<script type="text/javascript">
+ var chart = Highcharts.chart('rankbar4', {
 
+    title: {
+        text: '股票期貨排行'
+    },
+/*
+    subtitle: {
+        text: 'Plain'
+    },
+*/
+    xAxis: {
+        categories: ['聯發科', '群創', '環球晶', '中美晶', '智原', '友達', '宏達電', '台積電', '玉晶光', 'TPK','京元電','智邦']
+    },
+
+    series: [{
+        type: 'column',
+        colorByPoint: true,
+        data: [8.36,5.08,4.92,4.22,3.32,3.07,-0.15,-0.2,-0.24,-0.36,-0.44,-0.66],
+        showInLegend: false
+    }]
+
+});
+</script>
 
 <div style="width:200px">
 <table id="datatable4" class="table table-hover table-sm">
@@ -223,8 +401,32 @@
             <th>漲跌幅</th>
         </tr>
     </thead>
-    <tbody id="t_energy">
-        
+    <tbody>
+        <tr>
+            <th>道瓊</th>
+            <td>5</td>
+
+        </tr>
+        <tr>
+            <th>日經</th>
+            <td>4</td>
+
+        </tr>
+        <tr>
+            <th>摩台</th>
+            <td>-3</td>
+
+        </tr>
+        <tr>
+            <th>德指</th>
+            <td>2</td>
+
+        </tr>
+        <tr>
+            <th>恆生</th>
+            <td>1</td>
+
+        </tr>
     </tbody>
 </table>
 </div>
@@ -232,7 +434,30 @@
 
 <div id="div2">
 <div id="rankbar5" style="min-width: 100px; width:300px; height: 400px; margin: 0"></div>
+<script type="text/javascript">
+ var chart = Highcharts.chart('rankbar5', {
 
+    title: {
+        text: '股票期貨排行'
+    },
+/*
+    subtitle: {
+        text: 'Plain'
+    },
+*/
+    xAxis: {
+        categories: ['聯發科', '群創', '環球晶', '中美晶', '智原', '友達', '宏達電', '台積電', '玉晶光', 'TPK','京元電','智邦']
+    },
+
+    series: [{
+        type: 'column',
+        colorByPoint: true,
+        data: [8.36,5.08,4.92,4.22,3.32,3.07,-0.15,-0.2,-0.24,-0.36,-0.44,-0.66],
+        showInLegend: false
+    }]
+
+});
+</script>
 
 <div style="width:200px">
 <table id="datatable5" class="table table-hover table-sm">
@@ -242,8 +467,37 @@
             <th>漲跌幅</th>
         </tr>
     </thead>
-    <tbody id="t_metals">
-        
+    <tbody>
+        <tr>
+            <th>美元</th>
+            <td>6</td>
+
+        </tr>
+        <tr>
+            <th>日圓</th>
+            <td>5</td>
+
+        </tr>
+        <tr>
+            <th>英鎊</th>
+            <td>4</td>
+
+        </tr>
+        <tr>
+            <th>歐元</th>
+            <td>3</td>
+
+        </tr>
+        <tr>
+            <th>澳幣</th>
+            <td>2</td>
+
+        </tr>
+        <tr>
+            <th>瑞郎</th>
+            <td>1</td>
+
+        </tr>
     </tbody>
 </table>
 </div>
@@ -251,7 +505,30 @@
 
 <div id="div3">
 <div id="rankbar6" style="min-width: 100px; width:300px; height: 400px; margin: 0"></div>
+<script type="text/javascript">
+  var chart = Highcharts.chart('rankbar6', {
 
+    title: {
+        text: '股票期貨排行'
+    },
+/*
+    subtitle: {
+        text: 'Plain'
+    },
+*/
+    xAxis: {
+        categories: ['聯發科', '群創', '環球晶', '中美晶', '智原', '友達', '宏達電', '台積電', '玉晶光', 'TPK','京元電','智邦']
+    },
+
+    series: [{
+        type: 'column',
+        colorByPoint: true,
+        data: [8.36,5.08,4.92,4.22,3.32,3.07,-0.15,-0.2,-0.24,-0.36,-0.44,-0.66],
+        showInLegend: false
+    }]
+
+});
+</script>
 
 <div style="width:200px">
 <table id="datatable6" class="table table-hover table-sm">
@@ -261,155 +538,56 @@
             <th>漲跌幅</th>
         </tr>
     </thead>
-    <tbody id="t_interestrates">
-       
+    <tbody>
+        <tr>
+            <th>黃豆</th>
+            <td>9</td>
+        </tr>
+        <tr>
+            <th>小麥</th>
+            <td>7</td>
+        </tr>
+        <tr>
+            <th>玉米</th>
+            <td>6</td>
+        </tr>
+        <tr>
+            <th>可可</th>
+            <td>5</td>
+        </tr>
+        <tr>
+            <th>咖啡</th>
+            <td>5</td>
+        </tr>
+        <tr>
+            <th>棉花</th>
+            <td>3.2</td>
+        </tr>
+                <tr>
+            <th>咖啡</th>
+            <td>2</td>
+        </tr>
+                <tr>
+            <th>橡膠</th>
+            <td>1.5</td>
+        </tr>
+        <tr>
+            <th>黃豆粉</th>
+            <td>1</td>
+        </tr>
     </tbody>
 </table>
 </div>
 </div>
 
   </div>
-<script type="text/javascript">
-    Highcharts.getJSON('http://127.0.0.1:8000/homeapi/?format=json', function (data) {
-         var chart = Highcharts.chart('rankbar', {
 
-            title: {
-                text: '指數期貨排行'
-            },
-        /*
-            subtitle: {
-                text: 'Plain'
-            },
-        */
-            xAxis: {
-                categories: data.quote.equityindex.symbol
-            },
 
-            series: [{
-                type: 'column',
-                colorByPoint: true,
-                data: data.quote.equityindex.pct,
-                showInLegend: false
-            }]
-
-        });
-            var chart = Highcharts.chart('rankbar2', {
-
-                 title: {
-                    text: '匯率期貨排行'
-                    },
-
-            xAxis: {
-                categories: data.quote.fx.symbol
-                },
-
-            series: [{
-                    type: 'column',
-                    colorByPoint: true,
-                    data: data.quote.fx.pct,
-                    showInLegend: false
-            }]
-
-        });
-            var chart = Highcharts.chart('rankbar3', {
-
-                 title: {
-                   text: '商品期貨排行'
-                    },
-
-            xAxis: {
-                categories: data.quote.agricultural.symbol
-                },
-
-            series: [{
-                    type: 'column',
-                    colorByPoint: true,
-                    data: data.quote.agricultural.pct,
-                    showInLegend: false
-    }]
-
-        });
-           
-
- var chart = Highcharts.chart('rankbar4', {
-
-    title: {
-        text: '能源期貨排行'
-    },
-    xAxis: {
-        categories: data.quote.energy.symbol
-    },
-
-    series: [{
-        type: 'column',
-        colorByPoint: true,
-        data: data.quote.energy.pct,
-        showInLegend: false
-    }]
-
-});
-
- var chart = Highcharts.chart('rankbar5', {
-
-    title: {
-        text: '金屬期貨排行'
-    },
-    xAxis: {
-        categories: data.quote.metals.symbol
-    },
-
-    series: [{
-        type: 'column',
-        colorByPoint: true,
-        data: data.quote.metals.pct,
-        showInLegend: false
-    }]
-
-});
-
-  var chart = Highcharts.chart('rankbar6', {
-
-    title: {
-        text: '利率期貨排行'
-    },
-    xAxis: {
-        categories: data.quote.interestrates.symbol
-    },
-
-    series: [{
-        type: 'column',
-        colorByPoint: true,
-        data: data.quote.interestrates.pct,
-        showInLegend: false
-    }]
-
-});
-}); 
-</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function (){
-            $.getJSON('http://127.0.0.1:8000/homeapi/?format=json', function (data) {
-              
-              for(var j=0;j<6;j++){
-                var classfy = Object.keys(data.quote)[j]
-                var temp = data.quote[classfy];
-                var tableData=''
-                 for(var i=0;i<temp.symbol.length;i++){
-                    
-                  tableData+="<tr>"+"<th>"+temp.symbol[i]+"</th>"+"<td>"+temp.pct[i]+'%'+"</td>"+"</tr>"
-                 }
-
-                 $("#t_"+classfy).html(tableData)
-                 console.log("#t_"+classfy)
-            }})
-    })
-</script>
 </main>
 <hr class="featurette-divider"> 
 
   <!-- FOOTER -->
-<footer class="footer mt-auto py-3" style="background-color: #FFBE60">
+<footer class="footer mt-auto py-3" style="background-color: #E2E2E2">
   <div class="container">
   <div class="row">
     <div class="col-12 col-md">
@@ -424,21 +602,11 @@
       <h5 style="color: #555555">-期貨看盤室-</h5>
       <ul class="list-unstyled text-small">
         <!--<li><a class="text-white" href="./dashboard/techanalysis.html">技術線圖</a></li>-->
-        <li><a href="#" style="color:#555555"><img src="../pic/icon-01.png"> 多空指標</a></li>
-        <li><a href="#" style="color:#555555"><img src="../pic/icon-02.png"> AI模型</a></li>
+        <li><a href="./technical-indicators.html" style="color:#555555"><img src="../pic/icon-01.png"> 多空指標</a></li>
+        <li><a href="./ai-patterns.html" style="color:#555555"><img src="../pic/icon-02.png"> AI模型</a></li>
         <!--<li><a class="text-white" href="./dashboard/products-screener.html">熱門商品排行</a></li>-->
-        <li><a href="./dashboard/trades-screener.html" style="color:#555555"><img src="../pic/icon-03.png"> 漲跌排行</a></li>
+        <li><a href="./trades-screener.html" style="color:#555555"><img src="../pic/icon-03.png"> 漲跌排行</a></li>
 
-      </ul>
-    </div>
-    <div class="col-6 col-md">
-      <h5 style="color: #555555">-影音文章-</h5>
-      <ul class="list-unstyled text-small">
-        <!--<li><a class="text-white" href="#">交易策略</a></li>-->
-        <!--<li><a class="text-white" href="#">每日觀點</a></li>-->
-        <!--<li><a class="text-white" href="./blog/blog.html">專題報導</a></li>-->
-        <li><a href="#" style="color:#555555"><img src="../pic/icon-04.png"> 線上直播</a></li>
-        <!--<li><a class="text-white" href="#">VLOG</a></li>-->
       </ul>
     </div>
     <div class="col-6 col-md">
@@ -446,17 +614,17 @@
       <ul class="list-unstyled">
         <!--<li><a class="text-white" href="#">經濟數據</a></li>-->
         <!--<li><a class="text-white" href="#">籌碼資料</a></li>-->
-        <li><a href="./ecodatabase/holiday-calendar.html" style="color:#555555"><img src="../pic/icon-13.png"> 財經日曆</a></li>
-        <li><a href="./ecodatabase/event-research.html" style="color:#555555"><img src="../pic/icon-14.png"> 事件研究分析</a></li>
-        <li><a href="./ecodatabase/holiday-calendar.html" style="color:#555555"><img src="../pic/icon-05.png"> 假期公告</a></li>
+        <li><a href="../ecodatabase/holiday-calendar.html" style="color:#555555"><img src="../pic/icon-13.png"> 財經日曆</a></li>
+        <li><a href="../ecodatabase/event-research.html" style="color:#555555"><img src="../pic/icon-14.png"> 事件研究分析</a></li>
+        <li><a href="../ecodatabase/holiday-calendar.html" style="color:#555555"><img src="../pic/icon-05.png"> 假期公告</a></li>
       </ul>
     </div>
     <div class="col-6 col-md">
       <h5 style="color: #555555">-學習地圖-</h5>
       <ul class="list-unstyled">
-        <li><a href="./learningmap.html" style="color:#555555"><img src="../pic/icon-06.png"> 認識期權</a></li>
-        <li><a href="./learningmap.html" style="color:#555555"><img src="../pic/icon-07.png"> 程式交易介紹</a></li>
-        <li><a href="./learningmap.html" style="color:#555555"><img src="../pic/icon-08.png"> 國際市場分析</a></li>
+        <li><a href="../learningmap.html" style="color:#555555"><img src="../pic/icon-06.png"> 認識期權</a></li>
+        <li><a href="../learningmap.html" style="color:#555555"><img src="../pic/icon-07.png"> 程式交易介紹</a></li>
+        <li><a href="../learningmap.html" style="color:#555555"><img src="../pic/icon-08.png"> 國際市場分析</a></li>
       </ul>
     </div>
     <div class="col-6 col-md">
@@ -476,8 +644,7 @@
 </footer>
   <!-- FOOTER結束 -->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="https://getbootstrap.com/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
     </body>
 </html>
-

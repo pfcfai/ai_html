@@ -42,11 +42,11 @@
    
 
       header {
-              background-color: #666;
+              background-color: #FFFAFA;
               padding: 30px;
               text-align: center;
               font-size: 35px;
-              color: white;
+              color: black;
               }
     /* 共用css結束 */
 
@@ -84,7 +84,7 @@
           transition-delay: 0.2s;
           }
           .blur{
-          opacity: 0.6;}
+          opacity: 0.9;}
 
           .blur:hover{
           opacity: 1;
@@ -150,6 +150,35 @@ width: 100%;
 
 height: 100%;}
 /* youtube影片嵌入結束 */ 
+
+      a:link {
+        color: #959696;
+      }
+      a:visited {
+        color: #959696;
+      }
+      a:hover {
+        color:#F7984B;
+      }
+
+      .carousel-control-prev-icon,
+      .carousel-control-next-icon {
+        background-image: none;
+    }
+
+      .carousel-control-next-icon:after
+    {
+      content: '>';
+      font-size: 55px;
+      color: red;
+    }
+
+      .carousel-control-prev-icon:after {
+      content: '<';
+      font-size: 55px;
+      color: red;
+    }
+
     </style>
     
     <!-- highcharts -->
@@ -182,18 +211,6 @@ height: 100%;}
           <a class="dropdown-item" href="./dashboard/ai-patterns.html"><img src="pic/icon-02.png"> AI模型</a>
           <!--<a class="dropdown-item" href="./dashboard/products-screener.html">熱門商品排行</a>-->
           <a class="dropdown-item" href="./dashboard/trades-screener.html"><img src="pic/icon-03.png"> 漲跌排行</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          影音文章
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <!--<a class="dropdown-item" href="./blog/trading-strategy.html">**交易策略</a>-->
-          <!--<a class="dropdown-item" href="./blog/dailyreport.html">**每日觀點</a>-->
-          <!--<a class="dropdown-item" href="./blog/blog.html">**專題報導</a>-->
-          <a class="dropdown-item" href="./blog/livestream.html"><img src="pic/icon-04.png"> 全球新視野</a>
-          <!--<a class="dropdown-item" href="./blog/vlog.html">VLOG</a>-->
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -407,7 +424,7 @@ $('#polar').click(function () {
 </script>
 </div>
 -->
-<div class="row justify-content-center">
+<div class="row justify-content-left">
 <div id="pricerank2"  style="width: 600px; height: 400px; margin: 0 auto"></div>
 </div>
 <script type="text/javascript">
@@ -478,6 +495,7 @@ $('#polar').click(function () {
 
   <div class="container">
 <hr>
+<header></header>
   <div class="d-flex align-items-center p-3 my-3 text-black-50 rounded shadow-sm">
     <!--<img class="mr-3" src="https://getbootstrap.com//docs/4.3/assets/brand/bootstrap-outline.svg" alt="" width="48" height="48">-->
     <div class="lh-100">
@@ -485,6 +503,156 @@ $('#polar').click(function () {
       <small style="color:orange" >DELAYED QUOTES</small>
     </div>
   </div>
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <div class="mx-auto">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+<div class="card-deck">
+  <div class="card shadow-sm blur">
+    <img src="pic/stock.jpg" class="card-img-top" alt="..." width="340px" height="200px">
+    <div class="card-body"> 
+      <h5 class="card-title">指數期貨  Equity Index</h5>
+      <p class="card-text"><div id="div1">
+<table class="table table-sm table-hover">
+  <thead>
+    <tr>
+      <th scope="col">商品</th>
+      <th scope="col">漲跌幅</th>
+    </tr>
+  </thead>
+  <tbody id="t_equityindex">
+ 
+  </tbody>
+</table>
+</div>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+
+  <div class="card shadow-sm blur">
+    <img src="pic/oil.jpg" class="card-img-top" alt="..." width="340px" height="200px">
+    <div class="card-body">
+      <h5 class="card-title">能源期貨  Energy</h5>
+      <p class="card-text"><div id="div1">
+<table class="table table-sm table-hover">
+  <thead>
+    <tr>
+      <th scope="col">商品</th>
+      <th scope="col">漲跌幅</th>
+    </tr>
+  </thead>
+  <tbody id="t_energy">
+    
+  </tbody>
+</table>
+</div></p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+  <div class="card shadow-sm blur">
+    <img src="pic/wheat.jpg" class="card-img-top" alt="..." width="340px" height="200px">
+    <div class="card-body">
+      <h5 class="card-title">農產品期貨  Agricultural</h5>
+      <p class="card-text"><div id="div1">
+<table class="table table-sm table-hover">
+  <thead>
+    <tr>
+      <th scope="col">商品</th>
+      <th scope="col">漲跌幅</th>
+    </tr>
+  </thead>
+  <tbody id="t_agricultural">
+    
+  </tbody>
+</table>
+</div></p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+
+</div>
+    </div>
+    <div class="carousel-item">
+      <div class="card-deck">
+
+  <div class="card shadow-sm blur">
+    <img src="pic/coin.jpg" class="card-img-top" alt="..." width="340px" height="200px">
+    <div class="card-body"> 
+      <h5 class="card-title">匯率期貨  FX</h5>
+      <p class="card-text"><div id="div1">
+<table class="table table-sm table-hover">
+  <thead>
+    <tr>
+      <th scope="col">商品</th>
+      <th scope="col">漲跌幅</th>
+    </tr>
+  </thead>
+    <tbody id="t_fx">
+    
+  </tbody>
+</table>
+</div></p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+
+  <div class="card shadow-sm blur">
+    <img src="pic/metal.jpg" class="card-img-top" alt="..." width="340px" height="200px">
+    <div class="card-body">
+      <h5 class="card-title">金屬期貨  Metals</h5>
+      <p class="card-text"><div id="div1">
+<table class="table table-sm table-hover">
+  <thead>
+    <tr>
+      <th scope="col">商品</th>
+      <th scope="col">漲跌幅</th>
+    </tr>
+  </thead>
+  <tbody id="t_metals">
+   
+  </tbody>
+</table>
+</div></p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+  <div class="card shadow-sm blur">
+<img src="pic/rates.jpg" class="card-img-top" alt="..." width="340px" height="200px">
+    <div class="card-body">
+      <h5 class="card-title">利率期貨  Interest Rates</h5>
+      <p class="card-text"><div id="div1">
+<table class="table table-sm table-hover">
+  <thead>
+    <tr>
+      <th scope="col">商品</th>
+      <th scope="col">漲跌幅</th>
+    </tr>
+  </thead>
+  <tbody id="t_interestrates">
+    
+  </tbody>
+</table>
+</div></p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+
+</div>
+    </div>
+
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+  </div>
+</div>
+
+ <!-- 
 <div class="row">
 <div class="card-deck">
   <div class="card shadow-sm blur">
@@ -614,7 +782,7 @@ $('#polar').click(function () {
       <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
     </div>
   </div>
-
+-->
 </div>
   <div></div>
 </section>
@@ -646,8 +814,13 @@ $('#polar').click(function () {
             }})
     })
 </script>
-
+<header>
+  <h2>=推薦影音=</h2>
+  <h4 style="color: gray">watch video</h4>
+</header>
 <!--影音嵌入-->
+
+
  <div class="row" id="sortable">
  
       <div class="col-md-4">
@@ -673,9 +846,10 @@ $('#polar').click(function () {
 <!--影音嵌入結束-->
   </div><!-- /.container -->
 </main>
+<header></header>
 
 <a href="https://www.pfcf.com.tw/eventweb/programing-trading-multicharts-api/"><img src="./pic/banner.png" width="100%"></a>
-
+<header></header>
 <!-- 商品熱力圖 -->
 <div id="container" style="height: 400px; min-width: 310px; max-width: 800px; margin: 0 auto ;"></div>
 
@@ -739,67 +913,56 @@ Highcharts.chart('container', {
 </script>
 <!-- 商品熱力圖結束 -->
 
-<hr>
-
+<header></header>
 
   <!-- FOOTER -->
-<footer class="footer mt-auto py-3" style="background-color: #FFBE60">
+<footer class="footer mt-auto py-3" style="background-color: #E2E2E2">
   <div class="container">
   <div class="row">
     <div class="col-12 col-md">
 
-      <small class="d-block mb-3" style="color: #555555">統一期貨 &copy; 2019</small>
+      <small class="d-block mb-3" style="color: #959696">統一期貨 &copy; 2019</small>
       <a href="https://www.facebook.com/president.futures/"><img src="pic/fb.png"></a>
       <a href="https://line.me/R/ti/p/%40bbu3616b"><img src="pic/line.png"></a>
       <a href="https://www.youtube.com/channel/UCaJSetiZxHhUdYksIjr-yfw"><img src="pic/youtube.png"></a>
       <a href="https://www.youtube.com/channel/UCaJSetiZxHhUdYksIjr-yfw"><img src="pic/ig.png"></a>
     </div>
     <div class="col-6 col-md">
-      <h5 style="color: #555555">-期貨看盤室-</h5>
+      <h5 style="color: #959696">-期貨看盤室-</h5>
       <ul class="list-unstyled text-small">
         <!--<li><a class="text-white" href="./dashboard/techanalysis.html">技術線圖</a></li>-->
-        <li><a href="#" style="color:#555555"><img src="pic/icon-01.png"> 多空指標</a></li>
-        <li><a href="#" style="color:#555555"><img src="pic/icon-02.png"> AI模型</a></li>
+        <li><a href="./dashboard/technical-indicators.html"><img src="pic/icon-01.png"> 多空指標</a></li>
+        <li><a href="./dashboard/ai-patterns.html"><img src="pic/icon-02.png"> AI模型</a></li>
         <!--<li><a class="text-white" href="./dashboard/products-screener.html">熱門商品排行</a></li>-->
-        <li><a href="./dashboard/trades-screener.html" style="color:#555555"><img src="pic/icon-03.png"> 漲跌排行</a></li>
+        <li><a href="./dashboard/trades-screener.html"><img src="pic/icon-03.png"> 漲跌排行</a></li>
 
       </ul>
     </div>
     <div class="col-6 col-md">
-      <h5 style="color: #555555">-影音文章-</h5>
-      <ul class="list-unstyled text-small">
-        <!--<li><a class="text-white" href="#">交易策略</a></li>-->
-        <!--<li><a class="text-white" href="#">每日觀點</a></li>-->
-        <!--<li><a class="text-white" href="./blog/blog.html">專題報導</a></li>-->
-        <li><a href="#" style="color:#555555"><img src="pic/icon-04.png"> 全球新視野</a></li>
-        <!--<li><a class="text-white" href="#">VLOG</a></li>-->
-      </ul>
-    </div>
-    <div class="col-6 col-md">
-      <h5 style="color: #555555">-數據資料庫-</h5>
+      <h5 style="color: #959696">-數據資料庫-</h5>
       <ul class="list-unstyled">
         <!--<li><a class="text-white" href="#">經濟數據</a></li>-->
         <!--<li><a class="text-white" href="#">籌碼資料</a></li>-->
-        <li><a href="./ecodatabase/event-calendar.html" style="color:#555555"><img src="pic/icon-13.png"> 財經日曆</a></li>
-        <li><a href="./ecodatabase/event-research.html" style="color:#555555"><img src="pic/icon-14.png"> 事件研究分析</a></li>
-        <li><a href="./ecodatabase/holiday-calendar.html" style="color:#555555"><img src="pic/icon-05.png"> 假期公告</a></li>
+        <li><a href="./ecodatabase/event-calendar.html"><img src="pic/icon-13.png"> 財經日曆</a></li>
+        <li><a href="./ecodatabase/event-research.html"><img src="pic/icon-14.png"> 事件研究分析</a></li>
+        <li><a href="./ecodatabase/holiday-calendar.html"><img src="pic/icon-05.png"> 假期公告</a></li>
       </ul>
     </div>
     <div class="col-6 col-md">
-      <h5 style="color: #555555">-學習地圖-</h5>
+      <h5 style="color: #959696">-學習地圖-</h5>
       <ul class="list-unstyled">
-        <li><a href="./learningmap.html" style="color:#555555"><img src="pic/icon-06.png"> 認識期權</a></li>
-        <li><a href="./learningmap.html" style="color:#555555"><img src="pic/icon-07.png"> 程式交易介紹</a></li>
-        <li><a href="./learningmap.html" style="color:#555555"><img src="pic/icon-08.png"> 國際市場分析</a></li>
+        <li><a href="./learningmap.html"><img src="pic/icon-06.png"> 認識期權</a></li>
+        <li><a href="./learningmap.html"><img src="pic/icon-07.png"> 程式交易介紹</a></li>
+        <li><a href="./learningmap.html"><img src="pic/icon-08.png"> 國際市場分析</a></li>
       </ul>
     </div>
     <div class="col-6 col-md">
-      <h5 style="color: #555555">-關於我們-</h5>
+      <h5 style="color: #959696">-關於我們-</h5>
       <ul class="list-unstyled text-small">
-        <li><a href="#" style="color:#555555"><img src="pic/icon-09.png"> Team</a></li>
-        <li><a href="#" style="color:#555555"><img src="pic/icon-10.png"> Locations</a></li>
-        <li><a href="#" style="color:#555555"><img src="pic/icon-11.png"> Privacy</a></li>
-        <li><a href="#" style="color:#555555"><img src="pic/icon-12.png"> Terms</a></li>
+        <li><a href="#"><img src="pic/icon-09.png"> Team</a></li>
+        <li><a href="#"><img src="pic/icon-10.png"> Locations</a></li>
+        <li><a href="#"><img src="pic/icon-11.png"> Privacy</a></li>
+        <li><a href="#"><img src="pic/icon-12.png"> Terms</a></li>
       </ul>
     </div>
   </div>
