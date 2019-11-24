@@ -219,8 +219,10 @@
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
 <div class="outer">
+  <div class="row justify-content-between">
     <div id="container-speed" class="chart-container"></div>
     <div id="container-rpm" class="chart-container"></div>
+  </div>
 </div>
 <script type="text/javascript">
 var gaugeOptions = {
@@ -281,8 +283,8 @@ var gaugeOptions = {
 // 擺盪指標
 var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
     yAxis: {
-        min: 0,
-        max: 200,
+        min: -10,
+        max: 10,
         title: {
             text: '擺盪指標'
         }
@@ -294,7 +296,7 @@ var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptio
 
     series: [{
         name: 'Speed',
-        data: [80],
+        data: [8],
         dataLabels: {
             format:
                 '<div style="text-align:center">' +
@@ -312,8 +314,8 @@ var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptio
 // 移動平均線
 var chartRpm = Highcharts.chart('container-rpm', Highcharts.merge(gaugeOptions, {
     yAxis: {
-        min: 0,
-        max: 5,
+        min: -12,
+        max: 12,
         title: {
             text: '移動平均線'
         }
@@ -340,56 +342,66 @@ var chartRpm = Highcharts.chart('container-rpm', Highcharts.merge(gaugeOptions, 
 
 </script>
 
-<div class="row justify-content-center">
+<div class="row justify-content-around">
 
  <div id="div1">
-<br><b>台指期貨</b></br>
+<H3>擺盪指標</H3>
 <table class="table table-sm table-hover">
   <thead>
     <tr>
-      <th scope="col">指標</th>
+      <th scope="col">名稱</th>
       <th scope="col">值</th>
       <th scope="col">狀態</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>RSI(14)</td>
+      <td>RSI(6)</td>
       <td>67.5</td>
       <td>Buy</td>
     </tr>
     <tr>
-      <td>KD(9,6)</td>
+      <td>RSI(9)</td>
       <td>43.305</td>
       <td>Sell</td>
     </tr>
     <tr>
-      <td>MACD(12,26)</td>
+      <td>RSI(14)</td>
       <td>4.600</td>
       <td>Neutral</td>
     </tr>
     <tr>
-      <td>CCI(12,26)</td>
+      <td>威廉指標(6)</td>
       <td>4.600</td>
       <td>Neutral</td>
     </tr>
     <tr>
-      <td>威廉指標(12,26)</td>
+      <td>威廉指標(9)</td>
       <td>4.600</td>
       <td>Neutral</td>
     </tr>
     <tr>
-      <td>ADX(12,26)</td>
+      <td>威廉指標(14)</td>
       <td>4.600</td>
       <td>Neutral</td>
     </tr>
     <tr>
-      <td>Ultimate Oscillator(12,26)</td>
+      <td>KD(6)</td>
       <td>4.600</td>
       <td>Neutral</td>
     </tr>
     <tr>
-      <td>Balance Of Power(12,26)</td>
+      <td>KD(9)</td>
+      <td>4.600</td>
+      <td>Neutral</td>
+    </tr>
+    <tr>
+      <td>KD(14)</td>
+      <td>4.600</td>
+      <td>Neutral</td>
+    </tr>
+    <tr>
+      <td>MACD(12,26,9))</td>
       <td>4.600</td>
       <td>Neutral</td>
     </tr>
@@ -398,11 +410,11 @@ var chartRpm = Highcharts.chart('container-rpm', Highcharts.merge(gaugeOptions, 
 </div>
 
  <div id="div2">
-  <br><b></b></br>
+  <H3>移動平均線</H3>
 <table class="table table-sm table-hover">
   <thead>
     <tr>
-      <th scope="col">指標</th>
+      <th scope="col">名稱</th>
       <th scope="col">值</th>
       <th scope="col">狀態</th>
     </tr>
@@ -429,24 +441,44 @@ var chartRpm = Highcharts.chart('container-rpm', Highcharts.merge(gaugeOptions, 
       <td>站上</td>
     </tr>
     <tr>
-      <td>EMA(5)</td>
+      <td>SMA(120)</td>
       <td>4.600</td>
       <td>站上</td>
+    </tr>
+    <tr>
+      <td>SMA(240)</td>
+      <td>4.600</td>
+      <td>跌破</td>
+    </tr>
+    <tr>
+      <td>EMA(5)</td>
+      <td>4.600</td>
+      <td>跌破</td>
     </tr>
     <tr>
       <td>EMA(10)</td>
       <td>4.600</td>
-      <td>跌破</td>
+      <td>站上</td>
     </tr>
-    <tr>
+        <tr>
       <td>EMA(20)</td>
       <td>4.600</td>
       <td>跌破</td>
     </tr>
-    <tr>
+        <tr>
       <td>EMA(60)</td>
       <td>4.600</td>
-      <td>站上</td>
+      <td>跌破</td>
+    </tr>
+        <tr>
+      <td>EMA(120)</td>
+      <td>4.600</td>
+      <td>跌破</td>
+    </tr>
+        <tr>
+      <td>EMA(240)</td>
+      <td>4.600</td>
+      <td>跌破</td>
     </tr>
   </tbody>
   </table>
