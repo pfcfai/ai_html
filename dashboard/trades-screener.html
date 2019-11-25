@@ -401,7 +401,7 @@
                 var tableData=''
                  for(var i=0;i<temp.symbol.length;i++){
                     
-                  tableData+="<tr>"+"<th>"+temp.symbol[i]+"</th>"+"<td>"+temp.pct[i]+'%'+"</td>"+"</tr>"
+                  tableData+="<tr>"+"<th>"+temp.symbol[i]+"</th>"+"<td>"+temp.pct[i]+'%'+"</td>"+"<td>"+temp.close[i]+"</td>"+"</tr>"
                  }
 
                  $("#t_"+classfy).html(tableData)
