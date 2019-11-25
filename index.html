@@ -160,6 +160,37 @@ height: 100%;}
       a:hover {
         color:#F7984B;
       }
+
+
+/* countdown */       
+#clockdiv{
+  color: #4F4F4F;
+  display: inline-block;
+  font-weight: 100;
+  text-align: center;
+  font-size: 30px;
+}
+
+#clockdiv > div{
+  padding: 8px;
+  border-radius: 3px;
+  background: #ADADAD;
+  display: inline-block;
+}
+
+#clockdiv div > span{
+  padding: 12px;
+  border-radius: 3px;
+  background: #ffffff;
+  display: inline-block;
+}
+
+.smalltext{
+  padding-top: 5px;
+  font-size: 16px;
+}
+
+/* countdown結束 */ 
     </style>
     
     <!-- highcharts -->
@@ -477,26 +508,78 @@ $('#polar').click(function () {
 <div class="col-md-4">
   <div class="row">
  <div class="container">
-  <div class="d-flex align-items-center p-3 my-3 text-black-50 rounded shadow-sm">
-    <div class="lh-100">
-      <h5><B> 事件倒數 </B></h5>
-      <small style="color:orange" >Event Countdown</small>
-    </div>
+
+</div>
+<p>
+<div style="margin: 0px auto;">下一次FOMC利率決議時間 : </div>
+<div id="clockdiv" style="margin: 0px auto;">
+  <div>
+    <span class="days"></span>
+    <div class="smalltext">Days</div>
   </div>
+  <div>
+    <span class="hours"></span>
+    <div class="smalltext">Hrs</div>
+  </div>
+  <div>
+    <span class="minutes"></span>
+    <div class="smalltext">Min</div>
+  </div>
+  <div>
+    <span class="seconds"></span>
+    <div class="smalltext">Sec</div>
+  </div>
+
 </div>
-<div id="clock"></div>
+<script type="text/javascript">
+  function getTimeRemaining(endtime) {
+  var t = Date.parse(endtime) - Date.parse(new Date());
+  var seconds = Math.floor((t / 1000) % 60);
+  var minutes = Math.floor((t / 1000 / 60) % 60);
+  var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+  var days = Math.floor(t / (1000 * 60 * 60 * 24));
+  return {
+    'total': t,
+    'days': days,
+    'hours': hours,
+    'minutes': minutes,
+    'seconds': seconds
+  };
+}
+
+function initializeClock(id, endtime) {
+  var clock = document.getElementById(id);
+  var daysSpan = clock.querySelector('.days');
+  var hoursSpan = clock.querySelector('.hours');
+  var minutesSpan = clock.querySelector('.minutes');
+  var secondsSpan = clock.querySelector('.seconds');
+
+  function updateClock() {
+    var t = getTimeRemaining(endtime);
+
+    daysSpan.innerHTML = t.days;
+    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+    if (t.total <= 0) {
+      clearInterval(timeinterval);
+    }
+  }
+
+  updateClock();
+  var timeinterval = setInterval(updateClock, 1000);
+}
+
+var deadline = new Date("DEC 12, 2019 02:00:00");   /*Date.parse(new Date()) + 19 * 24 * 60 * 60 * 1000);*/
+initializeClock('clockdiv', deadline);
+</script>
 </div>
-<header></header>
 
  <div class="row">
 
 <div class="container">
-  <div class="d-flex align-items-center p-3 my-3 text-black-50 rounded shadow-sm">
-    <div class="lh-100">
-      <h5><B> 經濟數據 </B></h5>
-      <small style="color:orange" >Latest News</small>
-    </div>
-  </div>
+<header></header>
 </div>
 
     <div class="card shadow-sm" style="margin: 0px auto;">
@@ -514,7 +597,22 @@ $('#polar').click(function () {
         </ul>
       </div>
     </div>
+<!--
+    <div style="margin-left: 20px;">
 
+        
+        <h5>新屋開工(美國)</h5>
+        <h6>發布時間: 11/19 21:30</h6>
+        <ul class="list-unstyled">
+          <li>數據期間: 10月</li>
+          <li>實際值: 1314k</li>
+          <li>預估值: 1320k</li>
+          <li>前值: 1266k</li>
+          <li>結果: 低於預期</li>
+        </ul>
+
+    </div>
+-->
 </div>
 
 </div>
