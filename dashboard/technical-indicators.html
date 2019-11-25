@@ -176,32 +176,32 @@
 
 <div id="container" style="height: 400px; min-width: 310px"></div>
 <script type="text/javascript">
-    Highcharts.getJSON('https://www.highcharts.com/samples/data/aapl-ohlc.json', function (data) {
+    Highcharts.getJSON('https://web20191122.azurewebsites.net/txf?format=json', function (data) {
 
     // create the chart
     Highcharts.stockChart('container', {
 
 
         rangeSelector: {
-            selected: 1
+            selected: 2
         },
 
         title: {
-            text: 'AAPL Stock Price'
+            text: '台灣指數期貨'
         },
 
         series: [{
             type: 'candlestick',
-            name: 'AAPL Stock Price',
+            name: '台指期',
             data: data,
             dataGrouping: {
                 units: [
                     [
-                        'week', // unit name
-                        [1] // allowed multiples
+                        'day', // unit name
+                        [1,5,6] // allowed multiples
                     ], [
                         'month',
-                        [1, 2, 3, 4, 6]
+                        [1, 2, 3, 6]
                     ]
                 ]
             }
@@ -296,7 +296,7 @@ var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptio
 
     series: [{
         name: 'Speed',
-        data: [8],
+        data: [0],
         dataLabels: {
             format:
                 '<div style="text-align:center">' +
@@ -323,11 +323,11 @@ var chartRpm = Highcharts.chart('container-rpm', Highcharts.merge(gaugeOptions, 
 
     series: [{
         name: 'RPM',
-        data: [1],
+        data: [8],
         dataLabels: {
             format:
                 '<div style="text-align:center">' +
-                '<span style="font-size:25px">{y:.1f}</span><br/>' +
+                '<span style="font-size:25px">{y}</span><br/>' +
                 '<span style="font-size:12px;opacity:0.4">' +
                 '加總' +
                 '</span>' +
@@ -357,53 +357,53 @@ var chartRpm = Highcharts.chart('container-rpm', Highcharts.merge(gaugeOptions, 
   <tbody>
     <tr>
       <td>RSI(6)</td>
-      <td>67.5</td>
-      <td>Buy</td>
+      <td>53.07</td>
+      <td>中立</td>
     </tr>
     <tr>
       <td>RSI(9)</td>
-      <td>43.305</td>
-      <td>Sell</td>
+      <td>57.13</td>
+      <td>中立</td>
     </tr>
     <tr>
       <td>RSI(14)</td>
-      <td>4.600</td>
-      <td>Neutral</td>
+      <td>60.64</td>
+      <td>中立</td>
     </tr>
     <tr>
       <td>威廉指標(6)</td>
-      <td>4.600</td>
-      <td>Neutral</td>
+      <td>-48.04</td>
+      <td>中立</td>
     </tr>
     <tr>
       <td>威廉指標(9)</td>
-      <td>4.600</td>
-      <td>Neutral</td>
+      <td>-40.66</td>
+      <td>中立</td>
     </tr>
     <tr>
       <td>威廉指標(14)</td>
-      <td>4.600</td>
-      <td>Neutral</td>
+      <td>-45.42</td>
+      <td>中立</td>
     </tr>
     <tr>
       <td>KD(6)</td>
-      <td>4.600</td>
-      <td>Neutral</td>
+      <td>53.16</td>
+      <td>中立</td>
     </tr>
     <tr>
       <td>KD(9)</td>
-      <td>4.600</td>
-      <td>Neutral</td>
+      <td>64.73</td>
+      <td>中立</td>
     </tr>
     <tr>
       <td>KD(14)</td>
-      <td>4.600</td>
-      <td>Neutral</td>
+      <td>71.22</td>
+      <td>中立</td>
     </tr>
     <tr>
       <td>MACD(12,26,9))</td>
-      <td>4.600</td>
-      <td>Neutral</td>
+      <td>-16.75</td>
+      <td>中立</td>
     </tr>
   </tbody>
 </table>
@@ -422,63 +422,63 @@ var chartRpm = Highcharts.chart('container-rpm', Highcharts.merge(gaugeOptions, 
   <tbody>
     <tr>
       <td>SMA(5)</td>
-      <td>67.5</td>
-      <td>站上</td>
+      <td>11588.8</td>
+      <td>弱勢</td>
     </tr>
     <tr>
       <td>SMA(10)</td>
-      <td>43.305</td>
-      <td>站上</td>
+      <td>11535.8</td>
+      <td>強勢</td>
     </tr>
     <tr>
       <td>SMA(20)</td>
-      <td>4.600</td>
-      <td>跌破</td>
+      <td>11502.85</td>
+      <td>強勢</td>
     </tr>
     <tr>
       <td>SMA(60)</td>
-      <td>4.600</td>
-      <td>站上</td>
+      <td>11087.7</td>
+      <td>強勢</td>
     </tr>
     <tr>
       <td>SMA(120)</td>
-      <td>4.600</td>
-      <td>站上</td>
+      <td>10840.525</td>
+      <td>強勢</td>
     </tr>
     <tr>
       <td>SMA(240)</td>
-      <td>4.600</td>
-      <td>跌破</td>
+      <td>10544.25</td>
+      <td>強勢</td>
     </tr>
     <tr>
       <td>EMA(5)</td>
-      <td>4.600</td>
-      <td>跌破</td>
+      <td>11564.95</td>
+      <td>弱勢</td>
     </tr>
     <tr>
       <td>EMA(10)</td>
-      <td>4.600</td>
-      <td>站上</td>
+      <td>11546.66</td>
+      <td>強勢</td>
     </tr>
         <tr>
       <td>EMA(20)</td>
-      <td>4.600</td>
-      <td>跌破</td>
+      <td>11472.79</td>
+      <td>強勢</td>
     </tr>
         <tr>
       <td>EMA(60)</td>
-      <td>4.600</td>
-      <td>跌破</td>
+      <td>11176.41</td>
+      <td>強勢</td>
     </tr>
         <tr>
       <td>EMA(120)</td>
-      <td>4.600</td>
-      <td>跌破</td>
+      <td>10941.16</td>
+      <td>強勢</td>
     </tr>
         <tr>
       <td>EMA(240)</td>
-      <td>4.600</td>
-      <td>跌破</td>
+      <td>10646.72</td>
+      <td>強勢</td>
     </tr>
   </tbody>
   </table>
