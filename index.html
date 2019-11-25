@@ -784,7 +784,7 @@ initializeClock('clockdiv', deadline);
                  //動態增加5個td,並且把data陣列的五個值賦給每個td
                  for(var i=0;i<3;i++){
                     
-                  tableData+="<tr>"+"<th>"+temp.symbol[i]+"</th>"+"<td>"+temp.pct[i]+'%'+"</td>"+"</tr>"
+                  tableData+="<tr>"+"<th>"+temp.symbol[i]+"</th>"+"<td>"+temp.pct[i]+'%'+"</td>"+"<td>"+temp.close[i]+'%'+"</td>"+"</tr>"
                  }
                  //tableData+="</tr>"
                  //現在tableData已經生成好了，把他賦值給上面的tbody
