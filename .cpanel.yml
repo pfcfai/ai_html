@@ -1,0 +1,5 @@
+---
+deployment:
+      tasks:
+        - export DEPLOYPATH=/home/pfcf/repositories/testai  
+        - /bin/cp index.html $DEPLOYPATH               
