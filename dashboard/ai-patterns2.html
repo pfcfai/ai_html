@@ -136,8 +136,13 @@
 //$.getJSON( "http://127.0.0.1:8080/api/sort/?format=json", function( data ) {
 //  console.log(data);
 //});
-$.getJSON('https://web20191122.azurewebsites.net/ai/S1', function (data) {
-    console.log(data);
+$.getJSON('https://web20191122.azurewebsites.net/ai_reg/?format=json', function (data) {
+
+    Highcharts.setOptions({
+    time: {
+        timezoneOffset: -8*60
+    }
+    });
     // create the chart
     Highcharts.stockChart('hicharts0', {
 
@@ -147,13 +152,13 @@ $.getJSON('https://web20191122.azurewebsites.net/ai/S1', function (data) {
         },
 
         title: {
-            text: '欣陸 3703'
+            text: data.strongshort1.stock_name
         },
 
         series: [{
             type: 'candlestick',
-            name: '欣陸 3703',
-            data: data,
+            name: data.strongshort1.stock_name,
+            data: data.strongshort1.data,
             dataGrouping: {
                 units: [
                     [
@@ -167,11 +172,7 @@ $.getJSON('https://web20191122.azurewebsites.net/ai/S1', function (data) {
             }
         }]
     });
-});
 
-$.getJSON('https://web20191122.azurewebsites.net/ai/S2', function (data) {
-    console.log(data);
-    // create the chart
     Highcharts.stockChart('hicharts1', {
 
 
@@ -180,13 +181,13 @@ $.getJSON('https://web20191122.azurewebsites.net/ai/S2', function (data) {
         },
 
         title: {
-            text: '商之器 8409'
+            text: data.strongshort2.stock_name
         },
 
         series: [{
             type: 'candlestick',
-            name: '商之器 8409',
-            data: data,
+            name: data.strongshort2.stock_name,
+            data: data.strongshort2.data,
             dataGrouping: {
                 units: [
                     [
@@ -199,12 +200,8 @@ $.getJSON('https://web20191122.azurewebsites.net/ai/S2', function (data) {
                 ]
             }
         }]
-    });
-});
+    });     
 
-$.getJSON('https://web20191122.azurewebsites.net/ai/S3', function (data) {
-    console.log(data);
-    // create the chart
     Highcharts.stockChart('hicharts2', {
 
 
@@ -213,13 +210,13 @@ $.getJSON('https://web20191122.azurewebsites.net/ai/S3', function (data) {
         },
 
         title: {
-            text: '燦坤 2430'
+            text: data.strongshort3.stock_name
         },
 
         series: [{
             type: 'candlestick',
-            name: '燦坤 2430',
-            data: data,
+            name: data.strongshort3.stock_name,
+            data: data.strongshort3.data,
             dataGrouping: {
                 units: [
                     [
@@ -233,6 +230,7 @@ $.getJSON('https://web20191122.azurewebsites.net/ai/S3', function (data) {
             }
         }]
     });
+
 });
 </script>
 

@@ -137,7 +137,12 @@
 //  console.log(data);
 //});
 $.getJSON('https://web20191122.azurewebsites.net/ai_reg/?format=json', function (data) {
-    console.log(data);
+
+    Highcharts.setOptions({
+    time: {
+        timezoneOffset: -8*60
+    }
+    });
     // create the chart
     Highcharts.stockChart('hicharts0', {
 

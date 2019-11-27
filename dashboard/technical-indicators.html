@@ -177,7 +177,10 @@
 <div id="container" style="height: 400px; min-width: 310px"></div>
 <script type="text/javascript">
     Highcharts.getJSON('https://web20191122.azurewebsites.net/txf?format=json', function (data) {
-
+      Highcharts.setOptions({
+        time: {
+          timezoneOffset: -8*60
+              }});
     // create the chart
     Highcharts.stockChart('container', {
 
