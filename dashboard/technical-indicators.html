@@ -227,7 +227,116 @@
     <div id="container-rpm" class="chart-container"></div>
   </div>
 </div>
+
+
+<div class="row justify-content-around">
+
+ <div id="div1">
+<H3>擺盪指標</H3>
+<table class="table table-sm table-hover">
+  <thead>
+    <tr>
+      <th scope="col">名稱</th>
+      <th scope="col">值</th>
+      <th scope="col">狀態</th>
+    </tr>
+  </thead>
+  <tbody id = "oscillator">
+    <tr>
+      <td>RSI(6)</td>
+    </tr>
+    <tr>
+      <td>RSI(9)</td>
+    </tr>
+    <tr>
+      <td>RSI(14)</td>
+    </tr>
+    <tr>
+      <td>威廉指標(6)</td>
+    </tr>
+    <tr>
+      <td>威廉指標(9)</td>
+    </tr>
+    <tr>
+      <td>威廉指標(14)</td>
+    </tr>
+    <tr>
+      <td>KD(6)</td>
+    </tr>
+    <tr>
+      <td>KD(9)</td>
+    </tr>
+    <tr>
+      <td>KD(14)</td>
+    </tr>
+    <tr>
+      <td>MACD(12,26,9))</td>
+
+    </tr>
+  </tbody>
+</table>
+</div>
+
+ <div id="div2">
+  <H3>移動平均線</H3>
+<table class="table table-sm table-hover">
+  <thead>
+    <tr>
+      <th scope="col">名稱</th>
+      <th scope="col">值</th>
+      <th scope="col">狀態</th>
+    </tr>
+  </thead>
+  <tbody id = "trend">
+    <tr>
+      <td>SMA(5)</td>
+    </tr>
+    <tr>
+      <td>SMA(10)</td>
+    </tr>
+    <tr>
+      <td>SMA(20)</td>
+    </tr>
+    <tr>
+      <td>SMA(60)</td>
+    </tr>
+    <tr>
+      <td>SMA(120)</td>
+    </tr>
+    <tr>
+      <td>SMA(240)</td>
+    </tr>
+    <tr>
+      <td>EMA(5)</td>
+    </tr>
+    <tr>
+      <td>EMA(10)</td>
+    </tr>
+        <tr>
+      <td>EMA(20)</td>
+    </tr>
+        <tr>
+      <td>EMA(60)</td>
+    </tr>
+        <tr>
+      <td>EMA(120)</td>
+    </tr>
+        <tr>
+      <td>EMA(240)</td>
+    </tr>
+  </tbody>
+  </table>
+</div>
+</div>
+
+  </div>
+  <hr class="featurette-divider"> 
+
+
+</main>
+
 <script type="text/javascript">
+$.getJSON('https://web20191122.azurewebsites.net/trendindicator/txf?format=json', function (data) {
 var gaugeOptions = {
 
     chart: {
@@ -299,7 +408,7 @@ var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptio
 
     series: [{
         name: 'Speed',
-        data: [0],
+        data: data.oscillator['sum'],
         dataLabels: {
             format:
                 '<div style="text-align:center">' +
@@ -326,7 +435,7 @@ var chartRpm = Highcharts.chart('container-rpm', Highcharts.merge(gaugeOptions, 
 
     series: [{
         name: 'RPM',
-        data: [8],
+        data: data.trend['sum'],
         dataLabels: {
             format:
                 '<div style="text-align:center">' +
@@ -343,159 +452,23 @@ var chartRpm = Highcharts.chart('container-rpm', Highcharts.merge(gaugeOptions, 
 
 }));
 
+
+$('#oscillator').find('tr').each(function(index){
+         var trow = $(this);
+         var indicator = Object.keys(data.oscillator)[index];
+         var temp = data.oscillator[indicator];
+             trow.append('<td>'+temp[0][0]+'</td>'+'<td>'+temp[0][1]+'</td>');
+     });
+$('#trend').find('tr').each(function(index){
+         var trow = $(this);
+         var indicator = Object.keys(data.trend)[index];
+         var temp = data.trend[indicator];
+         console.log(temp[0][0])
+             trow.append('<td>'+temp[0][0]+'</td>'+'<td>'+temp[0][1]+'</td>');
+     });
+
+});
 </script>
-
-<div class="row justify-content-around">
-
- <div id="div1">
-<H3>擺盪指標</H3>
-<table class="table table-sm table-hover">
-  <thead>
-    <tr>
-      <th scope="col">名稱</th>
-      <th scope="col">值</th>
-      <th scope="col">狀態</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>RSI(6)</td>
-      <td>53.07</td>
-      <td>中立</td>
-    </tr>
-    <tr>
-      <td>RSI(9)</td>
-      <td>57.13</td>
-      <td>中立</td>
-    </tr>
-    <tr>
-      <td>RSI(14)</td>
-      <td>60.64</td>
-      <td>中立</td>
-    </tr>
-    <tr>
-      <td>威廉指標(6)</td>
-      <td>-48.04</td>
-      <td>中立</td>
-    </tr>
-    <tr>
-      <td>威廉指標(9)</td>
-      <td>-40.66</td>
-      <td>中立</td>
-    </tr>
-    <tr>
-      <td>威廉指標(14)</td>
-      <td>-45.42</td>
-      <td>中立</td>
-    </tr>
-    <tr>
-      <td>KD(6)</td>
-      <td>53.16</td>
-      <td>中立</td>
-    </tr>
-    <tr>
-      <td>KD(9)</td>
-      <td>64.73</td>
-      <td>中立</td>
-    </tr>
-    <tr>
-      <td>KD(14)</td>
-      <td>71.22</td>
-      <td>中立</td>
-    </tr>
-    <tr>
-      <td>MACD(12,26,9))</td>
-      <td>-16.75</td>
-      <td>中立</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
- <div id="div2">
-  <H3>移動平均線</H3>
-<table class="table table-sm table-hover">
-  <thead>
-    <tr>
-      <th scope="col">名稱</th>
-      <th scope="col">值</th>
-      <th scope="col">狀態</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>SMA(5)</td>
-      <td>11588.8</td>
-      <td>弱勢</td>
-    </tr>
-    <tr>
-      <td>SMA(10)</td>
-      <td>11535.8</td>
-      <td>強勢</td>
-    </tr>
-    <tr>
-      <td>SMA(20)</td>
-      <td>11502.85</td>
-      <td>強勢</td>
-    </tr>
-    <tr>
-      <td>SMA(60)</td>
-      <td>11087.7</td>
-      <td>強勢</td>
-    </tr>
-    <tr>
-      <td>SMA(120)</td>
-      <td>10840.525</td>
-      <td>強勢</td>
-    </tr>
-    <tr>
-      <td>SMA(240)</td>
-      <td>10544.25</td>
-      <td>強勢</td>
-    </tr>
-    <tr>
-      <td>EMA(5)</td>
-      <td>11564.95</td>
-      <td>弱勢</td>
-    </tr>
-    <tr>
-      <td>EMA(10)</td>
-      <td>11546.66</td>
-      <td>強勢</td>
-    </tr>
-        <tr>
-      <td>EMA(20)</td>
-      <td>11472.79</td>
-      <td>強勢</td>
-    </tr>
-        <tr>
-      <td>EMA(60)</td>
-      <td>11176.41</td>
-      <td>強勢</td>
-    </tr>
-        <tr>
-      <td>EMA(120)</td>
-      <td>10941.16</td>
-      <td>強勢</td>
-    </tr>
-        <tr>
-      <td>EMA(240)</td>
-      <td>10646.72</td>
-      <td>強勢</td>
-    </tr>
-  </tbody>
-  </table>
-</div>
-</div>
-
-  </div>
-  <hr class="featurette-divider"> 
-
-
-</main>
-
-
-
   <!-- FOOTER -->
 <footer class="footer mt-auto py-3" style="background-color: #E2E2E2">
   <div class="container">
