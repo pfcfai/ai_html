@@ -399,9 +399,16 @@
                 var classfy = Object.keys(data.quote)[j]
                 var temp = data.quote[classfy];
                 var tableData=''
+
                  for(var i=0;i<temp.symbol.length;i++){
+                  var pct_color ='';
+                    if (temp.pct[i] > 0 ) {
+                      pct_color+='<font color="red">';
+                    } else if ( temp.pct[i] < 0 ) {
+                      pct_color+='<font color="green">';
+                    }
                     
-                  tableData+="<tr>"+"<th>"+temp.symbol[i]+"</th>"+"<td>"+temp.pct[i]+'%'+"</td>"+"<td>"+temp.close[i]+"</td>"+"</tr>"
+                  tableData+="<tr>"+"<th>"+temp.symbol[i]+"</th>"+"<td>"+pct_color+temp.pct[i]+'%'+"</font></td>"+"<td>"+temp.close[i]+"</td>"+"</tr>"
                  }
 
                  $("#t_"+classfy).html(tableData)

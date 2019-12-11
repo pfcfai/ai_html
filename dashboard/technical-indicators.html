@@ -336,6 +336,9 @@
 </main>
 
 <script type="text/javascript">
+var a =window.location.href;
+var sPage = a.substring(a.lastIndexOf('/') + 1).split(".");
+console.log(sPage[0]);
 $.getJSON('https://web20191122.azurewebsites.net/trendindicator/txf?format=json', function (data) {
 var gaugeOptions = {
 
@@ -457,14 +460,27 @@ $('#oscillator').find('tr').each(function(index){
          var trow = $(this);
          var indicator = Object.keys(data.oscillator)[index];
          var temp = data.oscillator[indicator];
-             trow.append('<td>'+temp[0][0]+'</td>'+'<td>'+temp[0][1]+'</td>');
+         var pct_color ='';
+         if (temp[0][1] == '過熱' ) {
+              pct_color+='<font color="green">';
+            } else if ( temp[0][1] == '過冷' ) {
+              pct_color+='<font color="red">';
+            }else if ( temp[0][1] == '中立' ) {
+              pct_color+='<font color="black">';
+            }
+             trow.append('<td>'+temp[0][0]+'</td>'+'<td>'+pct_color+temp[0][1]+'</font></td>');
      });
 $('#trend').find('tr').each(function(index){
          var trow = $(this);
          var indicator = Object.keys(data.trend)[index];
          var temp = data.trend[indicator];
-         console.log(temp[0][0])
-             trow.append('<td>'+temp[0][0]+'</td>'+'<td>'+temp[0][1]+'</td>');
+         var pct_color ='';
+         if (temp[0][1] == '強勢' ) {
+              pct_color+='<font color="red">';
+            } else if ( temp[0][1] == '弱勢' ) {
+              pct_color+='<font color="green">';
+            }
+             trow.append('<td>'+temp[0][0]+'</td>'+'<td>'+pct_color+temp[0][1]+'</font></td>');
      });
 
 });

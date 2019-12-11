@@ -779,19 +779,25 @@ initializeClock('clockdiv', deadline);
             $.getJSON('https://web20191122.azurewebsites.net/homeapi/absolute?format=json', function (data) {
               
               for(var j=0;j<6;j++){
-                var classfy = Object.keys(data.quote)[j]
+                var classfy = Object.keys(data.quote)[j];
                 var temp = data.quote[classfy];
-                var tableData=''
+                var tableData='';
+                
                  //動態增加5個td,並且把data陣列的五個值賦給每個td
                  for(var i=0;i<3;i++){
-                    
-                  tableData+="<tr>"+"<th>"+temp.symbol[i]+"</th>"+"<td>"+temp.pct[i]+'%'+"</td>"+"<td>"+temp.close[i]+"</td>"+"</tr>"
+                    var pct_color ='';
+                    if (temp.pct[i] > 0 ) {
+                      pct_color+='<font color="red">';
+                    } else if ( temp.pct[i] < 0 ) {
+                      pct_color+='<font color="green">';
+                    }
+                  tableData+="<tr>"+"<th>"+temp.symbol[i]+"</th>"+"<td>"+pct_color+temp.pct[i]+'%'+"</font></td>"+"<td>"+temp.close[i]+"</td>"+"</tr>"
                  }
                  //tableData+="</tr>"
                  //現在tableData已經生成好了，把他賦值給上面的tbody
                  //console.log(tableData)
                  $("#t_"+classfy).html(tableData)
-                 console.log("#t_"+classfy)
+                 
             }})
     })
 </script>
