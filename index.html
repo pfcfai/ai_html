@@ -571,7 +571,7 @@ function initializeClock(id, endtime) {
   var timeinterval = setInterval(updateClock, 1000);
 }
 
-var deadline = new Date("DEC 12, 2019 02:00:00");   /*Date.parse(new Date()) + 19 * 24 * 60 * 60 * 1000);*/
+var deadline = new Date("JAN 30, 2020 03:00:00");   /*Date.parse(new Date()) + 19 * 24 * 60 * 60 * 1000);*/
 initializeClock('clockdiv', deadline);
 </script>
 </div>
@@ -791,12 +791,13 @@ initializeClock('clockdiv', deadline);
                     } else if ( temp.pct[i] < 0 ) {
                       pct_color+='<font color="green">';
                     }
-                  tableData+="<tr>"+"<th>"+temp.symbol[i]+"</th>"+"<td>"+pct_color+temp.pct[i]+'%'+"</font></td>"+"<td>"+temp.close[i]+"</td>"+"</tr>"
+                  tableData+="<tr>"+"<th><a href="+'dashboard/indicatorbysymbol/'+temp.symbol_eg[i]+'.html>'+temp.symbol[i]+"</a></th>"+"<td>"+pct_color+temp.pct[i]+'%'+"</font></td>"+"<td>"+temp.close[i]+"</td>"+"</tr>"
                  }
                  //tableData+="</tr>"
                  //現在tableData已經生成好了，把他賦值給上面的tbody
                  //console.log(tableData)
-                 $("#t_"+classfy).html(tableData)
+                 $("#t_"+classfy).html(tableData).attr("href", "http://www.google.com/")
+            //$("td").attr("href", "http://www.google.com/")
                  
             }})
     })
