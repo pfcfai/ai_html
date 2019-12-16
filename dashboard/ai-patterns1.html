@@ -73,6 +73,43 @@
       a:hover {
         color:#F7984B;
       }
+
+
+        /* 圓餅圖css */  
+.highcharts-figure, .highcharts-data-table table {
+    min-width: 320px; 
+    max-width: 500px;
+    margin: 1em auto;
+}
+
+.highcharts-data-table table {
+  font-family: Verdana, sans-serif;
+  border-collapse: collapse;
+  border: 1px solid #EBEBEB;
+  margin: 10px auto;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+.highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+.highcharts-data-table th {
+  font-weight: 600;
+    padding: 0.5em;
+}
+.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+    padding: 0.5em;
+}
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+.highcharts-data-table tr:hover {
+    background: #f1f7ff;
+}
+        /* 圓餅圖css結束 */  
     </style>
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.com/docs/4.3/examples/sticky-footer-navbar/sticky-footer-navbar.css" rel="stylesheet">
@@ -132,6 +169,9 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://code.highcharts.com/stock/highstock.js"></script>
 <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <script>
 //$.getJSON( "http://127.0.0.1:8080/api/sort/?format=json", function( data ) {
 //  console.log(data);
@@ -321,7 +361,44 @@ $.getJSON('https://pfcfactweb.azurewebsites.net/ai_reg/?format=json', function (
       <div class="col-md-6">
             <div id="hicharts0" style="height: 400px; min-width: 310px"></div>
       </div>
-      <div class="col-md-6"></div>
+      <div class="col-md-6"><figure class="highcharts-figure">
+    <div id="pie0"></div>
+</figure>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">日期</th>
+      <th scope="col">外資</th>
+      <th scope="col">投信</th>
+      <th scope="col">自營商</th>
+      <th scope="col">總計</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
     </div>
 <hr class="featurette-divider"> 
 
@@ -329,7 +406,41 @@ $.getJSON('https://pfcfactweb.azurewebsites.net/ai_reg/?format=json', function (
       <div class="col-md-6">
             <div id="hicharts1" style="height: 400px; min-width: 310px"></div>
       </div>
-      <div class="col-md-6"></div>
+      <div class="col-md-6"><figure class="highcharts-figure">
+    <div id="pie1"></div>
+</figure>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">日期</th>
+      <th scope="col">外資</th>
+      <th scope="col">投信</th>
+      <th scope="col">自營商</th>
+      <th scope="col">總計</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table></div>
     </div>
 <hr class="featurette-divider"> 
 
@@ -337,10 +448,201 @@ $.getJSON('https://pfcfactweb.azurewebsites.net/ai_reg/?format=json', function (
       <div class="col-md-6">
             <div id="hicharts2" style="height: 400px; min-width: 310px"></div>
       </div>
-      <div class="col-md-6"></div>
+      <div class="col-md-6"><figure class="highcharts-figure">
+    <div id="pie2"></div>
+
+</figure>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">日期</th>
+      <th scope="col">外資</th>
+      <th scope="col">投信</th>
+      <th scope="col">自營商</th>
+      <th scope="col">總計</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table></div>
     </div>
   </div>
+<script type="text/javascript"> // Make monochrome colors
+var pieColors = (function () {
+    var colors = [],
+        base = Highcharts.getOptions().colors[0],
+        i;
 
+    for (i = 0; i < 10; i += 1) {
+        // Start out with a darkened base color (negative brighten), and end
+        // up with a much brighter color
+        colors.push(Highcharts.Color(base).brighten((i - 3) / 7).get());
+    }
+    return colors;
+}());
+
+// Build the chart
+Highcharts.chart('pie0', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Browser market shares at a specific website, 2014'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            colors: pieColors,
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
+                distance: -50,
+                filter: {
+                    property: 'percentage',
+                    operator: '>',
+                    value: 4
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'Share',
+        data: [
+            { name: 'Chrome', y: 61.41 },
+            { name: 'Internet Explorer', y: 11.84 },
+            { name: 'Firefox', y: 10.85 },
+            { name: 'Edge', y: 4.67 },
+            { name: 'Safari', y: 4.18 },
+            { name: 'Other', y: 7.05 }
+        ]
+    }]
+});
+Highcharts.chart('pie1', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Browser market shares at a specific website, 2014'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            colors: pieColors,
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
+                distance: -50,
+                filter: {
+                    property: 'percentage',
+                    operator: '>',
+                    value: 4
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'Share',
+        data: [
+            { name: 'Chrome', y: 61.41 },
+            { name: 'Internet Explorer', y: 11.84 },
+            { name: 'Firefox', y: 10.85 },
+            { name: 'Edge', y: 4.67 },
+            { name: 'Safari', y: 4.18 },
+            { name: 'Other', y: 7.05 }
+        ]
+    }]
+});
+Highcharts.chart('pie2', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Browser market shares at a specific website, 2014'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            colors: pieColors,
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
+                distance: -50,
+                filter: {
+                    property: 'percentage',
+                    operator: '>',
+                    value: 4
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'Share',
+        data: [
+            { name: 'Chrome', y: 61.41 },
+            { name: 'Internet Explorer', y: 11.84 },
+            { name: 'Firefox', y: 10.85 },
+            { name: 'Edge', y: 4.67 },
+            { name: 'Safari', y: 4.18 },
+            { name: 'Other', y: 7.05 }
+        ]
+    }]
+});
+</script>
 
 </main>
 <hr class="featurette-divider"> 
