@@ -791,13 +791,12 @@ initializeClock('clockdiv', deadline);
                     } else if ( temp.pct[i] < 0 ) {
                       pct_color+='<font color="green">';
                     }
-                  tableData+="<tr>"+"<th><a href="+'dashboard/indicatorbysymbol/'+temp.symbol_eg[i]+'.html>'+temp.symbol[i]+"</a></th>"+"<td>"+pct_color+temp.pct[i]+'%'+"</font></td>"+"<td>"+temp.close[i]+"</td>"+"</tr>"
+                  tableData+="<tr>"+"<th><a href="+'./dashboard/indicatorbysymbol/'+temp.symbol_eg[i]+'.html>'+temp.symbol[i]+"</a></th>"+"<td>"+pct_color+temp.pct[i]+'%'+"</font></td>"+"<td>"+temp.close[i]+"</td>"+"</tr>"
                  }
                  //tableData+="</tr>"
                  //現在tableData已經生成好了，把他賦值給上面的tbody
                  //console.log(tableData)
-                 $("#t_"+classfy).html(tableData).attr("href", "http://www.google.com/")
-            //$("td").attr("href", "http://www.google.com/")
+                 $("#t_"+classfy).html(tableData)            //$("td").attr("href", "http://www.google.com/")
                  
             }})
     })

@@ -169,8 +169,9 @@ Highcharts.chart('eventgraph', {
         text: 'Source: '
     },
     xAxis: {
+
         categories: [
-            '',
+  '1980/12',
             '1981/01',
             '1981/02',
             '1981/03',
@@ -218,7 +219,6 @@ Highcharts.chart('eventgraph', {
             '1984/09',
             '1984/10',
             '1984/11',
-            '1984/12',
             '1985/01',
             '1985/02',
             '1985/03',
@@ -632,14 +632,13 @@ Highcharts.chart('eventgraph', {
             '2019/03',
             '2019/04',
             '2019/05',
-            '2019/06'
-
-
+            '2019/06',
         ],
         tickmarkPlacement: 'on',
         title: {
             enabled: false
         }
+
     },
 
     yAxis: {
@@ -667,6 +666,7 @@ Highcharts.chart('eventgraph', {
             }
         }
     },
+    
     // Data parsed with olympic-medals.node.js
     series: [{
         name: "美國總產量",
