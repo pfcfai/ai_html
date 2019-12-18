@@ -108,14 +108,14 @@
   <body class="d-flex flex-column h-100">
   <!-- 導覽列 -->
     <nav class="navbar navbar-expand-md fixed-top navbar-light bg-light shadow">
-  <a class="navbar-brand" href="https://www.pfcf.com.tw/"><img src="../pic/futures_06.png" alt="統一期貨" width="117"></a>
+  <a class="navbar-brand" href="https://www.pfcf.com.tw/"><img src="../../pic/futures_06.png" alt="統一期貨" width="117"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto ">
       <li class="nav-item active">
-        <a class="nav-link" href="../index.html">首頁 <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="../../index.html">首頁 <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -123,10 +123,10 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <!--<a class="dropdown-item" href="./dashboard/technical-analysis.html">**商品櫥窗</a>-->
-          <a class="dropdown-item" href="./technical-indicators.html"><img src="../pic/icon-01.png"> 多空指標</a>
-          <a class="dropdown-item" href="./ai-patterns.html"><img src="../pic/icon-02.png"> AI模型</a>
+          <a class="dropdown-item" href="../technical-indicators.html"><img src="../../pic/icon-01.png"> 多空指標</a>
+          <a class="dropdown-item" href="../ai-patterns.html"><img src="../../pic/icon-02.png"> AI模型</a>
           <!--<a class="dropdown-item" href="./dashboard/products-screener.html">熱門商品排行</a>-->
-          <a class="dropdown-item" href="./trades-screener.html"><img src="../pic/icon-03.png"> 漲跌排行</a>
+          <a class="dropdown-item" href="../trades-screener.html"><img src="../../pic/icon-03.png"> 漲跌排行</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -136,13 +136,13 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <!--<a class="dropdown-item" href="#">經濟數據</a>-->
           <!--<a class="dropdown-item" href="#">籌碼資料</a>-->
-          <a class="dropdown-item" href="../ecodatabase/event-calendar.html"><img src="../pic/icon-13.png"> 財經日曆</a>
-          <a class="dropdown-item" href="../ecodatabase/event-research.html"><img src="../pic/icon-14.png"> 事件分析研究</a>
-          <a class="dropdown-item" href="../ecodatabase/holiday-calendar.html"><img src="../pic/icon-05.png"> 假期公告</a>
+          <a class="dropdown-item" href="../../ecodatabase/event-calendar.html"><img src="../../pic/icon-13.png"> 財經日曆</a>
+          <a class="dropdown-item" href="../../ecodatabase/event-research.html"><img src="../../pic/icon-14.png"> 事件分析研究</a>
+          <a class="dropdown-item" href="../../ecodatabase/holiday-calendar.html"><img src="../../pic/icon-05.png"> 假期公告</a>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="../learningmap.html">學習地圖</a>
+        <a class="nav-link" href="../../learningmap.html">學習地圖</a>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">關於我們</a>
@@ -176,7 +176,10 @@
 
 <div id="container" style="height: 400px; min-width: 310px"></div>
 <script type="text/javascript">
-    Highcharts.getJSON('https://web20191122.azurewebsites.net/get_quote/txf?format=json', function (data) {
+var a =window.location.href;
+var sPage = a.substring(a.lastIndexOf('/') + 1).split(".");
+var symbol = sPage[0];
+    Highcharts.getJSON('https://web20191122.azurewebsites.net/get_quote/'+symbol+'?format=json', function (data) {
       Highcharts.setOptions({
         time: {
           timezoneOffset: -8*60
@@ -190,12 +193,12 @@
         },
 
         title: {
-            text: '台灣指數期貨'
+            text: '小道瓊期貨'
         },
 
         series: [{
             type: 'candlestick',
-            name: '台指期',
+            name: '小道瓊',
             data: data,
             dataGrouping: {
                 units: [
@@ -338,8 +341,8 @@
 <script type="text/javascript">
 var a =window.location.href;
 var sPage = a.substring(a.lastIndexOf('/') + 1).split(".");
-console.log(sPage[0]);
-$.getJSON('https://web20191122.azurewebsites.net/trendindicator/txf?format=json', function (data) {
+var symbol = sPage[0];
+$.getJSON('https://web20191122.azurewebsites.net/trendindicator/'+symbol+'?format=json', function (data) {
 var gaugeOptions = {
 
     chart: {
@@ -492,19 +495,19 @@ $('#trend').find('tr').each(function(index){
     <div class="col-12 col-md">
 
       <small class="d-block mb-3" style="color: #959696">統一期貨 &copy; 2019</small>
-      <a href="https://www.facebook.com/president.futures/"><img src="../pic/fb.png"></a>
-      <a href="https://line.me/R/ti/p/%40bbu3616b"><img src="../pic/line.png"></a>
-      <a href="https://www.youtube.com/channel/UCaJSetiZxHhUdYksIjr-yfw"><img src="../pic/youtube.png"></a>
-      <a href="https://www.youtube.com/channel/UCaJSetiZxHhUdYksIjr-yfw"><img src="../pic/ig.png"></a>
+      <a href="https://www.facebook.com/president.futures/"><img src="../../pic/fb.png"></a>
+      <a href="https://line.me/R/ti/p/%40bbu3616b"><img src="../../pic/line.png"></a>
+      <a href="https://www.youtube.com/channel/UCaJSetiZxHhUdYksIjr-yfw"><img src="../../pic/youtube.png"></a>
+      <a href="https://www.youtube.com/channel/UCaJSetiZxHhUdYksIjr-yfw"><img src="../../pic/ig.png"></a>
     </div>
     <div class="col-6 col-md">
       <h5 style="color: #959696">-期貨看盤室-</h5>
       <ul class="list-unstyled text-small">
         <!--<li><a class="text-white" href="./dashboard/techanalysis.html">技術線圖</a></li>-->
-        <li><a href="#"><img src="../pic/icon-01.png"> 多空指標</a></li>
-        <li><a href="./ai-patterns.html"><img src="../pic/icon-02.png"> AI模型</a></li>
+        <li><a href="#"><img src="../../pic/icon-01.png"> 多空指標</a></li>
+        <li><a href="../ai-patterns.html"><img src="../../pic/icon-02.png"> AI模型</a></li>
         <!--<li><a class="text-white" href="./dashboard/products-screener.html">熱門商品排行</a></li>-->
-        <li><a href="./trades-screener.html"><img src="../pic/icon-03.png"> 漲跌排行</a></li>
+        <li><a href="../trades-screener.html"><img src="../../pic/icon-03.png"> 漲跌排行</a></li>
 
       </ul>
     </div>
@@ -513,26 +516,26 @@ $('#trend').find('tr').each(function(index){
       <ul class="list-unstyled">
         <!--<li><a class="text-white" href="#">經濟數據</a></li>-->
         <!--<li><a class="text-white" href="#">籌碼資料</a></li>-->
-        <li><a href="../ecodatabase/holiday-calendar.html"><img src="../pic/icon-13.png"> 財經日曆</a></li>
-        <li><a href="../ecodatabase/event-research.html"><img src="../pic/icon-14.png"> 事件研究分析</a></li>
-        <li><a href="../ecodatabase/holiday-calendar.html"><img src="../pic/icon-05.png"> 假期公告</a></li>
+        <li><a href="../../ecodatabase/holiday-calendar.html"><img src="../../pic/icon-13.png"> 財經日曆</a></li>
+        <li><a href="../../ecodatabase/event-research.html"><img src="../../pic/icon-14.png"> 事件研究分析</a></li>
+        <li><a href="../../ecodatabase/holiday-calendar.html"><img src="../../pic/icon-05.png"> 假期公告</a></li>
       </ul>
     </div>
     <div class="col-6 col-md">
       <h5 style="color: #959696">-學習地圖-</h5>
       <ul class="list-unstyled">
-        <li><a href="../learningmap.html"><img src="../pic/icon-06.png"> 認識期權</a></li>
-        <li><a href="../learningmap.html"><img src="../pic/icon-07.png"> 程式交易介紹</a></li>
-        <li><a href="../learningmap.html"><img src="../pic/icon-08.png"> 國際市場分析</a></li>
+        <li><a href="../../learningmap.html"><img src="../../pic/icon-06.png"> 認識期權</a></li>
+        <li><a href="../../learningmap.html"><img src="../../pic/icon-07.png"> 程式交易介紹</a></li>
+        <li><a href="../../learningmap.html"><img src="../../pic/icon-08.png"> 國際市場分析</a></li>
       </ul>
     </div>
     <div class="col-6 col-md">
       <h5 style="color: #959696">-關於我們-</h5>
       <ul class="list-unstyled text-small">
-        <li><a href="#"><img src="../pic/icon-09.png"> Team</a></li>
-        <li><a href="#"><img src="../pic/icon-10.png"> Locations</a></li>
-        <li><a href="#"><img src="../pic/icon-11.png"> Privacy</a></li>
-        <li><a href="#"><img src="../pic/icon-12.png"> Terms</a></li>
+        <li><a href="#"><img src="../../pic/icon-09.png"> Team</a></li>
+        <li><a href="#"><img src="../../pic/icon-10.png"> Locations</a></li>
+        <li><a href="#"><img src="../../pic/icon-11.png"> Privacy</a></li>
+        <li><a href="#"><img src="../../pic/icon-12.png"> Terms</a></li>
       </ul>
     </div>
   </div>
