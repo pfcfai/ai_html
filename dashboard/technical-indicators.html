@@ -176,7 +176,7 @@
 
 <div id="container" style="height: 400px; min-width: 310px"></div>
 <script type="text/javascript">
-    Highcharts.getJSON('https://web20191122.azurewebsites.net/get_quote/txf?format=json', function (data) {
+    Highcharts.getJSON('http:/43.254.16.178/get_quote/txf?format=json', function (data) {
       Highcharts.setOptions({
         time: {
           timezoneOffset: -8*60
@@ -218,7 +218,6 @@
 
 <hr class="featurette-divider"> 
 <header></header>
-<script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
 <div class="outer">
@@ -339,7 +338,7 @@
 var a =window.location.href;
 var sPage = a.substring(a.lastIndexOf('/') + 1).split(".");
 console.log(sPage[0]);
-$.getJSON('https://web20191122.azurewebsites.net/trendindicator/txf?format=json', function (data) {
+$.getJSON('http:/43.254.16.178/trendindicator/txf?format=json', function (data) {
 var gaugeOptions = {
 
     chart: {
