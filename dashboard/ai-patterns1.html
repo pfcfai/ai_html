@@ -176,102 +176,104 @@
 //$.getJSON( "http://127.0.0.1:8080/api/sort/?format=json", function( data ) {
 //  console.log(data);
 //});
-$.getJSON('https://2fceea27.ngrok.io/ai_reg/?format=json', function (data) {
-
-    Highcharts.setOptions({
-    time: {
-        timezoneOffset: -8*60
-    }
-    });
-    // create the chart
-    Highcharts.stockChart('hicharts0', {
 
 
-        rangeSelector: {
-            selected: 1
-        },
+$.getJSON('https://ba3fae81.ngrok.io/ai_reg/?format=json', function (data) {
 
-        title: {
-            text: data.stronglong1.stock_name
-        },
-
-        series: [{
-            type: 'candlestick',
-            name: data.stronglong1.stock_name,
-            data: data.stronglong1.data,
-            dataGrouping: {
-                units: [
-                    [
-                        'day', // unit name
-                        [1] // allowed multiples
-                    ], [
-                        'month',
-                        [1, 2, 3, 4, 6]
-                    ]
-                ]
-            }
-        }]
-    });
-
-    Highcharts.stockChart('hicharts1', {
+      Highcharts.setOptions({
+      time: {
+          timezoneOffset: -8*60
+      }
+      });
+      // create the chart
+      Highcharts.stockChart('hicharts0', {
 
 
-        rangeSelector: {
-            selected: 1
-        },
+          rangeSelector: {
+              selected: 1
+          },
 
-        title: {
-            text: data.stronglong2.stock_name
-        },
+          title: {
+              text: data.stronglong1.stock_name
+          },
 
-        series: [{
-            type: 'candlestick',
-            name: data.stronglong2.stock_name,
-            data: data.stronglong2.data,
-            dataGrouping: {
-                units: [
-                    [
-                        'day', // unit name
-                        [1] // allowed multiples
-                    ], [
-                        'month',
-                        [1, 2, 3, 4, 6]
-                    ]
-                ]
-            }
-        }]
-    });     
+          series: [{
+              type: 'candlestick',
+              name: data.stronglong1.stock_name,
+              data: data.stronglong1.data,
+              dataGrouping: {
+                  units: [
+                      [
+                          'day', // unit name
+                          [1] // allowed multiples
+                      ], [
+                          'month',
+                          [1, 2, 3, 4, 6]
+                      ]
+                  ]
+              }
+          }]
+      });
 
-    Highcharts.stockChart('hicharts2', {
+      Highcharts.stockChart('hicharts1', {
 
 
-        rangeSelector: {
-            selected: 1
-        },
+          rangeSelector: {
+              selected: 1
+          },
 
-        title: {
-            text: data.stronglong3.stock_name
-        },
+          title: {
+              text: data.stronglong2.stock_name
+          },
 
-        series: [{
-            type: 'candlestick',
-            name: data.stronglong3.stock_name,
-            data: data.stronglong3.data,
-            dataGrouping: {
-                units: [
-                    [
-                        'day', // unit name
-                        [1] // allowed multiples
-                    ], [
-                        'month',
-                        [1, 2, 3, 4, 6]
-                    ]
-                ]
-            }
-        }]
-    });
+          series: [{
+              type: 'candlestick',
+              name: data.stronglong2.stock_name,
+              data: data.stronglong2.data,
+              dataGrouping: {
+                  units: [
+                      [
+                          'day', // unit name
+                          [1] // allowed multiples
+                      ], [
+                          'month',
+                          [1, 2, 3, 4, 6]
+                      ]
+                  ]
+              }
+          }]
+      });     
 
-});
+      Highcharts.stockChart('hicharts2', {
+
+
+          rangeSelector: {
+              selected: 1
+          },
+
+          title: {
+              text: data.stronglong3.stock_name
+          },
+
+          series: [{
+              type: 'candlestick',
+              name: data.stronglong3.stock_name,
+              data: data.stronglong3.data,
+              dataGrouping: {
+                  units: [
+                      [
+                          'day', // unit name
+                          [1] // allowed multiples
+                      ], [
+                          'month',
+                          [1, 2, 3, 4, 6]
+                      ]
+                  ]
+              }
+          }]
+      });
+        });
+
 /*
 $.getJSON('https://pfcfactweb.azurewebsites.net/ai_reg/?format=json', function (data) {
     console.log(data);
@@ -377,23 +379,25 @@ $.getJSON('https://pfcfactweb.azurewebsites.net/ai_reg/?format=json', function (
   </thead>
   <tbody>
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>@mdo</td>
+      <td>2/20</td>
+      <td>1479838</td>
+      <td>189000</td>
+      <td>145000</td>
+      <td>1813838</td>
     </tr>
     <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-      <td>@mdo</td>
+      <td>2/19</td>
+      <td>-1181132</td>
+      <td>-68000</td>
+      <td>-123000</td>
+      <td>-1372132</td>
     </tr>
     <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
+       <td>2/18</td>
+      <td>524141</td>
+      <td>346000</td>
+      <td>-357000</td>
+      <td>513141</td>
     </tr>
   </tbody>
 </table>
@@ -421,23 +425,25 @@ $.getJSON('https://pfcfactweb.azurewebsites.net/ai_reg/?format=json', function (
   </thead>
   <tbody>
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>@mdo</td>
+      <td>2/20</td>
+      <td>1479838</td>
+      <td>189000</td>
+      <td>145000</td>
+      <td>1813838</td>
     </tr>
     <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-      <td>@mdo</td>
+      <td>2/19</td>
+      <td>-1181132</td>
+      <td>-68000</td>
+      <td>-123000</td>
+      <td>-1372132</td>
     </tr>
     <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
+       <td>2/18</td>
+      <td>524141</td>
+      <td>346000</td>
+      <td>-357000</td>
+      <td>513141</td>
     </tr>
   </tbody>
 </table></div>
@@ -464,23 +470,25 @@ $.getJSON('https://pfcfactweb.azurewebsites.net/ai_reg/?format=json', function (
   </thead>
   <tbody>
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>@mdo</td>
+      <td>2/20</td>
+      <td>-179000</td>
+      <td>-308000</td>
+      <td>-429000</td>
+      <td>-916000</td>
     </tr>
     <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-      <td>@mdo</td>
+      <td>2/19</td>
+      <td>561000</td>
+      <td>516000</td>
+      <td>354000</td>
+      <td>1431000</td>
     </tr>
     <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
+       <td>2/18</td>
+      <td>286000</td>
+      <td>35000</td>
+      <td>-31000</td>
+      <td>290000</td>
     </tr>
   </tbody>
 </table></div>
@@ -539,12 +547,11 @@ Highcharts.chart('pie0', {
     series: [{
         name: 'Share',
         data: [
-            { name: 'Chrome', y: 61.41 },
-            { name: 'Internet Explorer', y: 11.84 },
-            { name: 'Firefox', y: 10.85 },
-            { name: 'Edge', y: 4.67 },
-            { name: 'Safari', y: 4.18 },
-            { name: 'Other', y: 7.05 }
+            { name: '外資', y: 34.17 },
+            { name: '投信', y: 1.1 },
+            { name: '自營商', y: 0.9 },
+            { name: '其他', y: 63.77 }
+
         ]
     }]
 });
@@ -586,12 +593,10 @@ Highcharts.chart('pie1', {
     series: [{
         name: 'Share',
         data: [
-            { name: 'Chrome', y: 61.41 },
-            { name: 'Internet Explorer', y: 11.84 },
-            { name: 'Firefox', y: 10.85 },
-            { name: 'Edge', y: 4.67 },
-            { name: 'Safari', y: 4.18 },
-            { name: 'Other', y: 7.05 }
+            { name: '外資', y: 34.17 },
+            { name: '投信', y: 1.1 },
+            { name: '自營商', y: 0.9 },
+            { name: '其他', y: 63.77 }
         ]
     }]
 });
@@ -633,12 +638,10 @@ Highcharts.chart('pie2', {
     series: [{
         name: 'Share',
         data: [
-            { name: 'Chrome', y: 61.41 },
-            { name: 'Internet Explorer', y: 11.84 },
-            { name: 'Firefox', y: 10.85 },
-            { name: 'Edge', y: 4.67 },
-            { name: 'Safari', y: 4.18 },
-            { name: 'Other', y: 7.05 }
+            { name: '外資', y: 27.56 },
+            { name: '投信', y: 7.6 },
+            { name: '自營商', y:2.59 },
+            { name: '其他', y: 62.24 }
         ]
     }]
 });
