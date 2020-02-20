@@ -176,102 +176,104 @@
 //$.getJSON( "http://127.0.0.1:8080/api/sort/?format=json", function( data ) {
 //  console.log(data);
 //});
-$.getJSON('https://2fceea27.ngrok.io/ai_reg/?format=json', function (data) {
-
-    Highcharts.setOptions({
-    time: {
-        timezoneOffset: -8*60
-    }
-    });
-    // create the chart
-    Highcharts.stockChart('hicharts0', {
 
 
-        rangeSelector: {
-            selected: 1
-        },
+$.getJSON('https://ba3fae81.ngrok.io/ai_reg/?format=json', function (data) {
 
-        title: {
-            text: data.stronglong1.stock_name
-        },
-
-        series: [{
-            type: 'candlestick',
-            name: data.stronglong1.stock_name,
-            data: data.stronglong1.data,
-            dataGrouping: {
-                units: [
-                    [
-                        'day', // unit name
-                        [1] // allowed multiples
-                    ], [
-                        'month',
-                        [1, 2, 3, 4, 6]
-                    ]
-                ]
-            }
-        }]
-    });
-
-    Highcharts.stockChart('hicharts1', {
+      Highcharts.setOptions({
+      time: {
+          timezoneOffset: -8*60
+      }
+      });
+      // create the chart
+      Highcharts.stockChart('hicharts0', {
 
 
-        rangeSelector: {
-            selected: 1
-        },
+          rangeSelector: {
+              selected: 1
+          },
 
-        title: {
-            text: data.stronglong2.stock_name
-        },
+          title: {
+              text: data.stronglong1.stock_name
+          },
 
-        series: [{
-            type: 'candlestick',
-            name: data.stronglong2.stock_name,
-            data: data.stronglong2.data,
-            dataGrouping: {
-                units: [
-                    [
-                        'day', // unit name
-                        [1] // allowed multiples
-                    ], [
-                        'month',
-                        [1, 2, 3, 4, 6]
-                    ]
-                ]
-            }
-        }]
-    });     
+          series: [{
+              type: 'candlestick',
+              name: data.stronglong1.stock_name,
+              data: data.stronglong1.data,
+              dataGrouping: {
+                  units: [
+                      [
+                          'day', // unit name
+                          [1] // allowed multiples
+                      ], [
+                          'month',
+                          [1, 2, 3, 4, 6]
+                      ]
+                  ]
+              }
+          }]
+      });
 
-    Highcharts.stockChart('hicharts2', {
+      Highcharts.stockChart('hicharts1', {
 
 
-        rangeSelector: {
-            selected: 1
-        },
+          rangeSelector: {
+              selected: 1
+          },
 
-        title: {
-            text: data.stronglong3.stock_name
-        },
+          title: {
+              text: data.stronglong2.stock_name
+          },
 
-        series: [{
-            type: 'candlestick',
-            name: data.stronglong3.stock_name,
-            data: data.stronglong3.data,
-            dataGrouping: {
-                units: [
-                    [
-                        'day', // unit name
-                        [1] // allowed multiples
-                    ], [
-                        'month',
-                        [1, 2, 3, 4, 6]
-                    ]
-                ]
-            }
-        }]
-    });
+          series: [{
+              type: 'candlestick',
+              name: data.stronglong2.stock_name,
+              data: data.stronglong2.data,
+              dataGrouping: {
+                  units: [
+                      [
+                          'day', // unit name
+                          [1] // allowed multiples
+                      ], [
+                          'month',
+                          [1, 2, 3, 4, 6]
+                      ]
+                  ]
+              }
+          }]
+      });     
 
-});
+      Highcharts.stockChart('hicharts2', {
+
+
+          rangeSelector: {
+              selected: 1
+          },
+
+          title: {
+              text: data.stronglong3.stock_name
+          },
+
+          series: [{
+              type: 'candlestick',
+              name: data.stronglong3.stock_name,
+              data: data.stronglong3.data,
+              dataGrouping: {
+                  units: [
+                      [
+                          'day', // unit name
+                          [1] // allowed multiples
+                      ], [
+                          'month',
+                          [1, 2, 3, 4, 6]
+                      ]
+                  ]
+              }
+          }]
+      });
+        });
+
 /*
 $.getJSON('https://pfcfactweb.azurewebsites.net/ai_reg/?format=json', function (data) {
     console.log(data);
@@ -377,14 +379,14 @@ $.getJSON('https://pfcfactweb.azurewebsites.net/ai_reg/?format=json', function (
   </thead>
   <tbody>
     <tr>
-      <th scope="row">1</th>
+      <td>1</td>
       <td>Mark</td>
       <td>Otto</td>
       <td>@mdo</td>
       <td>@mdo</td>
     </tr>
     <tr>
-      <th scope="row">2</th>
+      <td>2</td>
       <td>Jacob</td>
       <td>Thornton</td>
       <td>@fat</td>
