@@ -284,7 +284,7 @@ height: 100%;}
 
 <script>
     $(document).ready(function (){
-            $.getJSON('https://4558f25c.ngrok.io/eco_run/?format=json', function (data) {
+            $.getJSON('https://767affd4.ngrok.io/eco_run/?format=json', function (data) {
               var num =data.length;
               var tableData ="<ul>"
               for(var i=0;i<num;i++){
@@ -461,7 +461,7 @@ $('#polar').click(function () {
 <div id="pricerank2"  style="width: 600px; height: 400px; margin: 0 auto"></div>
 </div>
 <script type="text/javascript">
-Highcharts.getJSON('https://4558f25c.ngrok.io/homeapi/absolute?format=json', function (data) {
+Highcharts.getJSON('https://767affd4.ngrok.io/homeapi/absolute?format=json', function (data) {
   var chart = Highcharts.chart('pricerank2', {
     title: {
         text: '海外期貨排行'
@@ -618,7 +618,7 @@ initializeClock('clockdiv', deadline);
     </div> -->
     <script>
     $(document).ready(function (){
-     $.getJSON('https://908494b1.ngrok.io/eco_run/?format=json', function (data) {
+     $.getJSON('https://767affd4.ngrok.io/eco_run/?format=json', function (data) {
      		var num =data.length;
 
      }
@@ -870,7 +870,7 @@ initializeClock('clockdiv', deadline);
 <script>
     $(document).ready(function (){
 
-            $.getJSON('https://4558f25c.ngrok.io/homeapi/absolute?format=json', function (data) {
+            $.getJSON('https://767affd4.ngrok.io/homeapi/absolute?format=json', function (data) {
               
               for(var j=0;j<6;j++){
                 var classfy = Object.keys(data.quote)[j];
