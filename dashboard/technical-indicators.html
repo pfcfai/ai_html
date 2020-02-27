@@ -191,7 +191,7 @@
 
 <div id="container" style="height: 400px; min-width: 310px"></div>
 <script type="text/javascript">
-    Highcharts.getJSON('https://2caab77a.ngrok.io/get_quote/txf?format=json', function (data) {
+    Highcharts.getJSON('https://0249cb6a.ngrok.io/get_quote/txf?format=json', function (data) {
       Highcharts.setOptions({
         time: {
           timezoneOffset: -8*60
@@ -353,7 +353,7 @@
 var a =window.location.href;
 var sPage = a.substring(a.lastIndexOf('/') + 1).split(".");
 console.log(sPage[0]);
-$.getJSON('https://2caab77a.ngrok.io/trendindicator/txf?format=json', function (data) {
+$.getJSON('https://0249cb6a.ngrok.io/trendindicator/txf?format=json', function (data) {
 var gaugeOptions = {
 
     chart: {
