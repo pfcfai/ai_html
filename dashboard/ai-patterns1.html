@@ -178,7 +178,7 @@
 //});
 
 
-$.getJSON('https://pfcfatapi.top/ai_reg/?format=json', function (data) {
+$.getJSON('https://pfcfatapi.top/ai_reg/quote/long?format=json', function (data) {
 
       Highcharts.setOptions({
       time: {
@@ -377,28 +377,8 @@ $.getJSON('https://pfcfactweb.azurewebsites.net/ai_reg/?format=json', function (
       <th scope="col">總計</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <td>2/20</td>
-      <td>1479838</td>
-      <td>189000</td>
-      <td>145000</td>
-      <td>1813838</td>
-    </tr>
-    <tr>
-      <td>2/19</td>
-      <td>-1181132</td>
-      <td>-68000</td>
-      <td>-123000</td>
-      <td>-1372132</td>
-    </tr>
-    <tr>
-       <td>2/18</td>
-      <td>524141</td>
-      <td>346000</td>
-      <td>-357000</td>
-      <td>513141</td>
-    </tr>
+  <tbody id="t_stronglong1">
+
   </tbody>
 </table>
 
@@ -423,28 +403,8 @@ $.getJSON('https://pfcfactweb.azurewebsites.net/ai_reg/?format=json', function (
       <th scope="col">總計</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <td>2/20</td>
-      <td>1479838</td>
-      <td>189000</td>
-      <td>145000</td>
-      <td>1813838</td>
-    </tr>
-    <tr>
-      <td>2/19</td>
-      <td>-1181132</td>
-      <td>-68000</td>
-      <td>-123000</td>
-      <td>-1372132</td>
-    </tr>
-    <tr>
-       <td>2/18</td>
-      <td>524141</td>
-      <td>346000</td>
-      <td>-357000</td>
-      <td>513141</td>
-    </tr>
+  <tbody id="t_stronglong2">
+
   </tbody>
 </table></div>
     </div>
@@ -468,32 +428,49 @@ $.getJSON('https://pfcfactweb.azurewebsites.net/ai_reg/?format=json', function (
       <th scope="col">總計</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <td>2/20</td>
-      <td>-179000</td>
-      <td>-308000</td>
-      <td>-429000</td>
-      <td>-916000</td>
-    </tr>
-    <tr>
-      <td>2/19</td>
-      <td>561000</td>
-      <td>516000</td>
-      <td>354000</td>
-      <td>1431000</td>
-    </tr>
-    <tr>
-       <td>2/18</td>
-      <td>286000</td>
-      <td>35000</td>
-      <td>-31000</td>
-      <td>290000</td>
-    </tr>
+  <tbody id="t_stronglong3">
+
   </tbody>
 </table></div>
     </div>
   </div>
+
+<script>
+    $(document).ready(function (){
+            $.getJSON('https://pfcfatapi.top/ai_reg/chips?format=json', function (data) {
+              var classfy = Object.keys(data);
+              console.log(data);
+              for(var i=0;i<3;i++){
+              	var chips_table ='';
+              	var temp = 1;
+              	temp = data[classfy[i]];
+	            for(var j=0;j<3;j++){
+	              	var tableData="<tr>";
+	              	var temp_color ='';
+	              	for(var k=0;k<5;k++){
+	              		if (k == 0){
+	              			var date = temp[j][k].toString();
+	              			date = date.substring(4,6) +"/"+date.substring(6,8);
+	              			temp_color+='<td><font color="black">'+date+"</font></td>";
+	              			console.log(temp_color);
+	              		} else if (k > 0){
+		                	if (temp[j][k] < 0 ) {
+		                      temp_color+='<td><font color="red">'+temp[j][k]+"</font></td>";
+		                    } else if ( temp[j][k] >= 0 ) {
+		                      temp_color+='<td><font color="black">'+temp[j][k]+"</font></td>";
+		                    }
+	                	}
+	            	}
+	            	tableData+=temp_color;
+	                tableData+="</tr>";
+	                chips_table+=tableData;              
+	            }
+	            $("#t_"+classfy[i]).html(chips_table)
+          }})
+        })    
+</script>
+
+
 <script type="text/javascript"> // Make monochrome colors
 var pieColors = (function () {
     var colors = [],
@@ -720,7 +697,7 @@ gtag('config', 'UA-160598077-1');
 </script>
 
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="https://getbootstrap.com/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
     </body>
 </html>
