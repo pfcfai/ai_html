@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="zh-tw">
+{% load static %}
   <head>
-    {% load static %}
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="利用深度學習-卷積神經網路技術(Convolutional Neural Networks)訓練歷史資料線圖，自動偵測辨識出目前海內外期貨商品行情正在發生的型態，投資人可依據自身交易風格，選擇有興趣的商品與型態走勢。">
@@ -157,7 +158,7 @@
 <main role="main" class="flex-shrink-0">
 
    
-  <section class="jumbotron text-center" style="background-image:url(./pic/ai_banner01.png) ; background-size:100%;">
+  <section class="jumbotron text-center" style="background-image:url({{background_image}}) ; background-size:100%;">
     <div class="container">
       <h1 class="jumbotron-heading" style="color:#FFFFFF">AI型態辨識模型</h1>
       <p style="color: #ffffff">利用深度學習-卷積神經網路技術訓練歷史資料線圖，自動偵測辨識出目前海內外期貨商品行情正在發生的型態</p>
@@ -173,7 +174,7 @@
       <div class="row">
         <div class="col-md-3">
           <div class="card mb-3 shadow-sm">
-            <img src="{% static '型態辨識/ai01.png' %}"><div class="words"> 強趨勢 </div> 
+            <img src="{% static 'img/regnition/ai01.png' %}"><div class="words"> 強趨勢 </div> 
             <div class="card-body">
              <!--  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
               <div class="d-flex justify-content-between align-items-center">
@@ -188,7 +189,7 @@
         </div>
         <div class="col-md-3">
           <div class="card mb-3 shadow-sm" style= "position:relative">
-            <img src="{% static '型態辨識/ai02.png' %}"><div class="words"> 弱趨勢 </div> 
+            <img src="{% static 'img/regnition/ai02.png' %}"><div class="words"> 弱趨勢 </div> 
             <div class="card-body">
       <!--  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
               <div class="d-flex justify-content-between align-items-center">
@@ -203,7 +204,7 @@
         </div>
         <div class="col-md-3">
           <div class="card mb-3 shadow-sm notyet" style= "position:relative">
-            <img src="{% static '型態辨識/ai03.png' %}"><div class="words"> W型態 </div> 
+            <img src="{% static 'img/regnition/ai03.png' %}"><div class="words"> W型態 </div> 
             <div class="card-body">
         <!--  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
               <div class="d-flex justify-content-between align-items-center">
@@ -219,7 +220,7 @@
 
         <div class="col-md-3">
           <div class="card mb-3 shadow-sm notyet" style= "position:relative">
-            <img src="{% static '型態辨識/ai04.png' %}"><div class="words"> M型態 </div> 
+            <img src="{% static 'img/regnition/ai04.png' %}"><div class="words"> M型態 </div> 
             <div class="card-body">
      <!--  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->              <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
@@ -233,7 +234,7 @@
         </div>
         <div class="col-md-3">
           <div class="card mb-3 shadow-sm notyet" style= "position:relative">
-            <img src="{% static '型態辨識/ai05.png' %}"><div class="words"> 碗型態 </div> 
+            <img src="{% static 'img/regnition/ai05.png' %}"><div class="words"> 碗型態 </div> 
             <div class="card-body">
         <!--  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
               <div class="d-flex justify-content-between align-items-center">
@@ -248,7 +249,7 @@
         </div>
         <div class="col-md-3">
           <div class="card mb-3 shadow-sm notyet" style= "position:relative">
-            <img src="{% static '型態辨識/ai06.png' %}"><div class="words"> 倒碗型 </div> 
+            <img src="{% static 'img/regnition/ai06.png' %}"><div class="words"> 倒碗型 </div> 
             <div class="card-body">
     <!--  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
               <div class="d-flex justify-content-between align-items-center">
@@ -264,7 +265,7 @@
 
         <div class="col-md-3">
           <div class="card mb-3 shadow-sm notyet" style= "position:relative">
-            <img src="{% static '型態辨識/ai07.png' %}"><div class="words"> A轉型 </div>
+            <img src="{% static 'img/regnition/ai07.png' %}"><div class="words"> A轉型 </div>
             <div class="card-body">
       <!--  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
               <div class="d-flex justify-content-between align-items-center">
@@ -279,7 +280,7 @@
         </div>
         <div class="col-md-3">
           <div class="card mb-3 shadow-sm notyet" style= "position:relative">
-            <img src="{% static '型態辨識/ai08.png' %}"><div class="words"> V轉型 </div> 
+            <img src="{% static 'img/regnition/ai08.png' %}"><div class="words"> V轉型 </div> 
             <div class="card-body">
         <!--  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
               <div class="d-flex justify-content-between align-items-center">
