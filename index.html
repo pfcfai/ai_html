@@ -883,12 +883,14 @@ initializeClock('clockdiv', deadline);
                  //動態增加5個td,並且把data陣列的五個值賦給每個td
                  for(var i=0;i<3;i++){
                     var pct_color ='';
+                    var sy = temp.symbol_eg[i]
                     if (temp.pct[i] > 0 ) {
                       pct_color+='<font color="red">';
                     } else if ( temp.pct[i] < 0 ) {
                       pct_color+='<font color="green">';
                     }
-                  tableData+="<tr>"+"<th><a href="+'./dashboard/indicatorbysymbol/'+temp.symbol_eg[i]+'.html>'+temp.symbol[i]+"</a></th>"+"<td>"+pct_color+temp.pct[i]+'%'+"</font></td>"+"<td>"+temp.close[i]+"</td>"+"</tr>"
+                    console.log(temp.symbol_eg[i]);
+                  tableData+="<tr>"+"<th><a href="+"{% url 'indicator' 'tem' %}>".replace('tem', sy)+temp.symbol[i]+"</a></th>"+"<td>"+pct_color+temp.pct[i]+'%'+"</font></td>"+"<td>"+temp.close[i]+"</td>"+"</tr>"
                  }
                  //tableData+="</tr>"
                  //現在tableData已經生成好了，把他賦值給上面的tbody
@@ -1029,7 +1031,7 @@ Highcharts.chart('container', {
         <!--<li><a class="text-white" href="#">籌碼資料</a></li>-->
         <li><a href="{% url 'event' 'calendar' %}"><img src="{% static 'img/common/icon-13.png' %}"> 財經日曆</a></li>
         <li><a href="{% url 'event' 'research' %}"><img src="{% static 'img/common/icon-14.png' %}"> 事件研究分析</a></li>
-        <li><a href="{% url 'event' 'holiday' %}"><img src="{% static 'img/common/icon-05.png' %}"> 假期公告</a></li>
+        <li><a href="{% url 'event' 'holiday' %}"><img src="{% static 'img/common/icon-5.png' %}"> 假期公告</a></li>
       </ul>
     </div>
     <div class="col-6 col-md">
