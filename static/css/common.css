@@ -1,0 +1,32 @@
+/* 共用css */
+      body {
+        background-color: #FFFAFA;
+        font-family: 'Noto Sans TC regular','Microsoft JhengHei', sans-serif;
+      }
+
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg 
+        {
+          font-size: 3.5rem;
+        }
+      }
+
+      a:link {
+        color: #959696;
+      }
+      a:visited {
+        color: #959696;
+      }
+      a:hover {
+        color:#F7984B;
+      }
+    /* 共用css結束 */

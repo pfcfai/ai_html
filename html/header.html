@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-md fixed-top navbar-light bg-light shadow">
+  {% load static %}
+  <a class="navbar-brand" href="https://www.pfcf.com.tw/"><img src="{% static 'img/common/futures_06.png' %}" alt="統一期貨" width="117"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto ">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home' %}">首頁 <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">期貨看盤室</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="{% url 'dashboard' 'indicator' %}"><img src="{% static 'img/common/icon-01.png' %}"> 多空指標</a>
+          <a class="dropdown-item" href="{% url 'dashboard' 'pattern_select' %}"><img src="{% static 'img/common/icon-02.png' %}"> AI模型</a>
+          <a class="dropdown-item" href="{% url 'dashboard' 'quote_sort' %}"><img src="{% static 'img/common/icon-03.png' %}"> 漲跌排行</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">數據資料庫</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="{% url 'event' 'calendar' %}"><img src="{% static 'img/common/icon-13.png' %}"> 財經日曆</a>
+          <a class="dropdown-item" href="{% url 'event' 'research' %}"><img src="{% static 'img/common/icon-14.png' %}"> 事件分析研究</a>
+          <a class="dropdown-item" href="{% url 'event' 'holiday' %}"><img src="{% static 'img/common/icon-05.png' %}"> 假期公告</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'other' 'learning_map' %}">學習地圖</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'other' 'about_us' %}">關於我們</a>
+      </li>
+    </ul>
+    <form class="form-inline mt-2 mt-md-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜尋</button>
+    </form>
+  </div>
+</nav>
+
+<br><br>
+  <div class="jumbotron alert-danger p-4 p-md-5 text-white rounded bg-dark" style="background: #FFFAFA;" >
+    <div class="col-md-6 px-0">
+      <h1 class="display-4 " style="color: red; font-weight:bold;;">測試版本</h1>
+      <p class="lead my-3"> AI小組近期建置新的提供市場數據的網頁，將內測兩周時間，期間蒐集同仁改善建議，並繼續完善網站功能，
+  而網站未來仍有不同功能會慢慢上線，同仁有任何想法也歡迎與我們聯繫。</p>
+      <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">目前仍未正式開放請同仁先不要外傳...</a></p>
+    </div>
+  </div>
