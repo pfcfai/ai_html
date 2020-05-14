@@ -12,24 +12,24 @@
       <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">期貨看盤室</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="{% url 'dashboard' 'indicator' %}"><img src="{% static 'img/common/icon-01.png' %}"> 多空指標</a>
-          <a class="dropdown-item" href="{% url 'dashboard' 'pattern_select' %}"><img src="{% static 'img/common/icon-02.png' %}"> AI模型</a>
-          <a class="dropdown-item" href="{% url 'dashboard' 'quote_sort' %}"><img src="{% static 'img/common/icon-03.png' %}"> 漲跌排行</a>
+          <a class="dropdown-item" href="{% url 'pages' 'technical_indicators' %}"><img src="{% static 'img/common/icon-01.png' %}"> 多空指標</a>
+          <a class="dropdown-item" href="{% url 'pages' 'pattern_select' %}"><img src="{% static 'img/common/icon-02.png' %}"> AI模型</a>
+          <a class="dropdown-item" href="{% url 'pages' 'quote_sort' %}"><img src="{% static 'img/common/icon-03.png' %}"> 漲跌排行</a>
         </div>
       </li>
       <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">數據資料庫</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="{% url 'event' 'calendar' %}"><img src="{% static 'img/common/icon-13.png' %}"> 財經日曆</a>
-          <a class="dropdown-item" href="{% url 'event' 'research' %}"><img src="{% static 'img/common/icon-14.png' %}"> 事件分析研究</a>
-          <a class="dropdown-item" href="{% url 'event' 'holiday' %}"><img src="{% static 'img/common/icon-05.png' %}"> 假期公告</a>
+          <a class="dropdown-item" href="{% url 'pages' 'calendar' %}"><img src="{% static 'img/common/icon-13.png' %}"> 財經日曆</a>
+          <a class="dropdown-item" href="{% url 'pages' 'research' %}"><img src="{% static 'img/common/icon-14.png' %}"> 事件分析研究</a>
+          <a class="dropdown-item" href="{% url 'pages' 'holiday' %}"><img src="{% static 'img/common/icon-05.png' %}"> 假期公告</a>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'other' 'learning_map' %}">學習地圖</a>
+        <a class="nav-link" href="{% url 'pages' 'learning_map' %}">學習地圖</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'other' 'about_us' %}">關於我們</a>
+        <a class="nav-link" href="{% url 'pages' 'about_us' %}">關於我們</a>
       </li>
     </ul>
     <form class="form-inline mt-2 mt-md-0">
