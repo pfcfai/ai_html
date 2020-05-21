@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="zh-tw">
+{% load static %}
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -526,6 +527,69 @@ Highcharts.chart('hicharts1', {
 </figure>
 
 <script type="text/javascript">
+Highcharts.createElement('link', {
+    href: 'https://fonts.googleapis.com/css?family=Dosis:400,600',
+    rel: 'stylesheet',
+    type: 'text/css'
+}, null, document.getElementsByTagName('head')[0]);
+Highcharts.theme = {
+    colors: ['#7cb5ec', '#f7a35c', '#90ee7e', '#7798BF', '#aaeeee', '#ff0066',
+        '#eeaaee', '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'],
+    chart: {
+        backgroundColor: null,
+        style: {
+            fontFamily: 'Dosis, sans-serif'
+        }
+    },
+    title: {
+        style: {
+            fontSize: '16px',
+            fontWeight: 'bold',
+            textTransform: 'uppercase'
+        }
+    },
+    tooltip: {
+        borderWidth: 0,
+        backgroundColor: 'rgba(219,219,216,0.8)',
+        shadow: false
+    },
+    legend: {
+        backgroundColor: '#F0F0EA',
+        itemStyle: {
+            fontWeight: 'bold',
+            fontSize: '13px'
+        }
+    },
+    xAxis: {
+        gridLineWidth: 1,
+        labels: {
+            style: {
+                fontSize: '12px'
+            }
+        }
+    },
+    yAxis: {
+        minorTickInterval: 'auto',
+        title: {
+            style: {
+                textTransform: 'uppercase'
+            }
+        },
+        labels: {
+            style: {
+                fontSize: '12px'
+            }
+        }
+    },
+    plotOptions: {
+        candlestick: {
+            lineColor: '#404048'
+        }
+    }
+};
+// Apply the theme
+Highcharts.setOptions(Highcharts.theme);
+  
   Highcharts.chart('container1', {
     chart: {
         type: 'bar'
@@ -598,12 +662,13 @@ Highcharts.chart('hicharts1', {
 });
 
 </script>
+
 </main>
 
 
   <!-- footer -->
 {% include footer %}
-  <!-- footer結束 -->>
+  <!-- footer結束 -->
 
   
 <!-- Global site tag (gtag.js) - Google Analytics -->
