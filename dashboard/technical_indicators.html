@@ -90,7 +90,7 @@
 
 <div id="container" style="height: 400px; min-width: 310px"></div>
 <script type="text/javascript">
-    Highcharts.getJSON('https://pfcfatapi.top/get_quote/txf?format=json', function (data) {
+    Highcharts.getJSON('https://deeptrade.pfcf.com.tw/get_quote/txf?format=json', function (data) {
       Highcharts.setOptions({
         time: {
           timezoneOffset: -8*60
@@ -252,7 +252,7 @@
 var a =window.location.href;
 var sPage = a.substring(a.lastIndexOf('/') + 1).split(".");
 console.log(sPage[0]);
-$.getJSON('https://pfcfatapi.top/trendindicator/txf?format=json', function (data) {
+$.getJSON('https://deeptrade.pfcf.com.tw/trendindicator/txf?format=json', function (data) {
 var gaugeOptions = {
 
     chart: {

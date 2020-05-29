@@ -1,0 +1,17 @@
+列出磁碟區 新增磁碟區 的資料夾 PATH
+磁碟區序號為 08BC-16B9
+F:.
+├─dashboard
+├─event
+├─html
+├─other
+├─static
+│  ├─css
+│  └─img
+│      ├─about_us
+│      ├─common
+│      ├─eco
+│      ├─home
+│      └─regnition
+├─static_root
+└─test_html

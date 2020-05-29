@@ -77,7 +77,7 @@
 //  console.log(data);
 //});
 
-$.getJSON('https://pfcfatapi.top/ai_reg/quote/long?format=json', function (data) {
+$.getJSON('https://deeptrade.pfcf.com.tw/ai_reg/quote/long?format=json', function (data) {
 
       Highcharts.setOptions({
       time: {
@@ -269,7 +269,7 @@ $.getJSON('https://pfcfatapi.top/ai_reg/quote/long?format=json', function (data)
 
 <script>
     $(document).ready(function (){
-            $.getJSON('https://pfcfatapi.top/ai_reg/chips?format=json', function (data) {
+            $.getJSON('https://deeptrade.pfcf.com.tw/ai_reg/chips?format=json', function (data) {
               var classfy = Object.keys(data);
               console.log(data);
               for(var i=0;i<3;i++){

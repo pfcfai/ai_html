@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>展示圖片</title>
+</head>
+<body>
+    {% for item in imgs %}
+        <img src="{{ item.image.url }}"><br/>
+    {% endfor %}
+</body>
+</html>

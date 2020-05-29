@@ -181,7 +181,7 @@ height: 100%;}
 
 <script>
     $(document).ready(function (){
-            $.getJSON('https://pfcfatapi.top/eco_run/?format=json', function (data) {
+            $.getJSON('https://deeptrade.pfcf.com.tw/eco_run/?format=json', function (data) {
               var num =data.length;
               var tableData ="<ul>"
               for(var i=0;i<num;i++){
@@ -302,7 +302,7 @@ Highcharts.theme = {
 };
 // Apply the theme
 Highcharts.setOptions(Highcharts.theme);
-Highcharts.getJSON('https://pfcfatapi.top/homeapi/absolute?format=json', function (data) {
+Highcharts.getJSON('https://deeptrade.pfcf.com.tw/homeapi/absolute?format=json', function (data) {
   var chart = Highcharts.chart('pricerank2', {
     chart: {
         zoomType: 'xy'
@@ -410,7 +410,7 @@ initializeClock('clockdiv', deadline);
 </div>
     <script>
     $(document).ready(function (){
-     $.getJSON('https://pfcfatapi.top/eco_run/?format=json', function (data) {
+     $.getJSON('https://deeptrade.pfcf.com.tw/eco_run/?format=json', function (data) {
      		var num =data.length;
 
      }
@@ -645,7 +645,7 @@ initializeClock('clockdiv', deadline);
 <script>
     $(document).ready(function (){
 
-            $.getJSON('https://pfcfatapi.top/homeapi/absolute?format=json', function (data) {
+            $.getJSON('https://deeptrade.pfcf.com.tw/homeapi/absolute?format=json', function (data) {
               
               for(var j=0;j<6;j++){
                 var classfy = Object.keys(data.quote)[j];
