@@ -18,6 +18,29 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
 
     <style>
+.highcharts-candlestick-series .highcharts-point {
+stroke: green;
+
+fill: green;
+}
+.highcharts-candlestick-series .highcharts-point-up {
+stroke: red;
+fill: red;
+}
+#container  {
+/*  讓highchart的標題根雙軸不因為zoom圖片的時候被一直反白*/
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -o-user-select:none;
+  user-select:none;  
+/*  讓highchart的標題根雙軸不因為zoom圖片的時候被一直反白*/
+
+  background-image: url({% static 'img/common/light_logo.png' %});
+  background-repeat: no-repeat;
+  background-position: 90% 30%;
+  background-size: 25%;
+}
+
       #div1
       {
        width:400px;
@@ -83,13 +106,153 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
 
+
 <script src="https://code.highcharts.com/stock/highstock.js"></script>
 <script src="https://code.highcharts.com/stock/modules/data.js"></script>
 <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/stock/indicators/indicators.js"></script>
+<script src="https://code.highcharts.com/stock/indicators/wma.js"></script>
 
-
-<div id="container" style="height: 400px; min-width: 310px"></div>
+<div id="container" style="height: 700px;"></div>
 <script type="text/javascript">
+
+Highcharts.createElement('link', {
+    href: 'https://fonts.googleapis.com/css?family=Signika:400,700',
+    rel: 'stylesheet',
+    type: 'text/css'
+}, null, document.getElementsByTagName('head')[0]);
+Highcharts.theme = {
+
+    colors: ['#f45b5b', '#8085e9', '#8d4654', '#7798BF', '#aaeeee',
+        '#ff0066', '#eeaaee', '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'],
+    chart: {
+        backgroundColor: null,
+        style: {
+            fontFamily: 'Signika, serif'
+        }
+    },
+    title: {
+        style: {
+            fontFamily: '微軟正黑體',
+            margin:'100px',
+            fontSize: '25px',
+            fontWeight: 'bold',
+            textTransform: 'uppercase'
+        }
+    },
+    subtitle: {
+        style: {
+            fontFamily: '微軟正黑體',
+            fontSize: '15px',
+            fontWeight: 'bold',
+            textTransform: 'uppercase'
+        }
+    },    
+    tooltip: {
+        borderWidth: 0,
+        backgroundColor: 'rgba(219,219,216,0.8)',
+        shadow: true
+    },
+    credits: { enabled:false
+     },   //去掉右下角highchart.com
+    exporting: { enabled:false
+     },   //去掉右上角的打印及导出按钮
+
+    tooltip: {
+        backgroundColor: 'rgba(219,219,216,0.8)',
+        shadow: true,    	
+        shape: 'square',
+        headerShape: 'callout',
+        borderWidth: 0,
+        shadow: false,
+        positioner: function (width, height, point) {
+            var chart = this.chart,
+                position;
+
+            if (point.isHeader) {
+                position = {
+                    x: Math.max(
+                        // Left side limit
+                        chart.plotLeft,
+                        Math.min(
+                            point.plotX + chart.plotLeft - width / 2,
+                            // Right side limit
+                            chart.chartWidth - width - chart.marginRight
+                        )
+                    ),
+                    y: point.plotY
+                };
+            } else {
+                position = {
+                    x: point.series.chart.plotLeft,
+                    y: point.series.yAxis.top - chart.plotTop
+                };
+            }
+
+            return position;
+        }
+    },    
+    legend: {
+        backgroundColor: '#E0E0E8',
+        fontWeight: 'bold',
+        fontFamily: '微軟正黑體',
+        itemStyle: {
+        fontWeight: 'bold',
+        fontSize: '15px'
+        }
+
+    },
+    xAxis: {
+        gridLineWidth: 1,
+        labels: {
+            style: {
+                fontSize: '12px'
+            }
+        }
+    },
+    yAxis: {
+        minorTickInterval: 'auto',
+        title: {
+            style: {
+                textTransform: 'uppercase'
+            }
+        },
+        labels: {
+            style: {
+                fontSize: '12px'
+            }
+        }
+    },
+    plotOptions: {
+        series: {
+            shadow: true
+        },
+        candlestick: {
+            lineColor: '#404048'
+        },
+        map: {
+            shadow: false
+        }
+    },
+        rangeSelector: {
+        buttonTheme: {
+            fill: 'white',
+            stroke: '#C0C0C8',
+            'stroke-width': 1,
+            states: {
+                select: {
+                    fill: '#D0D0D8'
+                }
+            }
+        }
+    },
+    scrollbar: {
+        trackBorderColor: '#C0C0C8'
+    }
+};
+
+// Apply the theme
+Highcharts.setOptions(Highcharts.theme);	
     Highcharts.getJSON('https://deeptrade.pfcf.com.tw/get_quote/txf?format=json', function (data) {
       Highcharts.setOptions({
         time: {
@@ -98,15 +261,31 @@
     // create the chart
     Highcharts.stockChart('container', {
 
- 
+         navigation: {
+            bindingsClassName: 'tools-container' // informs Stock Tools where to look for HTML elements for adding technical indicators, annotations etc.
+        },
+
+        stockTools: {
+            gui: {
+                enabled: false // disable the built-in toolbar
+            }
+        },
         rangeSelector: {
-            selected: 2
+            selected: 1
         },
 
         title: {
             text: '台灣指數期貨'
         },
-
+    	subtitle: {
+        text: ' <a href="http://www.pfcf.com.tw/">Deep Trade - 深度交易 | 統一期貨'
+    	},
+	    yAxis: {
+	        crosshair: true
+	    },    	
+	    xAxis: {
+	        crosshair: true
+	    }, 
         series: [{
             type: 'candlestick',
             name: '台指期',
@@ -309,7 +488,8 @@ var gaugeOptions = {
 };
 
 // 擺盪指標
-var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
+// var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
+Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
     yAxis: {
         min: -10,
         max: 10,
@@ -317,6 +497,10 @@ var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptio
             text: '擺盪指標'
         }
     },
+    credits: { enabled:false
+     },   //去掉右下角highchart.com
+    exporting: { enabled:false
+     },   //去掉右上角的打印及导出按钮
 
     credits: {
         enabled: false
@@ -340,7 +524,8 @@ var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptio
 }));
 
 // 移動平均線
-var chartRpm = Highcharts.chart('container-rpm', Highcharts.merge(gaugeOptions, {
+// var chartRpm = Highcharts.chart('container-rpm', Highcharts.merge(gaugeOptions, {
+Highcharts.chart('container-rpm', Highcharts.merge(gaugeOptions, {
     yAxis: {
         min: -12,
         max: 12,
@@ -348,6 +533,10 @@ var chartRpm = Highcharts.chart('container-rpm', Highcharts.merge(gaugeOptions, 
             text: '移動平均線'
         }
     },
+    credits: { enabled:false
+     },   //去掉右下角highchart.com
+    exporting: { enabled:false
+     },   //去掉右上角的打印及导出按钮
 
     series: [{
         name: 'RPM',
