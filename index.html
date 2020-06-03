@@ -181,7 +181,7 @@ height: 100%;}
 
 <script>
     $(document).ready(function (){
-            $.getJSON('https://deeptrade.pfcf.com.tw/eco_run/?format=json', function (data) {
+            $.getJSON("{% url 'eco_run' %}", function (data) {
               var num =data.length;
               var tableData ="<ul>"
               for(var i=0;i<num;i++){
@@ -302,7 +302,7 @@ Highcharts.theme = {
 };
 // Apply the theme
 Highcharts.setOptions(Highcharts.theme);
-Highcharts.getJSON('https://deeptrade.pfcf.com.tw/homeapi/absolute?format=json', function (data) {
+Highcharts.getJSON("{% url 'home_page' 'sort' %}", function (data) {
   var chart = Highcharts.chart('pricerank2', {
     chart: {
         zoomType: 'xy'
@@ -645,7 +645,7 @@ initializeClock('clockdiv', deadline);
 <script>
     $(document).ready(function (){
 
-            $.getJSON('https://deeptrade.pfcf.com.tw/homeapi/absolute?format=json', function (data) {
+            $.getJSON("{% url 'home_page' 'absolute' %}", function (data) {
               
               for(var j=0;j<6;j++){
                 var classfy = Object.keys(data.quote)[j];

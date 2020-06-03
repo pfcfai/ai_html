@@ -253,7 +253,7 @@ Highcharts.theme = {
 
 // Apply the theme
 Highcharts.setOptions(Highcharts.theme);	
-    Highcharts.getJSON('https://deeptrade.pfcf.com.tw/get_quote/txf?format=json', function (data) {
+    Highcharts.getJSON("{% url 'get_quote' 'txf' %}", function (data) {
       Highcharts.setOptions({
         time: {
           timezoneOffset: -8*60
@@ -431,7 +431,7 @@ Highcharts.setOptions(Highcharts.theme);
 var a =window.location.href;
 var sPage = a.substring(a.lastIndexOf('/') + 1).split(".");
 console.log(sPage[0]);
-$.getJSON('https://deeptrade.pfcf.com.tw/trendindicator/txf?format=json', function (data) {
+$.getJSON("{% url 'trendindicator' 'txf' %}", function (data) {
 var gaugeOptions = {
 
     chart: {

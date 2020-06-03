@@ -187,7 +187,7 @@
 
   </div>
 <script type="text/javascript">
-    Highcharts.getJSON('https://deeptrade.pfcf.com.tw/homeapi/sort?format=json', function (data) {
+    Highcharts.getJSON("{% url 'home_page' 'sort' %}", function (data) {
 
          var chart = Highcharts.chart('rankbar', {
 

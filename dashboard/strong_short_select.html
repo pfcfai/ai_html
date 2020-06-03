@@ -30,7 +30,7 @@
 //$.getJSON( "http://127.0.0.1:8080/api/sort/?format=json", function( data ) {
 //  console.log(data);
 //});
-$.getJSON('https://deeptrade.pfcf.com.tw/ai_reg/quote/short?format=json', function (data) {
+$.getJSON("{% url 'ai_short' %}", function (data) {
 
     Highcharts.setOptions({
     time: {
@@ -231,7 +231,7 @@ $.getJSON('https://deeptrade.pfcf.com.tw/ai_reg/quote/short?format=json', functi
 
 <script>
     $(document).ready(function (){
-            $.getJSON('https://deeptrade.pfcf.com.tw/ai_reg/chips?format=json', function (data) {
+            $.getJSON("{% url 'chips' %}", function (data) {
               var classfy = Object.keys(data);
               for(var i=3;i<6;i++){
               	var chips_table ='';
