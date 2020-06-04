@@ -90,7 +90,7 @@
 
 <div id="container" style="height: 600px; min-width: 310px"></div>
 <script type="text/javascript">
-  Highcharts.getJSON("https://deeptrade.pfcf.com.tw/get_quote/{{symbol}}", function (data) {
+  Highcharts.getJSON("https://deeptrade.pfcf.com.tw/commodityfuture/get_quote/{{symbol}}", function (data) {
       Highcharts.setOptions({
         time: {
           timezoneOffset: -8*60
@@ -251,7 +251,7 @@
 
 <script type="text/javascript">
 
-$.getJSON('https://pfcfatapi.top/trendindicator/{{symbol}}?format=json', function (data) {
+$.getJSON('https://deeptrade.pfcf.com.tw/trendindicator/{{symbol}}?format=json', function (data) {
 var gaugeOptions = {
 
     chart: {
