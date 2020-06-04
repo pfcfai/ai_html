@@ -90,14 +90,14 @@
 
 <div id="container" style="height: 600px; min-width: 310px"></div>
 <script type="text/javascript">
-    Highcharts.getJSON('https://pfcfatapi.top/get_quote/{{symbol}}?format=json', function (data) {
+  Highcharts.getJSON("https://deeptrade.pfcf.com.tw/get_quote/{{symbol}}", function (data) {
       Highcharts.setOptions({
         time: {
           timezoneOffset: -8*60
               }});
     // create the chart
     Highcharts.stockChart('container', {
-
+ 
 
         rangeSelector: {
             selected: 2

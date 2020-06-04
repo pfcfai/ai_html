@@ -358,6 +358,7 @@ Highcharts.theme = {
 };
 // Apply the theme
 Highcharts.setOptions(Highcharts.theme);
+Highcharts.getJSON("{% url 'stockf_volume30' 'all' %}", function (data) {
 Highcharts.chart('hicharts1', {
 
     chart: {
@@ -471,37 +472,7 @@ Highcharts.chart('hicharts1', {
     },
 
     series: [{
-        data: [
-            { x: 40.15, y: 50.4, z: 9311, name: '晶電', country: '2448' },
-            { x: 215.5, y: 43, z: 6112, name: '華新科', country: '2492' },
-            { x: 299, y: 35, z: 5535, name: '台積電', country: '2330' },
-            { x: 376, y: 44, z: 4689, name: '國巨', country: '2327' },
-            { x: 35.4, y: 26.1, z: 3987, name: '旺宏', country: '2337' },
-            { x: 16.45, y: 20.1, z: 3842, name: '聯電', country: '2303' },
-            { x: 75, y: 58.5, z: 3227, name: '鴻海', country: '2317' },
-            { x: 7.6, y: 33.1, z: 2860, name: '友達', country: '2409' },
-            { x: 450, y: 43.2, z: 2596, name: '玉晶光', country: '3406' },
-            { x: 36.8, y: 17.6, z: 2327, name: '華通', country: '2313' },
-            { x: 38.3, y: 20, z: 1823, name: '新興', country: '3037' },
-            { x: 252, y: 26.4, z: 1727, name: '穩懋', country: '3105' },
-            { x: 6.43, y: 50.8, z: 1637, name: '群創', country: '3481' },
-            { x: 61.9, y: 51.8, z: 1489, name: '南亞科', country: '2408' },
-            { x: 13.5, y: 62.9, z: 1467, name: '華邦電', country: '2344' },
-            { x: 373.5, y: 35, z: 1451, name: '聯發科', country: '2454' },
-            { x: 82.6, y: 22.9, z: 1401, name: '元大台灣50ETF', country: '0050' },
-            { x: 86.3, y: 31.5, z: 1077, name: '中美晶', country: '5483' },
-            { x: 177.5, y: 12.5, z: 1054, name: '原相', country: '3227' },
-            { x: 70.5, y: 46.1, z: 982, name: '亞光', country: '3019' },
-            { x: 196.5, y: 10.1, z: 906, name: '智邦', country: '2345' },
-            { x: 94.7, y: 18.5, z: 811, name: '義隆', country: '2458' },
-            { x: 27.7, y: 13.1, z: 775, name: '嘉聯益', country: '6153' },
-            { x: 365, y: 13.2, z: 764, name: '環球晶', country: '6488' },
-            { x: 87.2, y: 20, z: 617, name: '全新', country: '2455' },
-            { x: 18.2, y: 26.4, z: 615, name: '隆達', country: '3698' },
-            { x: 251.5, y: 50.8, z: 608, name: '上銀', country: '2049' },
-            { x: 116, y: 51.8, z: 598, name: '同欣電', country: '6271' },
-            { x: 110.5, y: 32.9, z: 590, name: '台郡', country: '6269' }
-        ],
+        data: data,
         color: Highcharts.color(Highcharts.getOptions().colors[1]).setOpacity(1000).get('rgba'),
         marker: {
             fillColor: {
@@ -514,7 +485,7 @@ Highcharts.chart('hicharts1', {
         }
     }]
 
-});
+})});
 
 </script>
 
@@ -589,7 +560,7 @@ Highcharts.theme = {
 };
 // Apply the theme
 Highcharts.setOptions(Highcharts.theme);
-  
+Highcharts.getJSON("{% url 'stockf_volume30' 'volume' %}", function (data) {  
   Highcharts.chart('container1', {
     chart: {
         type: 'bar'
@@ -624,28 +595,7 @@ Highcharts.setOptions(Highcharts.theme);
     },
     series: [{
         name: '成交量(口)',
-        data: [
-            ['2448晶電', 9311],
-            ['2492華新科', 6112],
-            ['2330台積電', 5335],
-            ['2327國巨', 4689],
-            ['2337旺宏', 3987],
-            ['2303聯電', 3842],
-            ['2317鴻海', 3227],
-            ['2409友達', 2860],
-            ['3406玉晶光', 2596],
-            ['2313華通', 2327],
-            ['3037新興', 1823],
-            ['3105穩懋', 1727],
-            ['3481群創', 1637],
-            ['2408南亞科', 1489],
-            ['2344華邦電', 1467],
-            ['2454聯發科', 1451],
-            ['0050元大台灣50ETF', 1401],
-            ['5483中美晶', 1077],
-            ['3227原相', 1054],
-            ['3019亞光', 982]
-        ],
+        data: data,
         dataLabels: {
             enabled: true,
             rotation: 0,
@@ -659,7 +609,7 @@ Highcharts.setOptions(Highcharts.theme);
             }
         }
     }]
-});
+})});
 
 </script>
 
