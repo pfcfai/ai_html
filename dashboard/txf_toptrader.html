@@ -277,7 +277,7 @@ $.getJSON("{% url 'Top10traderOi' %}", function (data) {
 Highcharts.chart('hicharts1', {
 
     chart: {
-        zoomType: 'xy'
+        zoomType: 'x'
     },
     credits: { enabled:false
      },   //去掉右下角highchart.com
@@ -321,14 +321,14 @@ Highcharts.chart('hicharts1', {
    
     series: [ {
         name: '十大交易人',
-        type: 'column',
+        type: '',
         yAxis: 1,
         data: data.top10trader,
         color: '#F61805'
 
     }, {
         name: '十大特法',
-        type: 'column',
+        type: '',
         yAxis: 1,
         data: data.top10special,
         color: '#1FCA06'
@@ -431,7 +431,7 @@ $.getJSON("{% url 'ThreemanOi' %}", function (data) {
 Highcharts.chart('hicharts2', {
 
     chart: {
-        zoomType: 'xy'
+        zoomType: 'x'
     },
     credits: { enabled:false
      },   //去掉右下角highchart.com
@@ -456,13 +456,13 @@ Highcharts.chart('hicharts2', {
       type: 'datetime'
     },
     yAxis: [{ // Primary yAxis
-        min: 8200,
+        // min: 8200,
         title: {
             text: '加權指數'
         }
 
     }, { // Secondary yAxis
-        min: -24000,
+        // min: -24000,
         gridLineWidth: 0,
         title: {
             text: '口數'
@@ -475,7 +475,7 @@ Highcharts.chart('hicharts2', {
    
     series: [  {
         name: '三大法人合計',
-        type: 'column',
+        type: '',
         yAxis: 1,            
         marker: {
             enabled: false
@@ -484,7 +484,7 @@ Highcharts.chart('hicharts2', {
             color: colors[1]
     },{
         name: '外資',
-        type: 'spline',
+        type: '',
         yAxis: 1,            
         marker: {
             enabled: false
@@ -495,7 +495,7 @@ Highcharts.chart('hicharts2', {
 
     }, {
         name: '自營商',
-        type: 'spline',
+        type: '',
         yAxis: 1,            
         marker: {
             enabled: false
@@ -505,7 +505,7 @@ Highcharts.chart('hicharts2', {
             color: colors[7]
     },  {
         name: '投信',
-        type: 'spline',
+        type: '',
         yAxis: 1,            
         marker: {
             enabled: false
@@ -516,7 +516,7 @@ Highcharts.chart('hicharts2', {
     }, {
         name: '加權指數',
         type: 'spline',
-        yAxis: 0,            
+        yAxis: 1,            
         marker: {
             enabled: false
         },
