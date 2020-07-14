@@ -399,21 +399,7 @@ Highcharts.chart('hicharts1', {
         labels: {
             format: '{value} 元'
         },
-        plotLines: [{
-            color: 'black',
-            dashStyle: 'dot',
-            width: 2,
-            value: 65,
-            label: {
-                rotation: 0,
-                y: 15,
-                style: {
-                    fontStyle: 'italic'
-                },
-                text: 'Safe fat intake 65g/day'
-            },
-            zIndex: 3
-        }],
+
         accessibility: {
             rangeDescription: 'Range: 60 to 100 grams.'
         }
@@ -472,17 +458,7 @@ Highcharts.chart('hicharts1', {
     },
 
     series: [{
-        data: data,
-        color: Highcharts.color(Highcharts.getOptions().colors[1]).setOpacity(1000).get('rgba'),
-        marker: {
-            fillColor: {
-                radialGradient: { cx: 0.4, cy: 0.3, r: 0.7 },
-                stops: [
-                    [0, 'rgba(255,255,255,0.5)'],
-                    [1,  Highcharts.color(Highcharts.getOptions().colors[1]).setOpacity(1000).get('rgba')]
-                ]
-            }
-        }
+        data: data
     }]
 
 })});

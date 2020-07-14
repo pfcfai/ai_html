@@ -278,7 +278,7 @@ var colors = Highcharts.getOptions().colors;
 $.getJSON("{% url 'option_oi' %}", function (data) {
 Highcharts.chart('hicharts1', {
     chart: {
-        zoomType: 'xy'
+        zoomType: 'x'
     },
     credits: { enabled:false
      },   //去掉右下角highchart.com
