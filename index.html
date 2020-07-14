@@ -305,7 +305,7 @@ Highcharts.setOptions(Highcharts.theme);
 Highcharts.getJSON("{% url 'home_page' 'sort' %}", function (data) {
   var chart = Highcharts.chart('pricerank2', {
     chart: {
-        zoomType: 'xy'
+        zoomType: 'x'
     },
     title: {
         text: ''
@@ -313,6 +313,12 @@ Highcharts.getJSON("{% url 'home_page' 'sort' %}", function (data) {
     subtitle: {
         text: ' <a href="http://www.pfcf.com.tw/">Deep Trade - 深度交易 | 統一期貨'
     },
+    credits: { enabled:false
+     },   //去掉右下角highchart.com
+    exporting: { enabled:false
+     },   //去掉右上角的打印及导出按钮
+
+    
 /*
     subtitle: {
         text: 'Plain'
