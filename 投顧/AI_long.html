@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-tw" class="h-100">
+
+ <head>
+ </head>
+  <body>
+ 
+
+  <!--highcharts 繪圖 -->
+<div class="col-md-6">
+    <div id="hicharts0" style="height: 400px; min-width: 310px"></div>
+</div>
+
+
+
+
+  <!--highcharts-->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+		<script>
+		//$.getJSON( "http://127.0.0.1:8080/api/sort/?format=json", function( data ) {
+		//  console.log(data);
+		//});
+		$.getJSON("https://deeptrade.pfcf.com.tw/ai_reg/quote/long", function (data) {
+
+		      Highcharts.setOptions({
+		      time: {
+		          timezoneOffset: -8*60
+		      }
+		      });
+		      // create the chart
+		      Highcharts.stockChart('hicharts0', {
+
+
+		          rangeSelector: {
+		              selected: 1
+		          },
+
+		          title: {
+		              text: data.stronglong1.stock_name
+		          },
+
+		          series: [{
+		              type: 'candlestick',
+		              name: data.stronglong1.stock_name,
+		              data: data.stronglong1.data,
+		              dataGrouping: {
+		                  units: [
+		                      [
+		                          'day', // unit name
+		                          [1] // allowed multiples
+		                      ], [
+		                          'month',
+		                          [1, 2, 3, 4, 6]
+		                      ]
+		                  ]
+		              }
+		          }]
+		      });
+
+		        });
+
+		</script>
+
+
+
+  </body>
+</html>
