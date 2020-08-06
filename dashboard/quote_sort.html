@@ -315,13 +315,14 @@
 
                  for(var i=0;i<temp.symbol.length;i++){
                   var pct_color ='';
+                  var sy = temp.symbol_eg[i]
                     if (temp.pct[i] > 0 ) {
                       pct_color+='<font color="red">';
                     } else if ( temp.pct[i] < 0 ) {
                       pct_color+='<font color="green">';
                     }
                     
-                  tableData+="<tr>"+"<th>"+temp.symbol[i]+"</th>"+"<td>"+pct_color+temp.pct[i]+'%'+"</font></td>"+"<td>"+temp.close[i]+"</td>"+"</tr>"
+                  tableData+="<tr>"+"<th><a href="+"{% url 'indicator' 'tem' %}>".replace('tem', sy)+temp.symbol[i]+"</a></th>"+"<td>"+pct_color+temp.pct[i]+'%'+"</font></td>"+"<td>"+temp.close[i]+"</td>"+"</tr>"
                  }
 
                  $("#t_"+classfy).html(tableData)

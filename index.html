@@ -680,8 +680,6 @@ initializeClock('clockdiv', deadline);
 </script>
 
 <header>
-  {% if request.user.is_authenticated %}
-  {% csrf_token %}
   <h2>=推薦影音=</h2>
   <h4 style="color: gray">watch video</h4>
 </header>
@@ -708,7 +706,6 @@ initializeClock('clockdiv', deadline);
       
   </div>
     <hr>
-{% endif %}
 <!--影音嵌入結束-->
 <!-- /.container -->
 </main>

@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="zh-tw" class="h-100">
+
+ <head>
+
+ </head>
+  <body>
+ 
+
+  <!--highcharts 繪圖 -->
+
+
+
+
+
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+
+
+<div class="container">
+        <div id="hicharts3" style=" height: 400px; margin: 0 auto"></div>
+</div>
+
+<script type="text/javascript">
+
+Highcharts.theme = {
+
+    chart: {
+        backgroundColor: null,
+        style: {
+            fontFamily: '微軟正黑體'
+        }
+    },
+    title: {
+        style: {
+            fontFamily: '微軟正黑體',
+            margin:'100px',
+            fontSize: '25px',
+            fontWeight: 'bold',
+            textTransform: 'uppercase'
+        }
+    },
+    subtitle: {
+        style: {
+            fontFamily: '微軟正黑體',
+            fontSize: '15px',
+            fontWeight: 'bold',
+            textTransform: 'uppercase'
+        }
+    },    
+    tooltip: {
+        borderWidth: 0,
+        backgroundColor: 'rgba(219,219,216,0.8)',
+        shadow: false
+    },
+    legend: {
+        fontWeight: 'bold',
+        fontFamily: '微軟正黑體',
+        itemStyle: {
+        fontWeight: 'bold',
+        fontSize: '15px'
+        }
+    },
+    xAxis: {        
+      title: {
+            style: {
+
+                fontFamily: '微軟正黑體',
+                ontWeight: 'bold',
+                fontSize: '15px',
+                textTransform: 'uppercase'
+            }
+        },
+        labels: {
+            
+            style: {
+              fontFamily: '微軟正黑體',
+              fontWeight: 'bold',
+              fontSize: '15px'
+            }
+        }
+    },
+    yAxis: {
+        fontWeight: 'bold',
+        fontFamily: '微軟正黑體',
+        title: {
+            style: {
+
+                fontFamily: '微軟正黑體',
+                ontWeight: 'bold',
+                fontSize: '15px',
+                textTransform: 'uppercase'
+            }
+        },
+        labels: {
+            style: {
+                fontSize: '12px'
+            }
+        }
+    },
+    plotOptions: {
+        candlestick: {
+          fontFamily: '微軟正黑體',
+            lineColor: '#404048'
+        }
+    }
+};
+// Apply the theme
+Highcharts.setOptions(Highcharts.theme);
+Highcharts.getJSON("https://deeptrade.pfcf.com.tw/stockf/volume30/all", function (data) {
+Highcharts.chart('hicharts3', {
+
+    chart: {
+        type: 'bubble',
+        plotBorderWidth: 1,
+        zoomType: 'xy'
+    },
+
+    credits: { enabled:false
+     },   //去掉右下角highchart.com
+    exporting: { enabled:false
+     },   //去掉右上角的打印及导出按钮
+
+
+    legend: {
+        enabled: false
+    },
+
+    title: {
+        text: '股票期貨前30大成交量'
+    },
+    subtitle: {
+        text: ' <a href="http://www.pfcf.com.tw/">Deep Trade - 深度交易 | 統一期貨'
+    },
+
+
+    accessibility: {
+        point: {
+            valueDescriptionFormat: '{index}. {point.name}, fat: {point.x}g, sugar: {point.y}g, obesity: {point.z}%.'
+        }
+    },
+
+    xAxis: {
+        gridLineWidth: 1,
+        title: {
+            text: '股價'
+        },
+        labels: {
+            format: '{value} 元'
+        },
+
+        accessibility: {
+            rangeDescription: 'Range: 60 to 100 grams.'
+        }
+    },
+
+    yAxis: {
+        startOnTick: false,
+        endOnTick: false,
+        title: {
+            text: '波動度'
+        },
+        labels: {
+            format: '{value} %'
+        },
+        maxPadding: 0.2,
+        plotLines: [{
+            color: 'black',
+            dashStyle: 'dot',
+            width: 2,
+            value: 50,
+            label: {
+                align: 'right',
+                style: {
+                    fontStyle: 'italic'
+                },
+                text: 'Safe sugar intake 50g/day',
+                x: -10
+            },
+            zIndex: 3
+        }],
+        accessibility: {
+            rangeDescription: 'Range: 0 to 160 grams.'
+        }
+    },
+
+    tooltip: {
+        useHTML: true,
+        headerFormat: '<table>',
+        pointFormat: '<tr><th colspan="2"><h3>{point.country}</h3></th></tr>' +
+            '<tr><th>價格:</th><td>{point.x}元</td></tr>' +
+            '<tr><th>波動度:</th><td>{point.y}%</td></tr>' +
+            '<tr><th>成交量:</th><td>{point.z}口</td></tr>',
+        footerFormat: '</table>',
+        followPointer: true
+    },
+
+    plotOptions: {
+        series: {
+            dataLabels: {
+                enabled: true,
+                format: '{point.name}'
+                // ,fontSize: '12px'
+
+            }
+        }
+    },
+
+    series: [{
+        data: data
+    }]
+
+})});
+
+</script>
+
+
+  </body>
+</html>
