@@ -218,7 +218,7 @@
 </div><br><br>
 
 <script type="text/javascript">
-  Highcharts.getJSON("{% url 'stockfuture_wave_pct' %}", function (data) {
+  $.getJSON("https://deeptrade.pfcf.com.tw/stockf/wavepct?format=json", function (data) {
 // Load the fonts
 Highcharts.createElement('link', {
     href: 'https://fonts.googleapis.com/css?family=Dosis:400,600',
@@ -276,7 +276,7 @@ Highcharts.theme = {
             style: {
               fontFamily: '微軟正黑體',
             fontWeight: 'bold',
-                fontSize: '15px'
+                fontSize: '15px',
             }
         }
     },
@@ -374,7 +374,7 @@ Highcharts.chart('hicharts1', {
 </script>
 
 <script type="text/javascript">
-Highcharts.getJSON("{% url 'stockfuture_pct_sort' '+pctsort' %}", function (data) {  
+$.getJSON("{% url 'stockfuture_pct_sort' '+pctsort' %}", function (data) {  
 // Load the fonts
 Highcharts.createElement('link', {
     href: 'https://fonts.googleapis.com/css?family=Dosis:400,600',
@@ -527,7 +527,7 @@ Highcharts.chart('hicharts2', {
 </script>
 
 <script type="text/javascript">
-Highcharts.getJSON("{% url 'stockfuture_pct_sort' '-pctsort' %}", function (data) {   
+$.getJSON("{% url 'stockfuture_pct_sort' '-pctsort' %}", function (data) {   
 // Load the fonts
 Highcharts.createElement('link', {
     href: 'https://fonts.googleapis.com/css?family=Dosis:400,600',

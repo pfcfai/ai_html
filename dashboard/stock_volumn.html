@@ -358,7 +358,7 @@ Highcharts.theme = {
 };
 // Apply the theme
 Highcharts.setOptions(Highcharts.theme);
-Highcharts.getJSON("{% url 'stockf_volume30' 'all' %}", function (data) {
+$.getJSON("{% url 'stockf_volume30' 'all' %}", function (data) {
 Highcharts.chart('hicharts1', {
 
     chart: {
@@ -536,7 +536,7 @@ Highcharts.theme = {
 };
 // Apply the theme
 Highcharts.setOptions(Highcharts.theme);
-Highcharts.getJSON("{% url 'stockf_volume30' 'volume' %}", function (data) {  
+$.getJSON("{% url 'stockf_volume30' 'volume' %}", function (data) {  
   Highcharts.chart('container1', {
     chart: {
         type: 'bar'
