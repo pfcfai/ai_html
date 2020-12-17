@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<table style="border:3px #cccccc solid;" cellpadding="10" border='1'>
+  <thead>
+    <tr>
+      <th scope="col">股票代號</th>
+      <th scope="col">股票期貨</th>
+      <th scope="col">現價</th>
+      <th scope="col">成交量</th>
+      <th scope="col">原始保證金</th>
+      <th scope="col">時間</th>
+    </tr>
+  </thead>
+  <tbody id="top_10" style="text-align:center">
+    
+  </tbody>
+</table>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+ $(document).ready(function (){
+            $.getJSON("{% url 'stockf_volumetop10'%}", function (data) {
+                var tableData='';
+                
+                 //動態增加5個td,並且把data陣列的五個值賦給每個td
+                 for(var i=0;i<10;i++){
+                    //console.log(temp.symbol_eg[i]);
+                  tableData+="<tr>"+"<td>"+data.stock_code[i]+"</td>"+
+                                    "<td>"+data.stock_name[i]+"</td>"+
+                                    "<td>"+data.price[i]+"</td>"+
+                                    "<td>"+data.volume[i]+"</td>"+
+                                    "<td>"+data.origin_money[i]+"</td>"+
+                                    "<td>"+data.time[i]+"</td>"+"</tr>"
+                 }
+                 //tableData+="</tr>"
+                 //現在tableData已經生成好了，把他賦值給上面的tbody
+                 //console.log(tableData)
+                 $("#top_10").html(tableData)            //$("td").attr("href", "http://www.google.com/")
+                 console.log(tableData)
+            })
+    })
+</script>
+</html>
