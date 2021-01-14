@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <style>
 
 
@@ -13,7 +14,9 @@ table {
 
 
 /*----------------------*/
+.zebra{
 
+}
 .zebra td, .zebra th {
     padding: 10px;
     border-bottom: 1px solid #f2f2f2;    
@@ -81,31 +84,39 @@ table {
     border-radius: 0 0 6px 6px
 }
   
-</style>  
+</style> 
+
 </head>
-<table class="zebra">
+<h4 id="timer" align="right" ></h4>
+<table class="zebra"  width="100%" >
   <thead>
     <tr>
       <th scope="col">股票代號</th>
       <th scope="col">股票期貨</th>
       <th scope="col">現價</th>
+      <th scope="col">漲跌</th>
+      <th scope="col">漲跌幅</th>
+      <th scope="col">震幅</th>
       <th scope="col">成交量</th>
       <th scope="col">原始保證金</th>
       <th scope="col">時間</th>
     </tr>
   </thead>
-  <tbody id="top_10" style="text-align:center">
+  <tbody id="top_10" style="text-align:">
     
   </tbody>
 
 
-
+<!--
   <table class="zebra">
   <thead>
     <tr>
       <th scope="col">股票代號</th>
       <th scope="col">股票期貨</th>
       <th scope="col">現價</th>
+      <th scope="col">漲跌</th>
+      <th scope="col">漲跌幅</th>
+      <th scope="col">震幅</th>
       <th scope="col">成交量</th>
       <th scope="col">原始保證金</th>
       <th scope="col">時間</th>
@@ -115,22 +126,29 @@ table {
     
   </tbody>
 </table>
-
+-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-  var a = stockf_top10();
-  var b = under1W_top10();
-
+  stockf_top10();
+  //under1W_top10();
+  timer()
   function stockf_top10(){
           $.getJSON("https://deeptrade.pfcf.com.tw/pfcf/stockf/volumetop10", function (data) {
               var tableData='';
-              
+              var color='';
                //動態增加5個td,並且把data陣列的五個值賦給每個td
                for(var i=0;i<10;i++){
-                  //console.log(temp.symbol_eg[i]);
+                  if (data.change[i] > 0 ) {
+                      color='<font color="red">';
+                    } else if ( data.change[i] < 0 ) {
+                      color='<font color="green">';
+                    }
                 tableData+="<tr>"+"<td>"+data.stock_code[i]+"</td>"+
                                   "<td>"+data.stock_name[i]+"</td>"+
                                   "<td>"+data.price[i]+"</td>"+
+                                  "<td>"+color+data.change[i]+"</td>"+    
+                                  "<td>"+color+data.change_p[i]+"%</td>"+  
+                                  "<td>"+data.highlow_p[i]+"%</td>"+                           
                                   "<td>"+data.volume[i]+"</td>"+
                                   "<td>"+data.origin_money[i]+"</td>"+
                                   "<td>"+data.time[i]+"</td>"+"</tr>"
@@ -138,20 +156,27 @@ table {
                //tableData+="</tr>"
                //現在tableData已經生成好了，把他賦值給上面的tbody
                //console.log(tableData)
-               $("#top_10").html(tableData)            //$("td").attr("href", "http://www.google.com/")
-               console.log(tableData)
-          });
- }
- function under1W_top10(){
-          $.getJSON("https://deeptrade.pfcf.com.tw/pfcf/stockf/under1W_top10", function (data) {
+               $('#top_10').html(tableData)            //$("td").attr("href", "http://www.google.com/")
+               //console.log(tableData)
+  })};
+    function under1W_top10(){
+          $.getJSON('https://deeptrade.pfcf.com.tw/pfcf/stockf/under1W_top10', function (data) {
               var tableData='';
-              
+              var color='';
                //動態增加5個td,並且把data陣列的五個值賦給每個td
                for(var i=0;i<10;i++){
                   //console.log(temp.symbol_eg[i]);
+                  if (data.change[i] > 0 ) {
+                      color='<font color="red">';
+                    } else if ( data.change[i] < 0 ) {
+                      color='<font color="green">';
+                    }
                 tableData+="<tr>"+"<td>"+data.stock_code[i]+"</td>"+
                                   "<td>"+data.stock_name[i]+"</td>"+
                                   "<td>"+data.price[i]+"</td>"+
+                                  "<td>"+color+data.change[i]+"</td>"+    
+                                  "<td>"+color+data.change_p[i]+"%</td>"+  
+                                  "<td>"+data.highlow_p[i]+"%</td>"+                           
                                   "<td>"+data.volume[i]+"</td>"+
                                   "<td>"+data.origin_money[i]+"</td>"+
                                   "<td>"+data.time[i]+"</td>"+"</tr>"
@@ -159,16 +184,26 @@ table {
                //tableData+="</tr>"
                //現在tableData已經生成好了，把他賦值給上面的tbody
                //console.log(tableData)
-               $("#under1W_top_10").html(tableData)            //$("td").attr("href", "http://www.google.com/")
-               console.log(tableData)
-          });
-  
- }
-
-
+               $('#under1W_top_10').html(tableData)            //$("td").attr("href", "http://www.google.com/")
+               //console.log(tableData)
+  })};
+  function timer() {
+    var seconds = 10; //倒数5秒 4=5-1
+    var int = setInterval(function() {
+        if (seconds >= 0) { //若要倒数至0秒 seconds >= 0
+           document.getElementById("timer").innerHTML = '再'+seconds+'秒後刷新數據'; //打印秒
+           seconds-=1;
+        } else {
+           clearInterval(int); //防止多次累加
+           seconds = 10; //重置倒数秒变量
+           return;
+        }
+    }, 1000);
+};
 $(document).ready(function (){
-       window.setInterval(stockf_top10,10000);   
-       window.setInterval(under1W_top10,10000); 
+       window.setInterval(stockf_top10,11000);  
+       //window.setInterval(under1W_top10,11000);  
+       window.setInterval(timer,11000);   
 });
 </script>
 </html>
