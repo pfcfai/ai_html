@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="/search_stock" method="post">
+    {% csrf_token %}
+
+    <style>
+	th {
+	  display: table-cell;
+	  vertical-align: inherit;
+	  font-weight: bold;
+	  text-align: center;
+	}
+	td {
+	  display: table-cell;
+	  vertical-align: inherit;
+	  text-align: center;
+	}
+	</style>
+    <div class="form-group">
+        <div class="form-group col-md-6">
+            <label for="stock_code" style="font-size:20px">股票代號</label>
+            <input type="text" name="stock_code">
+            <input class="btn btn-success" type="submit" value="查詢" />
+        </div>
+    </div>
+    <table style="border:3px #cccccc solid;" cellpadding="10" border='1'>
+            <tr>
+                <th width="150px">股票名稱</th>
+                <th width="90px">股票代號 </th>
+                <th width="60px">價格</th>
+                <th width="70px">漲跌幅</th>
+                <th width="100px">成交量</th>
+                <th width="120px">原始保證金</th>
+                <th width="100px">時間</th>
+            </tr>
+            {% for s in stock %}
+                <tr>
+                    <td > {{ s.stock_name }} </td>
+                    <td > {{ s.stock_code }} </td>
+                    <td> {{ s.price }} </td>
+                    <td> {{ s.change_p }}% </td>
+                    <td> {{ s.volume }} </td>
+                    <td> {{ s.origin_money }} </td>
+                    <td> {{ s.time }} </td>
+                </tr>
+            {% endfor %}
+        </table>
+</form>
+{% endblock  %}

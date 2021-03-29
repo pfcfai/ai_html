@@ -87,7 +87,8 @@
 <script src="https://code.highcharts.com/stock/indicators/indicators.js"></script>
 <script src="https://code.highcharts.com/stock/indicators/ema.js"></script>
 <script src="https://code.highcharts.com/stock/indicators/macd.js"></script>
-
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
 <div id="container" style="height: 600px; min-width: 310px"></div>
 <script type="text/javascript">
   Highcharts.getJSON("http://localhost:8000/commodityfuture/get_quote/{{symbol}}", function (data) {
@@ -132,9 +133,7 @@
 
 <hr class="featurette-divider"> 
 <header></header>
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/highcharts-more.js"></script>
-<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+
 <div class="outer">
   <div class="row justify-content-between">
     <div id="container-speed" class="chart-container"></div>
