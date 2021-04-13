@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="zh-tw" class="h-100">
+{% load static %}
+  <head>
+    <meRachel Chenta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="統一期貨-Deep Trade | 深度交易平台以視覺化呈現全球經濟的關鍵數據與事件研究，提供完整的市場概況分析。再以AI 模型萃取各類標的的技術面趨勢，輔助投資人解析市場動向，有效提高投資效率。">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>統一期貨-Deep Trade | 深度交易</title><!-- 為每個頁面設定唯一的標題 -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family==Noto+Sans+TC&display=swap">
+    <!-- fontawesome icon -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+    <!-- common CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common.css' %}">
+    <style>
+/*CSS 貼這*/
+    .highcharts-figure, .highcharts-data-table table {
+      min-width: 360px; 
+      max-width: 800px;
+      margin: 1em auto;
+    }
+
+    .highcharts-data-table table {
+      font-family: Verdana, sans-serif;
+      border-collapse: collapse;
+      border: 1px solid #EBEBEB;
+      margin: 10px auto;
+      text-align: center;
+      width: 100%;
+      max-width: 500px;
+    }
+    .highcharts-data-table caption {
+      padding: 1em 0;
+      font-size: 1.2em;
+      color: #555;
+    }
+    .highcharts-data-table th {
+      font-weight: 600;
+      padding: 0.5em;
+    }
+    .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+      padding: 0.5em;
+    }
+    .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+      background: #f8f8f8;
+    }
+    .highcharts-data-table tr:hover {
+      background: #f1f7ff;
+    }
+      /*CSS 貼這 end*/
+
+
+    </style>
+    
+    <!-- highcharts -->
+   <!-- HTML 貼這 -->
+
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+ 
+
+      <!-- HTML 貼這 end -->
+    <!-- highcharts結束 -->
+  </head>
+  
+  <body class="d-flex flex-column h-100">
+  <!-- 導覽列 -->
+  {% include header %}
+  <!-- 導覽列結束 -->
+
+
+<div>
+  <div style="margin-left:auto;margin-right:auto;"><img src="{% static 'img/home/banner-01.png' %}" width="100%"></div>
+</div>
+
+<main role="main" class="container">
+<hr>
+<header></header>
+
+<!-- 商品熱力圖 -->
+  <!-- HTML 貼這 -->
+<figure class="highcharts-figure">
+  <div id="container"></div>
+  <p class="highcharts-description">
+個人消費支出衡量一段時間內的消費者支出。<br>
+PCE是經濟分析局在個人收入和支出報告中與個人收入和PCE價格指數一起報告的一種度量。<br>
+PCE包括在耐用品和非耐用品以及服務上花費了多少。<br>
+PCE價格指數是美聯儲（Fed）首選的衡量通貨膨脹的方法。<br>
+PCEPI將所有家庭，公司和政府的價格與GDP一起考慮在內。<br>
+<br>
+** 資料每月更新 **<br>
+  </p>
+</figure>
+<br>
+<hr></hr>
+<br>
+<figure class="highcharts-figure">
+  <div id="container2"></div>
+  <p class="highcharts-description">
+美國消費者物價指數（Consumer Price Index, CPI），普遍用來觀察一國通膨的指標，同時也是各國央行制定貨幣政策的重要觀察數據。<br>
+核心 CPI 扣除價格波動較大的食品與能源項目，能更真實反映家庭單位購買大宗商品、服務價格的實際狀況，也能避免暫時性國際供需因素導致的波動，是市場關注的重點。<br>
+<br>
+** 資料每月更新 **<br>
+  </p>
+</figure>
+<br>
+<hr></hr>
+<br>
+<figure class="highcharts-figure">
+  <div id="container3"></div>
+  <p class="highcharts-description">
+美債平衡通膨率為美國同天期公債與抗通膨債券（TIPS）兩者的殖利率差，<br>
+當通膨預期上升時，美債殖利率上升，TIPS殖利率則相對下降，使得美債平衡通膨率趨於上行<br>
+<br>
+** 資料每日更新 **<br>
+  </p>
+</figure>
+
+  <!-- HTML 貼這 end -->
+<script type="text/javascript">
+  /JS 貼這/
+  
+var url;
+url="https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/pce.json";
+    
+
+Highcharts.getJSON(url, function (data) {
+Highcharts.chart('container', {
+  chart: {
+    type: 'line'
+  },
+  title: {
+    text: '美國個人消費支出物價指數-PCE'
+  },
+  subtitle: {
+    text: 'FRED'
+  },
+  xAxis: {
+    categories: data.date
+  },
+  yAxis: {
+    title: {
+      text: '年增率 (%)'
+    }
+  },
+  plotOptions: {
+    line: {
+      dataLabels: {
+        enabled: true
+      },
+      enableMouseTracking: false
+    }
+  },
+  series: [{
+    name: 'PCE',
+    data: data.pce_yoy
+  }, {
+    name: 'PCE_core',
+    data: data.pcecr_yoy
+  }]
+});
+});
+
+var url2;
+url2="https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/cpi.json";
+
+Highcharts.getJSON(url2, function (data2) {
+Highcharts.chart('container2', {
+  chart: {
+    type: 'line'
+  },
+  title: {
+    text: '美國消費者物價指數-CPI'
+  },
+  subtitle: {
+    text: 'FRED'
+  },
+  xAxis: {
+    categories: data2.date2
+  },
+  yAxis: {
+    title: {
+      text: '年增率 (%)'
+    }
+  },
+  plotOptions: {
+    line: {
+      dataLabels: {
+        enabled: true
+      },
+      enableMouseTracking: false
+    }
+  },
+  series: [{
+    name: 'CPI',
+    data: data2.cpi_yoy
+  }, {
+    name: 'CPI_core',
+    data: data2.cpicr_yoy
+  }]
+});
+});
+
+Highcharts.getJSON('https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/10yr_yield.json', function (data2) {
+Highcharts.getJSON('https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/breakeven_rate.json', function (data) {
+  // Create the chart
+  Highcharts.stockChart('container3', {
+
+
+    rangeSelector: {
+      selected: 1
+    },
+
+    title: {
+      text: '美國10年期 平衡通膨率 vs 國債殖利率'
+    },
+
+    series: [{
+      name: '平衡通膨率',
+      data: data,
+      tooltip: {
+        valueDecimals: 2
+      }
+    }
+            ,{
+      name: '國債殖利率',
+      data: data2,
+      tooltip: {
+        valueDecimals: 2
+      }
+    }]
+  });
+});
+});
+
+  /JS 貼這 end/
+</script>
+<!-- 商品熱力圖結束 -->
+
+
+<header></header>
+  <!-- footer -->
+{% include footer %}
+  <!-- footer結束 -->
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-160598077-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-160598077-1');
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="https://getbootstrap.com/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+    </body>
+</html>
