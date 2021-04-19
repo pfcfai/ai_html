@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="zh-tw" class="h-100">
+{% load static %}
+  <head>
+    <meRachel Chenta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="統一期貨-Deep Trade | 深度交易平台以視覺化呈現全球經濟的關鍵數據與事件研究，提供完整的市場概況分析。再以AI 模型萃取各類標的的技術面趨勢，輔助投資人解析市場動向，有效提高投資效率。">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>統一期貨-Deep Trade | 深度交易</title><!-- 為每個頁面設定唯一的標題 -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family==Noto+Sans+TC&display=swap">
+    <!-- fontawesome icon -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+    <!-- common CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common.css' %}">
+    <style>
+/*CSS 貼這*/
+    .highcharts-figure, .highcharts-data-table table {
+      min-width: 360px; 
+      max-width: 800px;
+      margin: 1em auto;
+    }
+
+    .highcharts-data-table table {
+      font-family: Verdana, sans-serif;
+      border-collapse: collapse;
+      border: 1px solid #EBEBEB;
+      margin: 10px auto;
+      text-align: center;
+      width: 100%;
+      max-width: 500px;
+    }
+    .highcharts-data-table caption {
+      padding: 1em 0;
+      font-size: 1.2em;
+      color: #555;
+    }
+    .highcharts-data-table th {
+      font-weight: 600;
+      padding: 0.5em;
+    }
+    .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+      padding: 0.5em;
+    }
+    .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+      background: #f8f8f8;
+    }
+    .highcharts-data-table tr:hover {
+      background: #f1f7ff;
+    }
+      /*CSS 貼這 end*/
+
+
+    </style>
+    
+    <!-- highcharts -->
+   <!-- HTML 貼這 -->
+
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+ 
+
+      <!-- HTML 貼這 end -->
+    <!-- highcharts結束 -->
+  </head>
+  
+  <body class="d-flex flex-column h-100">
+  <!-- 導覽列 -->
+  {% include header %}
+  <!-- 導覽列結束 -->
+
+
+<div>
+  <div style="margin-left:auto;margin-right:auto;"><img src="{% static 'img/home/banner-01.png' %}" width="100%"></div>
+</div>
+
+<main role="main" class="container">
+<hr>
+<header></header>
+
+<!-- 商品熱力圖 -->
+  <!-- HTML 貼這 -->
+<figure class="highcharts-figure">
+  <div id="container"></div>
+  <p class="highcharts-description">
+鮑威爾2/23日出席國會聽證重申三大要點。<br>
+失業率仍高且未達最大就業，寬鬆政策有必要延續。<br>
+低利率環境維持至2023年，購債規模維持不變。<br>
+價格上漲的跡象並不一定會導致持續高通膨。<br>
+  </p>
+</figure>
+<hr>
+<figure class="highcharts-figure">
+  <div id="container1"></div>
+  <p class="highcharts-description">
+
+  </p>
+</figure>
+
+
+  <!-- HTML 貼這 end -->
+<script type="text/javascript">
+  /JS 貼這/
+  
+Highcharts.getJSON('https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/federal_rate_10yrs.json', function (data) {
+
+  // Create the chart
+  Highcharts.stockChart('container', {
+
+
+    rangeSelector: {
+      selected: 0
+    },
+
+    title: {
+      text: '美國聯邦準備利率 (10年)'
+    },
+
+    tooltip: {
+      style: {
+        width: '200px'
+      },
+      valueDecimals: 4,
+      shared: true
+    },
+
+    yAxis: {
+      title: {
+        text: 'effective rate'
+      }
+    },
+
+    series: [{
+      name: 'FED rate',
+      data: data,
+      id: 'dataseries'
+
+    // the event marker flags
+    }, {
+      type: 'flags',
+      data: [{
+        x: Date.UTC(2015, 12, 16),
+        title: '15/12 開始升息',
+        text: ''
+      }, {
+        x: Date.UTC(2018, 02, 05),
+        title: '鮑威爾上任',
+        text: ''
+      }, {
+        x: Date.UTC(2019, 07, 31),
+        title: '19/07 開始降息',
+        text: ''
+      }, {
+        x: Date.UTC(2020, 03, 15),
+        title: '緊急降息4碼',
+        text: ''
+      }
+      ],
+      onSeries: 'dataseries',
+      shape: 'tangularpin',
+      width: 100
+    }]
+  });
+});
+
+Highcharts.getJSON('https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/federal_effective_rate.json', function (data) {
+
+  // Create the chart
+  Highcharts.stockChart('container1', {
+
+
+    rangeSelector: {
+      selected: 0
+    },
+
+    title: {
+      text: '美國聯邦準備利率歷史走勢'
+    },
+
+    tooltip: {
+      style: {
+        width: '200px'
+      },
+      valueDecimals: 4,
+      shared: true
+    },
+
+    yAxis: {
+      title: {
+        text: 'effective rate'
+      }
+    },
+
+    series: [{
+      name: 'FED rate',
+      data: data,
+      id: 'dataseries'
+
+    // the event marker flags
+    }, {
+      type: 'flags',
+      data: [{
+        x: Date.UTC(2015, 12, 16),
+        title: '15/12 開始升息',
+        text: ''
+      }, {
+        x: Date.UTC(2018, 02, 05),
+        title: '鮑威爾上任',
+        text: ''
+      }, {
+        x: Date.UTC(2019, 07, 31),
+        title: '19/07 開始降息',
+        text: ''
+      }, {
+        x: Date.UTC(2020, 03, 15),
+        title: '緊急降息4碼',
+        text: ''
+      }
+      ],
+      onSeries: 'dataseries',
+      shape: 'tangularpin',
+      width: 100
+    }]
+  });
+});
+
+  /JS 貼這 end/
+</script>
+<!-- 商品熱力圖結束 -->
+
+
+<header></header>
+  <!-- footer -->
+{% include footer %}
+  <!-- footer結束 -->
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-160598077-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-160598077-1');
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="https://getbootstrap.com/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+    </body>
+</html>
