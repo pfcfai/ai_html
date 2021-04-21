@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  {% load static %}
   <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no"/>
   <title>Basic Table (jQuery) Demo</title>
 
-  <link rel="stylesheet" type="text/css" href="./dist/basictable.min.css" />
-
+  <link rel="stylesheet" type="text/css" href="{% static 'css/basictable.min.css' %}" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script type="text/javascript" src="./dist/jquery.basictable.min.js"></script>
+  <script type="text/javascript" src="{% static 'js/jquery.basictable.min.js' %}"></script>
 
   <script type="text/javascript">
     $(document).ready(function() {
@@ -201,7 +201,7 @@ table th {
 
 table tr td {
   background: #eaf3f5;
-  color: #999999;
+  color: #000000;
 }
 
 table tr:nth-of-type(2n+2) td {
@@ -433,6 +433,14 @@ table {
 .table_horizontal tbody > tr:last-child > td,
 .table_horizontal thead > tr:last-child > td {
   border-bottom-width: 0;
+}
+
+.Negative {
+  color: green;
+}
+
+.Positive {
+  color: red;
 }
 
 </style>
