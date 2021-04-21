@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="zh-tw" class="h-100">
+{% load static %}
+  <head>
+    <meRachel Chenta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="統一期貨-Deep Trade | 深度交易平台以視覺化呈現全球經濟的關鍵數據與事件研究，提供完整的市場概況分析。再以AI 模型萃取各類標的的技術面趨勢，輔助投資人解析市場動向，有效提高投資效率。">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>統一期貨-Deep Trade | 深度交易</title><!-- 為每個頁面設定唯一的標題 -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family==Noto+Sans+TC&display=swap">
+    <!-- fontawesome icon -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+    <!-- common CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common.css' %}">
+    <style>
+/*CSS 貼這*/
+    .highcharts-figure, .highcharts-data-table table {
+      min-width: 360px; 
+      max-width: 800px;
+      margin: 1em auto;
+    }
+
+    .highcharts-data-table table {
+      font-family: Verdana, sans-serif;
+      border-collapse: collapse;
+      border: 1px solid #EBEBEB;
+      margin: 10px auto;
+      text-align: center;
+      width: 100%;
+      max-width: 500px;
+    }
+    .highcharts-data-table caption {
+      padding: 1em 0;
+      font-size: 1.2em;
+      color: #555;
+    }
+    .highcharts-data-table th {
+      font-weight: 600;
+      padding: 0.5em;
+    }
+    .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+      padding: 0.5em;
+    }
+    .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+      background: #f8f8f8;
+    }
+    .highcharts-data-table tr:hover {
+      background: #f1f7ff;
+    }
+      /*CSS 貼這 end*/
+
+
+    </style>
+    
+    <!-- highcharts -->
+   <!-- HTML 貼這 -->
+
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+
+
+      <!-- HTML 貼這 end -->
+    <!-- highcharts結束 -->
+  </head>
+  
+  <body class="d-flex flex-column h-100">
+  <!-- 導覽列 -->
+  {% include header %}
+  <!-- 導覽列結束 -->
+
+
+<div>
+  <div style="margin-left:auto;margin-right:auto;"><img src="{% static 'img/home/banner-01.png' %}" width="100%"></div>
+</div>
+
+<main role="main" class="container">
+<hr>
+<header></header>
+
+<!-- 商品熱力圖 -->
+  <!-- HTML 貼這 -->
+<figure class="highcharts-figure">
+  <H2>金銀銅2年走勢圖</H2>
+  <div id="container"></div>
+  <p class="highcharts-description">
+金銀銅的價格，是衡量景氣循環的好工具 <br>
+景氣衰退時，投資黃金(GC-藍色)報酬較佳；<br>
+景氣復甦時，投資白銀(SI-黑色)報酬較佳；<br>
+景氣擴張時，投資高級銅(HG-綠色)報酬較佳；<br>
+  </p>
+</figure>
+<hr>
+<figure class="highcharts-figure">
+  <div id="container1"></div>
+  <p class="highcharts-description">
+金銀比 <br>
+1971年布列敦森林協議瓦解後，金銀比約在15~105間震盪 <br>
+多數時間落在30~95，均值約在60附近 <br>
+因此，若比值>60 且可能反轉向下，可以加碼銀 <br>
+反之，若比值<60 且可能反轉向上，可以減碼銀 <br>
+  </p>
+</figure>
+<hr>
+<figure class="highcharts-figure">
+  <div id="container2"></div>
+  <p class="highcharts-description">
+鉑金比<br>
+當景氣好時，鉑因為工業用途高，因此上漲較多，金價上漲較少，鉑金比上升<br>
+1980年後，鉑金比約在0.7~24間， <br>
+2000/2008年均到2.3以上；2008年底鉑金比<1 <br>
+  </p>
+</figure>
+<hr>
+<figure class="highcharts-figure">
+  <div id="container3"></div>
+  <p class="highcharts-description">
+鉑鈀比 <br>
+因鈀市場小，較投機且波動大，<br>
+所以股市高點鉑鈀比較低，股市低點鉑鈀比較高 <br>
+1980年後，鉑鈀比約在0.6~6間，(正常鉑鈀比>1) <br>
+2001/2017年股市高點，鉑鈀比<1，減少工業金屬、高收益債、股票 <br>
+1982/1990/2009年股市低點，鉑鈀比>4.8，增加工業金屬、高收益債、股票<br>
+  </p>
+</figure>
+
+<hr>
+<figure class="highcharts-figure">
+  <H2>銅金比 與 製造業循環</H2>
+  <div id="container4"></div>
+  <p class="highcharts-description">
+銅金比 取用年增率 <br>
+製造業循環 可取用美國-ISM製造業指數 做觀察 <br>
+由ISM指數高峰起跌點開始，到下一個起跌點，可視為一個製造業循環 <br>
+起跌點通常在 銅金比年率 轉負值 之後不久 <br>
+整個循環包含 銅金比的下跌段，以及回升段 <br>
+以最近四次循環的時間  <br>
+為 2007-2011 / 2011-2014 / 2014-2018 / 2018- <br>
+</p>
+</figure>
+
+  <!-- HTML 貼這 end -->
+<script type="text/javascript">
+  /JS 貼這/
+  
+var seriesOptions = [],
+  seriesCounter = 0,
+  names = ['GC','SI','HG'];
+
+/**
+ * Create the chart when all data is loaded
+ * @returns {undefined}
+ */
+function createChart() {
+
+  Highcharts.stockChart('container', {
+
+    rangeSelector: {
+      selected: 4
+    },
+
+    yAxis: {
+      labels: {
+        formatter: function () {
+          return (this.value > 0 ? ' + ' : '') + this.value + '%';
+        }
+      },
+      plotLines: [{
+        value: 0,
+        width: 2,
+        color: 'silver'
+      }]
+    },
+
+    plotOptions: {
+      series: {
+        compare: 'percent',
+        showInNavigator: false
+      }
+    },
+
+    tooltip: {
+      pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+      valueDecimals: 2,
+      split: true
+    },
+
+    series: seriesOptions
+  });
+}
+
+function success(data) {
+  var name = this.url.match(/(gc|si|hg)/)[0].toUpperCase();
+  var i = names.indexOf(name);
+  seriesOptions[i] = {
+    name: name,
+    data: data
+  };
+
+  // As we're loading the data asynchronously, we don't know what order it
+  // will arrive. So we keep a counter and create the chart when all the data is loaded.
+  seriesCounter += 1;
+
+  if (seriesCounter === names.length) {
+    createChart();
+  }
+}
+
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/gc.json',
+  success
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/si.json',
+  success
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/hg.json',
+  success
+);
+
+/container1 金銀比/
+var url;
+
+url="https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/gc_si_ratio.json";
+  
+Highcharts.getJSON(url, function (data) {
+  // Create the chart
+  Highcharts.stockChart('container1', {
+
+
+    rangeSelector: {
+      selected: 1
+    },
+
+    title: {
+      text: '金銀比'
+    },
+
+    series: [{
+      name: 'gc/si',
+      data: data,
+      tooltip: {
+        valueDecimals: 2
+      }
+    }]
+  });
+});
+
+/container2 鉑金比/
+var url;
+
+url="https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/pl_gc_ratio.json";
+  
+Highcharts.getJSON(url, function (data) {
+  // Create the chart
+  Highcharts.stockChart('container2', {
+
+
+    rangeSelector: {
+      selected: 1
+    },
+
+    title: {
+      text: '鉑金比'
+    },
+
+    series: [{
+      name: 'pl/gc',
+      data: data,
+      tooltip: {
+        valueDecimals: 2
+      }
+    }]
+  });
+});
+
+/container3 鉑金比/
+var url;
+
+url="https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/pl_pa_ratio.json";
+  
+Highcharts.getJSON(url, function (data) {
+  // Create the chart
+  Highcharts.stockChart('container3', {
+
+
+    rangeSelector: {
+      selected: 1
+    },
+
+    title: {
+      text: '鉑鈀比'
+    },
+
+    series: [{
+      name: 'pl/pa',
+      data: data,
+      tooltip: {
+        valueDecimals: 2
+      }
+    }]
+  });
+});
+/container4 銅金比/
+var url;
+
+url="https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/hg_gc_yoy.json";
+  
+Highcharts.getJSON(url, function (data) {
+  // Create the chart
+  Highcharts.stockChart('container4', {
+
+
+    rangeSelector: {
+      selected: 1
+    },
+
+    title: {
+      text: '銅金比年增率'
+    },
+
+    series: [{
+      name: 'hg/gc_yoy',
+      data: data,
+      tooltip: {
+        valueDecimals: 2
+      }
+    }]
+  });
+});
+
+  /JS 貼這 end/
+</script>
+<!-- 商品熱力圖結束 -->
+
+
+<header></header>
+  <!-- footer -->
+{% include footer %}
+  <!-- footer結束 -->
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-160598077-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-160598077-1');
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="https://getbootstrap.com/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+    </body>
+</html>
