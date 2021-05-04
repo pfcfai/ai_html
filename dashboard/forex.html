@@ -52,6 +52,46 @@
       .highcharts-data-table tr:hover {
         background: #f1f7ff;
       }
+      
+      /美元圖以下/
+      #container {
+      	height: 500px;
+      }
+      
+      .highcharts-figure, .highcharts-data-table table {
+        min-width: 320px; 
+        max-width: 700px;
+        margin: 1em auto;
+      }
+      
+      .highcharts-data-table table {
+      	font-family: Verdana, sans-serif;
+      	border-collapse: collapse;
+      	border: 1px solid #EBEBEB;
+      	margin: 10px auto;
+      	text-align: center;
+      	width: 100%;
+      	max-width: 500px;
+      }
+      .highcharts-data-table caption {
+        padding: 1em 0;
+        font-size: 1.2em;
+        color: #555;
+      }
+      .highcharts-data-table th {
+      	font-weight: 600;
+        padding: 0.5em;
+      }
+      .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+        padding: 0.5em;
+      }
+      .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+        background: #f8f8f8;
+      }
+      .highcharts-data-table tr:hover {
+        background: #f1f7ff;
+      }
+      
       /*CSS 貼這 end*/
 
 
@@ -64,6 +104,11 @@
    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
    <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
 
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/variable-pie.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
       <!-- HTML 貼這 end -->
     <!-- highcharts結束 -->
@@ -90,6 +135,21 @@
   <div id="container"></div>
   <p class="highcharts-description">
   </p>
+</figure>
+<hr>
+<figure class="highcharts-figure">
+  <H2>美元指數組成幣別介紹</H2>
+  <div id="container1"></div>
+  <p class="highcharts-description">
+    美元指數(US Dollar Index)是衡量美元在國際外匯市場匯率變化的一項綜合指標，由美元對歐元、日圓、英鎊、加拿大、瑞典克朗和瑞士法郎六個主要貨幣的匯率經過加權幾何平均數計算獲得。
+<br>    
+<br>資料來源：彭博資訊，2021/3
+  </p>
+</figure>
+<hr>
+<figure class="highcharts-figure">
+  <H2>美元指數組成幣別10年走勢圖</H2>
+  <div id="container2" style="height: 400px; min-width: 310px"></div>
 </figure>
   <!-- HTML 貼這 end -->
 <script type="text/javascript">
@@ -121,6 +181,138 @@ Highcharts.getJSON(url, function (data) {
     }]
   });
 });
+
+/美元指數圖/
+Highcharts.chart('container1', {
+  chart: {
+    type: 'variablepie'
+  },
+  title: {
+    text: 'US dollar index composition'
+  },
+  tooltip: {
+    headerFormat: '',
+    pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
+      'Area (square km): <b>{point.y}</b><br/>' +
+      'Population density (people per square km): <b>{point.z}</b><br/>'
+  },
+  series: [{
+    minPointSize: 10,
+    innerSize: '20%',
+    zMin: 0,
+    name: 'curencies',
+    data: [{
+      name: '歐元 EUR 57.6%',
+      y: 57.6,
+      z: 140
+    }, {
+      name: '瑞郎 CHF 3.6%',
+      y: 3.6,
+      z: 80
+    }, {
+      name: '克朗 SEK 4.2%',
+      y: 4.2,
+      z: 90
+    }, {
+      name: '加幣 CAD 9.1%',
+      y: 9.1,
+      z: 100
+    }, {
+      name: '英鎊 GBP 11.9%',
+      y: 11.9,
+      z: 110
+    }, {
+      name: '日圓 JPY 13.6%',
+      y: 13.6,
+      z: 120
+    }]
+  }]
+});
+
+/多幣別比較/
+var seriesOptions = [],
+  seriesCounter = 0,
+  names = ['歐元','日圓','英鎊','加幣','瑞郎'];
+
+/**
+ * Create the chart when all data is loaded
+ * @returns {undefined}
+ */
+function createChart() {
+
+  Highcharts.stockChart('container2', {
+
+    rangeSelector: {
+      selected: 4
+    },
+
+    yAxis: {
+      labels: {
+        formatter: function () {
+          return (this.value > 0 ? ' + ' : '') + this.value + '%';
+        }
+      },
+      plotLines: [{
+        value: 0,
+        width: 2,
+        color: 'silver'
+      }]
+    },
+
+    plotOptions: {
+      series: {
+        compare: 'percent',
+        showInNavigator: false
+      }
+    },
+
+    tooltip: {
+      pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+      valueDecimals: 2,
+      split: true
+    },
+
+    series: seriesOptions
+  });
+}
+
+function success(data) {
+  var name = this.url.match(/(歐元|日圓|英鎊|加幣|瑞郎)/)[0].toUpperCase();
+  var i = names.indexOf(name);
+  seriesOptions[i] = {
+    name: name,
+    data: data
+  };
+
+  // As we're loading the data asynchronously, we don't know what order it
+  // will arrive. So we keep a counter and create the chart when all the data is loaded.
+  seriesCounter += 1;
+
+  if (seriesCounter === names.length) {
+    createChart();
+  }
+}
+
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/歐元.json',
+  success
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/日圓.json',
+  success
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/英鎊.json',
+  success
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/加幣.json',
+  success
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/瑞郎.json',
+  success
+);
 
   /JS 貼這 end/
 </script>
