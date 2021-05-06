@@ -310,7 +310,7 @@ $.getJSON("{% url 'ai_long' %}", function (data) {
 
 <script type="text/javascript"> 
 // Make monochrome colors
-Highcharts.getJSON('https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/ai_recommend/aistrong_shares_dict1.json', function (data) {
+Highcharts.getJSON('https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/ai_recommend/aistrong_shares_dict.json', function (data) {
   
 var pieColors = (function () {
   var colors = [],
@@ -361,12 +361,12 @@ Highcharts.chart('pie0', {
       }
     }
   },
-  series: [data]
+  series: [data.stronglong1]
 });
 });
 
 //pie 2
-Highcharts.getJSON('https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/ai_recommend/aistrong_shares_dict2.json', function (data) {
+Highcharts.getJSON('https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/ai_recommend/aistrong_shares_dict.json', function (data) {
   
 var pieColors = (function () {
   var colors = [],
@@ -417,12 +417,12 @@ Highcharts.chart('pie1', {
       }
     }
   },
-  series: [data]
+  series: [data.stronglong2]
 });
   
 });
 // pie 3
-Highcharts.getJSON('https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/ai_recommend/aistrong_shares_dict3.json', function (data) {
+Highcharts.getJSON('https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/ai_recommend/aistrong_shares_dict.json', function (data) {
   
 var pieColors = (function () {
   var colors = [],
@@ -473,7 +473,7 @@ Highcharts.chart('pie2', {
       }
     }
   },
-  series: [data]
+  series: [data.stronglong3]
 });
   
 });
