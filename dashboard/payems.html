@@ -63,11 +63,18 @@
     
     <!-- highcharts -->
    <!-- HTML 貼這 -->
+   
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+   
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/data.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
 
 
       <!-- HTML 貼這 end -->
@@ -93,8 +100,25 @@
 <figure class="highcharts-figure">
   <div id="container"></div>
   <p class="highcharts-description">
-    非農就業數據代表美國經濟走向，為市場重點關注的經濟數據
+    非農就業數據代表美國經濟走向，為市場重點關注的經濟數據。<br>
+    目前失業率與寬鬆貨幣政策息息相關，<br>
+    FED於國會設定目標為失業率降至4%，21年底失業率可望降至4.5%，<br>
+    因此，預期升息時點可能落在22年上半年。
+    
   </p>
+</figure>
+<hr>
+<figure class="highcharts-figure">
+  <div id="container1"></div>
+  <p class="highcharts-description">
+    平均時薪 與 消費相關 <br>
+    也是可以衡量通膨水準的指標
+  </p>
+</figure>
+
+<hr>
+<figure class="highcharts-figure">
+<div id="container2" style="height: 400px; min-width: 310px"></div>
 </figure>
   <!-- HTML 貼這 end -->
 <script type="text/javascript">
@@ -177,6 +201,123 @@ Highcharts.chart('container', {
       valueSuffix: '%'
     }
   }]
+});
+});
+
+//美國平均時薪
+
+var url;
+url="https://raw.githubusercontent.com/laurenttang/pfcfProject/main/EXCEL_AutoUpdate/hourpay.json";
+
+Highcharts.getJSON(url, function (data) {
+Highcharts.chart('container1', {
+  chart: {
+    zoomType: 'xy'
+  },
+  title: {
+    text: '美國平均時薪'
+  },
+  subtitle: {
+    text: 'Source: fred.stlouisfed.org'
+  },
+  xAxis: [{
+    categories: data.date,
+    crosshair: true
+  }],
+  yAxis: [{ // Primary yAxis
+    labels: {
+      format: '{value}%',
+      style: {
+        color: Highcharts.getOptions().colors[1]
+      }
+    },
+    title: {
+      text: '時薪年增率',
+      style: {
+        color: Highcharts.getOptions().colors[1]
+      }
+    }
+  }, { // Secondary yAxis
+    title: {
+      text: '平均時薪',
+      style: {
+        color: Highcharts.getOptions().colors[0]
+      }
+    },
+    labels: {
+      format: '{value}',
+      style: {
+        color: Highcharts.getOptions().colors[0]
+      }
+    },
+    opposite: true
+  }],
+  tooltip: {
+    shared: true
+  },
+  legend: {
+    layout: 'vertical',
+    align: 'left',
+    x: 120,
+    verticalAlign: 'top',
+    y: 100,
+    floating: true,
+    backgroundColor:
+      Highcharts.defaultOptions.legend.backgroundColor || // theme
+      'rgba(255,255,255,0.25)'
+  },
+  series: [{
+    name: '平均時薪',
+    type: 'column',
+    yAxis: 1,
+    data: data.hourpay_avg,
+    tooltip: {
+      valueSuffix: ' K'
+    }
+
+  }, {
+    name: '時薪年增率',
+    type: 'spline',
+    data: data.hourpay_yoy,
+    tooltip: {
+      valueSuffix: '%'
+    }
+  }]
+});
+});
+
+// 請領失業給付
+
+Highcharts.getJSON('https://raw.githubusercontent.com/laurenttang/pfcfProject/main/EXCEL_AutoUpdate/continued_claim.json', function (data2) {
+  
+Highcharts.getJSON('https://raw.githubusercontent.com/laurenttang/pfcfProject/main/EXCEL_AutoUpdate/initial_claim.json', function (data) {
+  // Create the chart
+  Highcharts.stockChart('container2', {
+
+
+    rangeSelector: {
+      selected: 1
+    },
+
+    title: {
+      text: '美國請領失業給付人數(週)'
+    },
+
+    series: [{
+      name: '初次請領失業人數(千)',
+      data: data,
+      tooltip: {
+        valueDecimals: 0
+      }
+    }
+            ,{
+      name: '持續請領失業人數(千)',
+      data: data2,
+      tooltip: {
+        valueDecimals: 0
+      }
+    }]
+  });
 });
 });
 
