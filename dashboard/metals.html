@@ -158,7 +158,7 @@
   
 var seriesOptions = [],
   seriesCounter = 0,
-  names = ['GC','SI','HG'];
+  names = ['金','銀','銅'];
 
 /**
  * Create the chart when all data is loaded
@@ -203,7 +203,7 @@ function createChart() {
 }
 
 function success(data) {
-  var name = this.url.match(/(gc|si|hg)/)[0].toUpperCase();
+  var name = this.url.match(/(金|銀|銅)/)[0].toUpperCase();
   var i = names.indexOf(name);
   seriesOptions[i] = {
     name: name,
@@ -220,15 +220,15 @@ function success(data) {
 }
 
 Highcharts.getJSON(
-  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/gc.json',
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/金.json',
   success
 );
 Highcharts.getJSON(
-  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/si.json',
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/銀.json',
   success
 );
 Highcharts.getJSON(
-  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/hg.json',
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/銅.json',
   success
 );
 
