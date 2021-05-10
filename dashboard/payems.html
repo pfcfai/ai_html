@@ -207,7 +207,7 @@ Highcharts.chart('container', {
 //美國平均時薪
 
 var url;
-url="https://raw.githubusercontent.com/laurenttang/pfcfProject/main/EXCEL_AutoUpdate/hourpay.json";
+url="https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/hourpay.json";
 
 Highcharts.getJSON(url, function (data) {
 Highcharts.chart('container1', {
@@ -272,7 +272,7 @@ Highcharts.chart('container1', {
     yAxis: 1,
     data: data.hourpay_avg,
     tooltip: {
-      valueSuffix: ' K'
+      valueSuffix: ''
     }
 
   }, {
@@ -288,9 +288,9 @@ Highcharts.chart('container1', {
 
 // 請領失業給付
 
-Highcharts.getJSON('https://raw.githubusercontent.com/laurenttang/pfcfProject/main/EXCEL_AutoUpdate/continued_claim.json', function (data2) {
+Highcharts.getJSON('https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/continued_claim.json', function (data2) {
   
-Highcharts.getJSON('https://raw.githubusercontent.com/laurenttang/pfcfProject/main/EXCEL_AutoUpdate/initial_claim.json', function (data) {
+Highcharts.getJSON('https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/initial_claim.json', function (data) {
   // Create the chart
   Highcharts.stockChart('container2', {
 
