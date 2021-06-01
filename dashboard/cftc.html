@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="zh-tw" class="h-100">
+{% load static %}
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="利用深度學習-卷積神經網路技術(Convolutional Neural Networks)訓練歷史資料線圖，自動偵測辨識出目前海內外期貨商品行情正在發生的型態，投資人可依據自身交易風格，選擇有興趣的商品與型態走勢。">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>統一期貨-AI型態辨識模型</title><!-- 為每個頁面設定唯一的標題 -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <!-- common CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common.css' %}">
+    <!-- fontawesome icon -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+
+    <style>
+      .words{font-size: 20px;
+        color: #ffffff;
+        font-weight: bold;
+        position: absolute;
+        top:5%;
+        left:40%;}
+
+      .notyet{
+        opacity: 0.6;
+      }  
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/4.3/examples/sticky-footer-navbar/sticky-footer-navbar.css" rel="stylesheet">
+
+  </head>
+  <body>
+
+  <!-- 導覽列 -->
+  {% include header %}
+  <!-- 導覽列結束 -->
+
+
+
+
+
+
+<main role="main" class="container">
+  <section class="jumbotron text-center" style="background-image:url({% static 'img/regnition/more_banner01.png' %}) ; background-size:100%;">
+    <div class="container">
+      <h1 class="jumbotron-heading" style="color:#FFFFFF">CFTC大額交易人籌碼數據</h1>
+      <p style="color: #ffffff">提供籌碼數據，掌握投資機會</p>
+      <p>
+      </p>
+    </div>
+  </section>
+  
+<div class="card-deck">
+
+  <div class="card shadow-sm blur">
+    <img src="{% static 'img/home/stock.jpg' %}" class="card-img-top" alt="..." width="340px" height="200px">
+    <div class="card-body"> 
+      <h5 class="card-title">指數期貨  Equity Index</h5>
+      <p class="card-text">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'pages' 'cftc_stock' %}">View</a></button>
+          </div>
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div></p>
+    </div>
+  </div>
+
+  <div class="card shadow-sm blur">
+    <img src="{% static 'img/home/coin.jpg' %}" class="card-img-top" alt="..." width="340px" height="200px">
+    <div class="card-body">
+      <h5 class="card-title">匯率期貨  FX</h5>
+      <p class="card-text">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'pages' 'cftc_fx' %}">View</a></button>
+          </div>
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div></p>
+    </div>
+  </div>
+  
+  <div class="card shadow-sm blur">
+    <img src="{% static 'img/home/rates.jpg' %}" class="card-img-top" alt="..." width="340px" height="200px">
+    <div class="card-body">
+      <h5 class="card-title">利率期貨  Interest Rates</h5>
+      <p class="card-text">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'pages' 'cftc_rates' %}">View</a></button>
+          </div>
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div></p>
+    </div>
+  </div>
+
+</div>
+        <hr class="featurette-divider"> 
+
+<div class="card-deck">
+  <div class="card shadow-sm blur">
+    <img src="{% static 'img/home/metal.jpg' %}" class="card-img-top" alt="..." width="340px" height="200px">
+    <div class="card-body"> 
+      <h5 class="card-title">金屬期貨  Metals</h5>
+      <p class="card-text">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'pages' 'cftc_metals' %}">View</a></button>
+          </div>
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div></p>
+    </div>
+  </div>
+
+  <div class="card shadow-sm blur">
+    <img src="{% static 'img/home/oil.jpg' %}" class="card-img-top" alt="..." width="340px" height="200px">
+    <div class="card-body">
+      <h5 class="card-title">能源期貨  Energy</h5>
+      <p class="card-text">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'pages' 'cftc_energy' %}">View</a></button>
+          </div>
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div></p>
+      
+    </div>
+  </div>
+  
+  <div class="card shadow-sm blur">
+    <img src="{% static 'img/home/wheat.jpg' %}" class="card-img-top" alt="..." width="340px" height="200px">
+    <div class="card-body">
+      <h5 class="card-title">農產品期貨  Agricultural</h5>
+      <p class="card-text">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'pages' 'cftc_agriculture' %}">View</a></button>
+          </div>
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div></p>
+    </div>
+  </div>
+
+</div>
+        <hr class="featurette-divider"> 
+          
+  
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</main>
+<hr class="featurette-divider"> 
+
+
+  <!-- footer -->
+{% include footer %}
+  <!-- footer結束 -->
+
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-160598077-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-160598077-1');
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="https://getbootstrap.com/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+  </body>
+</html>
