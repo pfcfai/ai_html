@@ -3,7 +3,6 @@
 <head>
   {% load static %}
   <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no"/>
-  <title>Basic Table (jQuery) Demo</title>
 
   <link rel="stylesheet" type="text/css" href="{% static 'css/basictable.min.css' %}" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -465,32 +464,32 @@ table {
   <table class="table">
     <thead>
       <tr>
-                <th >股票名稱</th>
-                <th >股票代號 </th>
-                <th >價格</th>
-                <th >漲跌幅</th>
-                <th >成交量</th>
-                <th >原始保證金</th>
-                <th >時間</th>
-            </tr>
+          <th >股票名稱</th>
+          <th >股票代號 </th>
+          <th >價格</th>
+          <th >漲跌幅</th>
+          <th >成交量</th>
+          <th >原始保證金</th>
+          <th >時間</th>
+      </tr>
     </thead>
     {% for s in stock %}
-                <tr>
-                    <td > {{ s.stock_name }} </td>
-                    <td > {{ s.stock_code }} </td>
-                    <td> {{ s.price }} </td>            
-                    <td >
-	                    {% if s.change_p >= 0 %} 
-	                    	<div class=Positive>
-	                    {% else %}
-	                    	<div class=Negative> 
-	                    {% endif %}
-	                    {{ s.change_p }}%</div>
-                    </td>
-                    <td> {{ s.volume }} </td>
-                    <td> {{ s.origin_money }} </td>
-                    <td> {{ s.time }} </td>
-                </tr>
+      <tr>
+          <td > {{ s.stock_name }} </td>
+          <td > {{ s.stock_code }} </td>
+          <td> {{ s.price }} </td>            
+          <td >
+            {% if s.change_p >= 0 %} 
+            	<div class=Positive>
+            {% else %}
+            	<div class=Negative> 
+            {% endif %}
+            {{ s.change_p }}%</div>
+          </td>
+          <td> {{ s.volume }} </td>
+          <td> {{ s.origin_money }} </td>
+          <td> {{ s.time }} </td>
+      </tr>
     {% endfor %}
       
         
