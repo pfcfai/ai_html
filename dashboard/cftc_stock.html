@@ -91,25 +91,60 @@
 
 <!-- 商品熱力圖 -->
   <!-- HTML 貼這 -->
-  
+<div>
+  <h3>CFTC 大額交易人持倉報告閱讀說明 </h3>
+  在美國負責主管期貨交易的是商品期貨交易委員會 (簡稱CFTC) <br>
+  在每周五美國東部時間15:30 (台灣週六03:30AM) <br>
+  於官網發佈統計至每周二收盤， <br>
+  在美國上市交易之期貨商品未平倉部位現況 <br>
+   <br>
+  每個商品未平倉(之後以OI表示)由需申報(Rept)與不需申報(Non_Rept)組成 <br>
+  持有部位 分 多單(long)、空單(short)、扣抵部位(spread) <br>
+  <br>
+  以數學式表達: <br>
+  OI = Rept(long) + Non_Rept(long) =  Rept(short) + Non_Rept(short) <br>
+  <br>
+  其中 Rept 依照其性質 可以表達為: <br>
+  Rept = Commercial + Non-Commercial (稱為投機部位) <br>
+  <br>
+  其中 Rept 依照交易對象 可以表達為: <br>
+  Rept = Dealer + Asset_Manager + Lev_Money + Other_Rept <br>
+  <br>
+  金融類 <br>
+  Dealer(經紀商) : 市場賣方，設計並販售金融商品給客戶或發行於市場；藉由期貨降低手中部位風險 <br>
+  Asset_Manager(資產機構) : 機構法人，包括退休、養老基金、保險公司、共同基金、客戶為法人支基金經理人 <br>
+  Lev_Money(槓桿基金) : 以避險基金、各類型基金經理人為代表 (CTA、CPO、私募) <br>
+  Other_Rept: 其他    <br>
+  <br>
+  <h5>應用 </h5>
+  匯率 取 Non-Commercial (稱為投機部位) 與 Lev_Money(槓桿基金) 的淨部位(long-short) 為觀察數據 <br>
+  當 此兩種數據持倉 淨多單 超過 52周的高點，可能有多頭行情出現 <br>
+  當 此兩種數據持倉 淨空單 超過 52周的低點，可能有空頭行情出現 <br>
+  </div>  
+<hr>
 <figure class="highcharts-figure">
-  <div id="container_cad"></div>
-  <p class="highcharts-description">
- 'https://raw.githubusercontent.com/laurenttang/pfcfProject/main/EXCEL_AutoUpdate/CFTC_CAD.json'   
-  </p>
+  <div id="container_dj"></div>
+</figure>
+<hr>
+<figure class="highcharts-figure">
+  <div id="container_nq"></div>
+</figure>
+<hr>
+<figure class="highcharts-figure">
+  <div id="container_sp"></div>
 </figure>
 
   <!-- HTML 貼這 end -->
 <script type="text/javascript">
   /JS 貼這/
   
-  Highcharts.getJSON("https://raw.githubusercontent.com/laurenttang/pfcfProject/main/EXCEL_AutoUpdate/CFTC_CAD.json", function (data) {
-Highcharts.chart('container_cad', {
+  Highcharts.getJSON("https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/CFTC_DJ.json", function (data) {
+Highcharts.chart('container_dj', {
   chart: {
     zoomtype: 'xy'
   },
   title: {
-    text: 'Stock'
+    text: '道瓊指數 近52周走勢'
   },
   subtitle: {
     text: 'Source: CFTC官方網站'
@@ -126,14 +161,14 @@ Highcharts.chart('container_cad', {
       }
     },
     title: {
-      text: 'Price',
+      text: '價格',
       style: {
         color: Highcharts.getOptions().colors[1]
       }
     }
   }, { // Secondary yAxis
     title: {
-      text: 'Net Position',
+      text: '淨部位',
       style: {
         color: Highcharts.getOptions().colors[0]
       }
@@ -161,7 +196,7 @@ Highcharts.chart('container_cad', {
       'rgba(255,255,255,0.25)'
   },
   series: [{
-    name: 'Net Large Spects Position',
+    name: '投機部位',
     type: 'area',
     yAxis: 1,
     data: data.spect,
@@ -171,7 +206,7 @@ Highcharts.chart('container_cad', {
 
   },
     {
-    name: 'Leverage Monetary Position',
+    name: '槓桿基金',
     type: 'area',
     yAxis: 1,    
     data: data.commercial,
@@ -180,7 +215,7 @@ Highcharts.chart('container_cad', {
 
     }       
     , {
-    name: 'Price',
+    name: '價格',
     type: 'spline',
     data: data.price,
     tooltip: {
@@ -189,6 +224,185 @@ Highcharts.chart('container_cad', {
   }]
 });
 });  
+
+//
+
+  Highcharts.getJSON("https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/CFTC_NQ.json", function (data) {
+Highcharts.chart('container_nq', {
+  chart: {
+    zoomtype: 'xy'
+  },
+  title: {
+    text: '美國科技股NASDAQ 近52周走勢'
+  },
+  subtitle: {
+    text: 'Source: CFTC官方網站'
+  },
+  xAxis: [{
+    categories: data.date,
+    crosshair: true
+  }],
+  yAxis: [{ // Primary yAxis
+    labels: {
+      format: '{value}',
+      style: {
+        color: Highcharts.getOptions().colors[1]
+      }
+    },
+    title: {
+      text: '價格',
+      style: {
+        color: Highcharts.getOptions().colors[1]
+      }
+    }
+  }, { // Secondary yAxis
+    title: {
+      text: '淨部位',
+      style: {
+        color: Highcharts.getOptions().colors[0]
+      }
+    },
+    labels: {
+      format: '{value}',
+      style: {
+        color: Highcharts.getOptions().colors[0]
+      }
+    },
+    opposite: true
+  }],
+  tooltip: {
+    shared: true
+  },
+  legend: {
+    layout: 'vertical',
+    align: 'left',
+    x: 120,
+    verticalAlign: 'top',
+    y: 100,
+    floating: true,
+    backgroundColor:
+      Highcharts.defaultOptions.legend.backgroundColor || // theme
+      'rgba(255,255,255,0.25)'
+  },
+  series: [{
+    name: '投機部位',
+    type: 'area',
+    yAxis: 1,
+    data: data.spect,
+    tooltip: {
+      valueSuffix: ''
+    }
+
+  },
+    {
+    name: '槓桿基金',
+    type: 'area',
+    yAxis: 1,    
+    data: data.commercial,
+    tooltip: {
+      valueSuffix: ''}
+
+    }       
+    , {
+    name: '價格',
+    type: 'spline',
+    data: data.price,
+    tooltip: {
+      valueSuffix: ''
+    }
+  }]
+});
+});  
+
+//
+
+  Highcharts.getJSON("https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/CFTC_SP.json", function (data) {
+Highcharts.chart('container_sp', {
+  chart: {
+    zoomtype: 'xy'
+  },
+  title: {
+    text: 'S&P500指數 近52周走勢'
+  },
+  subtitle: {
+    text: 'Source: CFTC官方網站'
+  },
+  xAxis: [{
+    categories: data.date,
+    crosshair: true
+  }],
+  yAxis: [{ // Primary yAxis
+    labels: {
+      format: '{value}',
+      style: {
+        color: Highcharts.getOptions().colors[1]
+      }
+    },
+    title: {
+      text: '價格',
+      style: {
+        color: Highcharts.getOptions().colors[1]
+      }
+    }
+  }, { // Secondary yAxis
+    title: {
+      text: '淨部位',
+      style: {
+        color: Highcharts.getOptions().colors[0]
+      }
+    },
+    labels: {
+      format: '{value}',
+      style: {
+        color: Highcharts.getOptions().colors[0]
+      }
+    },
+    opposite: true
+  }],
+  tooltip: {
+    shared: true
+  },
+  legend: {
+    layout: 'vertical',
+    align: 'left',
+    x: 120,
+    verticalAlign: 'top',
+    y: 100,
+    floating: true,
+    backgroundColor:
+      Highcharts.defaultOptions.legend.backgroundColor || // theme
+      'rgba(255,255,255,0.25)'
+  },
+  series: [{
+    name: '投機部位',
+    type: 'area',
+    yAxis: 1,
+    data: data.spect,
+    tooltip: {
+      valueSuffix: ''
+    }
+
+  },
+    {
+    name: '槓桿基金',
+    type: 'area',
+    yAxis: 1,    
+    data: data.commercial,
+    tooltip: {
+      valueSuffix: ''}
+
+    }       
+    , {
+    name: '價格',
+    type: 'spline',
+    data: data.price,
+    tooltip: {
+      valueSuffix: ''
+    }
+  }]
+});
+});  
+
 
 
   /JS 貼這 end/
