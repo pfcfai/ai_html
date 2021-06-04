@@ -20,13 +20,9 @@
     <style>
 /*CSS 貼這*/
     .highcharts-figure, .highcharts-data-table table {
-      min-width: 310px; 
+      min-width: 360px; 
       max-width: 800px;
       margin: 1em auto;
-    }
-
-    #container {
-      height: 400px;
     }
 
     .highcharts-data-table table {
@@ -63,12 +59,12 @@
     
     <!-- highcharts -->
    <!-- HTML 貼這 -->
-   
+
     <script src="https://code.highcharts.com/stock/highstock.js"></script>
     <script src="https://code.highcharts.com/stock/modules/data.js"></script>
     <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
-   
+
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/data.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -98,199 +94,178 @@
 <!-- 商品熱力圖 -->
   <!-- HTML 貼這 -->
 <figure class="highcharts-figure">
+  <H2>金銀銅2年走勢圖</H2>
   <div id="container"></div>
   <p class="highcharts-description">
-    非農就業數據代表美國經濟走向，為市場重點關注的經濟數據。<br>
-    目前失業率與寬鬆貨幣政策息息相關，<br>
-    FED於國會設定目標為失業率降至4%，21年底失業率可望降至4.5%，<br>
-    因此，預期升息時點可能落在22年上半年。
-    
+金銀銅的價格，是衡量景氣循環的好工具 <br>
+景氣衰退時，投資黃金(GC-藍色)報酬較佳；<br>
+景氣復甦時，投資白銀(SI-黑色)報酬較佳；<br>
+景氣擴張時，投資高級銅(HG-綠色)報酬較佳；<br>
   </p>
 </figure>
 <hr>
 <figure class="highcharts-figure">
   <div id="container1"></div>
   <p class="highcharts-description">
-    平均時薪 與 消費相關 <br>
-    也是可以衡量通膨水準的指標
+金銀比 <br>
+1971年布列敦森林協議瓦解後，金銀比約在15~105間震盪 <br>
+多數時間落在30~95，均值約在60附近 <br>
+因此，若比值>60 且可能反轉向下，可以加碼銀 <br>
+反之，若比值<60 且可能反轉向上，可以減碼銀 <br>
+  </p>
+</figure>
+<hr>
+<figure class="highcharts-figure">
+  <div id="container2"></div>
+  <p class="highcharts-description">
+鉑金比<br>
+當景氣好時，鉑因為工業用途高，因此上漲較多，金價上漲較少，鉑金比上升<br>
+1980年後，鉑金比約在0.7~24間， <br>
+2000/2008年均到2.3以上；2008年底鉑金比<1 <br>
+  </p>
+</figure>
+<hr>
+<figure class="highcharts-figure">
+  <div id="container3"></div>
+  <p class="highcharts-description">
+鉑鈀比 <br>
+因鈀市場小，較投機且波動大，<br>
+所以股市高點鉑鈀比較低，股市低點鉑鈀比較高 <br>
+1980年後，鉑鈀比約在0.6~6間，(正常鉑鈀比>1) <br>
+2001/2017年股市高點，鉑鈀比<1，減少工業金屬、高收益債、股票 <br>
+1982/1990/2009年股市低點，鉑鈀比>4.8，增加工業金屬、高收益債、股票<br>
   </p>
 </figure>
 
 <hr>
 <figure class="highcharts-figure">
-<div id="container2" style="height: 400px; min-width: 310px"></div>
+  <H2>銅金比 與 製造業循環</H2>
+  <div id="container4"></div>
+  <p class="highcharts-description">
+銅金比 取用年增率 <br>
+製造業循環 可取用美國-ISM製造業指數 做觀察 <br>
+由ISM指數高峰起跌點開始，到下一個起跌點，可視為一個製造業循環 <br>
+起跌點通常在 銅金比年率 轉負值 之後不久 <br>
+整個循環包含 銅金比的下跌段，以及回升段 <br>
+以最近四次循環的時間  <br>
+為 2007-2011 / 2011-2014 / 2014-2018 / 2018- <br>
+</p>
 </figure>
+
   <!-- HTML 貼這 end -->
 <script type="text/javascript">
   /JS 貼這/
   
+var seriesOptions = [],
+  seriesCounter = 0,
+  names = ['金','銀','銅'];
+
+/**
+ * Create the chart when all data is loaded
+ * @returns {undefined}
+ */
+function createChart() {
+
+  Highcharts.stockChart('container', {
+
+    rangeSelector: {
+      selected: 4
+    },
+
+    yAxis: {
+      labels: {
+        formatter: function () {
+          return (this.value > 0 ? ' + ' : '') + this.value + '%';
+        }
+      },
+      plotLines: [{
+        value: 0,
+        width: 2,
+        color: 'silver'
+      }]
+    },
+
+    plotOptions: {
+      series: {
+        compare: 'percent',
+        showInNavigator: false
+      }
+    },
+
+    tooltip: {
+      pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+      valueDecimals: 2,
+      split: true
+    },
+
+    series: seriesOptions
+  });
+}
+
+function success(data) {
+  var name = this.url.match(/(金|銀|銅)/)[0].toUpperCase();
+  var i = names.indexOf(name);
+  seriesOptions[i] = {
+    name: name,
+    data: data
+  };
+
+  // As we're loading the data asynchronously, we don't know what order it
+  // will arrive. So we keep a counter and create the chart when all the data is loaded.
+  seriesCounter += 1;
+
+  if (seriesCounter === names.length) {
+    createChart();
+  }
+}
+
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/金.json',
+  success
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/銀.json',
+  success
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/銅.json',
+  success
+);
+
+/container1 金銀比/
 var url;
-url="https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/payems.json";
 
-Highcharts.getJSON(url, function (data) {
-Highcharts.chart('container', {
-  chart: {
-    zoomType: 'xy'
-  },
-  title: {
-    text: '美國非農就業人數 vs 失業率'
-  },
-  subtitle: {
-    text: 'Source: fred.stlouisfed.org'
-  },
-  xAxis: [{
-    categories: data.date,
-    crosshair: true
-  }],
-  yAxis: [{ // Primary yAxis
-    labels: {
-      format: '{value}%',
-      style: {
-        color: Highcharts.getOptions().colors[1]
-      }
-    },
-    title: {
-      text: '失業率',
-      style: {
-        color: Highcharts.getOptions().colors[1]
-      }
-    }
-  }, { // Secondary yAxis
-    title: {
-      text: '新增就業人數(千人)',
-      style: {
-        color: Highcharts.getOptions().colors[0]
-      }
-    },
-    labels: {
-      format: '{value} K',
-      style: {
-        color: Highcharts.getOptions().colors[0]
-      }
-    },
-    opposite: true
-  }],
-  tooltip: {
-    shared: true
-  },
-  legend: {
-    layout: 'vertical',
-    align: 'left',
-    x: 120,
-    verticalAlign: 'top',
-    y: 100,
-    floating: true,
-    backgroundColor:
-      Highcharts.defaultOptions.legend.backgroundColor || // theme
-      'rgba(255,255,255,0.25)'
-  },
-  series: [{
-    name: '新增就業人數',
-    type: 'column',
-    yAxis: 1,
-    data: data.payems_icz,
-    tooltip: {
-      valueSuffix: ' K'
-    }
-
-  }, {
-    name: '失業率',
-    type: 'spline',
-    data: data.unrate,
-    tooltip: {
-      valueSuffix: '%'
-    }
-  }]
-});
-});
-
-//美國平均時薪
-
-var url;
-url="https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/hourpay.json";
-
-Highcharts.getJSON(url, function (data) {
-Highcharts.chart('container1', {
-  chart: {
-    zoomType: 'xy'
-  },
-  title: {
-    text: '美國平均時薪'
-  },
-  subtitle: {
-    text: 'Source: fred.stlouisfed.org'
-  },
-  xAxis: [{
-    categories: data.date,
-    crosshair: true
-  }],
-  yAxis: [{ // Primary yAxis
-    labels: {
-      format: '{value}%',
-      style: {
-        color: Highcharts.getOptions().colors[1]
-      }
-    },
-    title: {
-      text: '時薪年增率',
-      style: {
-        color: Highcharts.getOptions().colors[1]
-      }
-    }
-  }, { // Secondary yAxis
-    title: {
-      text: '平均時薪',
-      style: {
-        color: Highcharts.getOptions().colors[0]
-      }
-    },
-    labels: {
-      format: '{value}',
-      style: {
-        color: Highcharts.getOptions().colors[0]
-      }
-    },
-    opposite: true
-  }],
-  tooltip: {
-    shared: true
-  },
-  legend: {
-    layout: 'vertical',
-    align: 'left',
-    x: 120,
-    verticalAlign: 'top',
-    y: 100,
-    floating: true,
-    backgroundColor:
-      Highcharts.defaultOptions.legend.backgroundColor || // theme
-      'rgba(255,255,255,0.25)'
-  },
-  series: [{
-    name: '平均時薪',
-    type: 'column',
-    yAxis: 1,
-    data: data.hourpay_avg,
-    tooltip: {
-      valueSuffix: ''
-    }
-
-  }, {
-    name: '時薪年增率',
-    type: 'spline',
-    data: data.hourpay_yoy,
-    tooltip: {
-      valueSuffix: '%'
-    }
-  }]
-});
-});
-
-// 請領失業給付
-
-Highcharts.getJSON('https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/continued_claim.json', function (data2) {
+url="https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/gc_si_ratio.json";
   
-Highcharts.getJSON('https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/initial_claim.json', function (data) {
+Highcharts.getJSON(url, function (data) {
+  // Create the chart
+  Highcharts.stockChart('container1', {
+
+
+    rangeSelector: {
+      selected: 1
+    },
+
+    title: {
+      text: '金銀比'
+    },
+
+    series: [{
+      name: 'gc/si',
+      data: data,
+      tooltip: {
+        valueDecimals: 2
+      }
+    }]
+  });
+});
+
+/container2 鉑金比/
+var url;
+
+url="https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/pl_gc_ratio.json";
+  
+Highcharts.getJSON(url, function (data) {
   // Create the chart
   Highcharts.stockChart('container2', {
 
@@ -300,28 +275,73 @@ Highcharts.getJSON('https://raw.githubusercontent.com/pfcfai/autocommit/main/EXC
     },
 
     title: {
-      text: '美國請領失業給付人數(週)'
+      text: '鉑金比'
     },
 
     series: [{
-      name: '初次請領失業人數(千)',
+      name: 'pl/gc',
       data: data,
       tooltip: {
-        valueDecimals: 0
-      }
-    }
-            ,{
-      name: '持續請領失業人數(千)',
-      data: data2,
-      tooltip: {
-        valueDecimals: 0
+        valueDecimals: 2
       }
     }]
   });
 });
+
+/container3 鉑金比/
+var url;
+
+url="https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/pl_pa_ratio.json";
+  
+Highcharts.getJSON(url, function (data) {
+  // Create the chart
+  Highcharts.stockChart('container3', {
+
+
+    rangeSelector: {
+      selected: 1
+    },
+
+    title: {
+      text: '鉑鈀比'
+    },
+
+    series: [{
+      name: 'pl/pa',
+      data: data,
+      tooltip: {
+        valueDecimals: 2
+      }
+    }]
+  });
 });
+/container4 銅金比/
+var url;
+
+url="https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/hg_gc_yoy.json";
+  
+Highcharts.getJSON(url, function (data) {
+  // Create the chart
+  Highcharts.stockChart('container4', {
 
 
+    rangeSelector: {
+      selected: 1
+    },
+
+    title: {
+      text: '銅金比年增率'
+    },
+
+    series: [{
+      name: 'hg/gc_yoy',
+      data: data,
+      tooltip: {
+        valueDecimals: 2
+      }
+    }]
+  });
+});
 
   /JS 貼這 end/
 </script>

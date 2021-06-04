@@ -19,20 +19,25 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/common.css' %}">
     <style>
 /*CSS 貼這*/
+    
     .highcharts-figure, .highcharts-data-table table {
-      min-width: 360px; 
+      min-width: 310px; 
       max-width: 800px;
       margin: 1em auto;
     }
-
+    
+    #container {
+      height: 400px;
+    }
+    
     .highcharts-data-table table {
-      font-family: Verdana, sans-serif;
-      border-collapse: collapse;
-      border: 1px solid #EBEBEB;
-      margin: 10px auto;
-      text-align: center;
-      width: 100%;
-      max-width: 500px;
+    	font-family: Verdana, sans-serif;
+    	border-collapse: collapse;
+    	border: 1px solid #EBEBEB;
+    	margin: 10px auto;
+    	text-align: center;
+    	width: 100%;
+    	max-width: 500px;
     }
     .highcharts-data-table caption {
       padding: 1em 0;
@@ -40,7 +45,7 @@
       color: #555;
     }
     .highcharts-data-table th {
-      font-weight: 600;
+    	font-weight: 600;
       padding: 0.5em;
     }
     .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
@@ -52,25 +57,19 @@
     .highcharts-data-table tr:hover {
       background: #f1f7ff;
     }
+
       /*CSS 貼這 end*/
 
 
     </style>
     
-    <!-- highcharts -->
-   <!-- HTML 貼這 -->
-
-    <script src="https://code.highcharts.com/stock/highstock.js"></script>
-    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
-    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
-
+    <!-- highcharts -->    <!-- HTML 貼這 -->
     <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
- 
+    
 
       <!-- HTML 貼這 end -->
     <!-- highcharts結束 -->
@@ -92,141 +91,105 @@
 
 <!-- 商品熱力圖 -->
   <!-- HTML 貼這 -->
+  
 <figure class="highcharts-figure">
-  <div id="container1"></div>
+  <div id="container_cad"></div>
   <p class="highcharts-description">
-鮑威爾2/23日出席國會聽證重申三大要點。<br>
-失業率仍高且未達最大就業，寬鬆政策有必要延續。<br>
-低利率環境維持至2023年，購債規模維持不變。<br>
-價格上漲的跡象並不一定會導致持續高通膨。<br>
+ 'https://raw.githubusercontent.com/laurenttang/pfcfProject/main/EXCEL_AutoUpdate/CFTC_CAD.json'   
   </p>
-
+</figure>
 
   <!-- HTML 貼這 end -->
 <script type="text/javascript">
   /JS 貼這/
   
-Highcharts.getJSON('https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/federal_rate_10yrs.json', function (data) {
-
-  // Create the chart
-  Highcharts.stockChart('container', {
-
-
-    rangeSelector: {
-      selected: 0
-    },
-
-    title: {
-      text: '美國聯邦準備利率 (10年)'
-    },
-
-    tooltip: {
+  Highcharts.getJSON("https://raw.githubusercontent.com/laurenttang/pfcfProject/main/EXCEL_AutoUpdate/CFTC_CAD.json", function (data) {
+Highcharts.chart('container_cad', {
+  chart: {
+    zoomtype: 'xy'
+  },
+  title: {
+    text: 'Agriculture'
+  },
+  subtitle: {
+    text: 'Source: CFTC官方網站'
+  },
+  xAxis: [{
+    categories: data.date,
+    crosshair: true
+  }],
+  yAxis: [{ // Primary yAxis
+    labels: {
+      format: '{value}',
       style: {
-        width: '200px'
-      },
-      valueDecimals: 4,
-      shared: true
-    },
-
-    yAxis: {
-      title: {
-        text: 'effective rate'
+        color: Highcharts.getOptions().colors[1]
       }
     },
-
-    series: [{
-      name: 'FED rate',
-      data: data,
-      id: 'dataseries'
-
-    // the event marker flags
-    }, {
-      type: 'flags',
-      data: [{
-        x: Date.UTC(2015, 12, 16),
-        title: '15/12 開始升息',
-        text: ''
-      }, {
-        x: Date.UTC(2018, 02, 05),
-        title: '鮑威爾上任',
-        text: ''
-      }, {
-        x: Date.UTC(2019, 07, 31),
-        title: '19/07 開始降息',
-        text: ''
-      }, {
-        x: Date.UTC(2020, 03, 15),
-        title: '緊急降息4碼',
-        text: ''
-      }
-      ],
-      onSeries: 'dataseries',
-      shape: 'tangularpin',
-      width: 100
-    }]
-  });
-});
-
-Highcharts.getJSON('https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/payems/federal_effective_rate.json', function (data) {
-
-  // Create the chart
-  Highcharts.stockChart('container1', {
-
-
-    rangeSelector: {
-      selected: 0
-    },
-
     title: {
-      text: '美國聯邦準備利率歷史走勢'
-    },
-
-    tooltip: {
+      text: 'Price',
       style: {
-        width: '200px'
-      },
-      valueDecimals: 4,
-      shared: true
-    },
-
-    yAxis: {
-      title: {
-        text: 'effective rate'
+        color: Highcharts.getOptions().colors[1]
+      }
+    }
+  }, { // Secondary yAxis
+    title: {
+      text: 'Net Position',
+      style: {
+        color: Highcharts.getOptions().colors[0]
       }
     },
-
-    series: [{
-      name: 'FED rate',
-      data: data,
-      id: 'dataseries'
-
-    // the event marker flags
-    }, {
-      type: 'flags',
-      data: [{
-        x: Date.UTC(2015, 12, 16),
-        title: '15/12 開始升息',
-        text: ''
-      }, {
-        x: Date.UTC(2018, 02, 05),
-        title: '鮑威爾上任',
-        text: ''
-      }, {
-        x: Date.UTC(2019, 07, 31),
-        title: '19/07 開始降息',
-        text: ''
-      }, {
-        x: Date.UTC(2020, 03, 15),
-        title: '緊急降息4碼',
-        text: ''
+    labels: {
+      format: '{value}',
+      style: {
+        color: Highcharts.getOptions().colors[0]
       }
-      ],
-      onSeries: 'dataseries',
-      shape: 'tangularpin',
-      width: 100
-    }]
-  });
+    },
+    opposite: true
+  }],
+  tooltip: {
+    shared: true
+  },
+  legend: {
+    layout: 'vertical',
+    align: 'left',
+    x: 120,
+    verticalAlign: 'top',
+    y: 100,
+    floating: true,
+    backgroundColor:
+      Highcharts.defaultOptions.legend.backgroundColor || // theme
+      'rgba(255,255,255,0.25)'
+  },
+  series: [{
+    name: 'Net Large Spects Position',
+    type: 'area',
+    yAxis: 1,
+    data: data.spect,
+    tooltip: {
+      valueSuffix: ''
+    }
+
+  },
+    {
+    name: 'Leverage Monetary Position',
+    type: 'area',
+    yAxis: 1,    
+    data: data.commercial,
+    tooltip: {
+      valueSuffix: ''}
+
+    }       
+    , {
+    name: 'Price',
+    type: 'spline',
+    data: data.price,
+    tooltip: {
+      valueSuffix: ''
+    }
+  }]
 });
+});  
+
 
   /JS 貼這 end/
 </script>

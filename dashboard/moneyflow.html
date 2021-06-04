@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="zh-tw" class="h-100">
+{% load static %}
+  <head>
+    <meRachel Chenta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="統一期貨-Deep Trade | 深度交易平台以視覺化呈現全球經濟的關鍵數據與事件研究，提供完整的市場概況分析。再以AI 模型萃取各類標的的技術面趨勢，輔助投資人解析市場動向，有效提高投資效率。">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>統一期貨-Deep Trade | 深度交易</title><!-- 為每個頁面設定唯一的標題 -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family==Noto+Sans+TC&display=swap">
+    <!-- fontawesome icon -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+    <!-- common CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common.css' %}">
+    <style>
+/*CSS 貼這*/
+    .highcharts-figure, .highcharts-data-table table {
+      min-width: 360px; 
+      max-width: 800px;
+      margin: 1em auto;
+    }
+
+    .highcharts-data-table table {
+      font-family: Verdana, sans-serif;
+      border-collapse: collapse;
+      border: 1px solid #EBEBEB;
+      margin: 10px auto;
+      text-align: center;
+      width: 100%;
+      max-width: 500px;
+    }
+    .highcharts-data-table caption {
+      padding: 1em 0;
+      font-size: 1.2em;
+      color: #555;
+    }
+    .highcharts-data-table th {
+      font-weight: 600;
+      padding: 0.5em;
+    }
+    .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+      padding: 0.5em;
+    }
+    .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+      background: #f8f8f8;
+    }
+    .highcharts-data-table tr:hover {
+      background: #f1f7ff;
+    }
+    
+    /Treeflow/
+    
+    .highcharts-figure, .highcharts-data-table table {
+      min-width: 320px; 
+      max-width: 800px;
+      margin: 1em auto;
+    }
+    
+    .highcharts-data-table table {
+    	font-family: Verdana, sans-serif;
+    	border-collapse: collapse;
+    	border: 1px solid #EBEBEB;
+    	margin: 10px auto;
+    	text-align: center;
+    	width: 100%;
+    	max-width: 500px;
+    }
+    .highcharts-data-table caption {
+      padding: 1em 0;
+      font-size: 1.2em;
+      color: #555;
+    }
+    .highcharts-data-table th {
+    	font-weight: 600;
+      padding: 0.5em;
+    }
+    .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+      padding: 0.5em;
+    }
+    .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+      background: #f8f8f8;
+    }
+    .highcharts-data-table tr:hover {
+      background: #f1f7ff;
+    }
+      /*CSS 貼這 end*/
+
+
+    </style>
+    
+    <!-- highcharts -->
+   <!-- HTML 貼這 -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <script src="https://code.highcharts.com/modules/networkgraph.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+      <!-- HTML 貼這 end -->
+    <!-- highcharts結束 -->
+  </head>
+  
+  <body class="d-flex flex-column h-100">
+  <!-- 導覽列 -->
+  {% include header %}
+  <!-- 導覽列結束 -->
+
+
+<div>
+  <div style="margin-left:auto;margin-right:auto;"><img src="{% static 'img/home/banner-01.png' %}" width="100%"></div>
+</div>
+
+<main role="main" class="container">
+<hr>
+<header></header>
+
+<!-- 商品熱力圖 -->
+  <!-- HTML 貼這 -->
+
+<figure class="highcharts-figure">
+  <div id="container"></div>
+  <p class="highcharts-description">
+  本資料係每天五點公佈外資個股進出資訊，依據各公司所屬行業別彙總而得<br>
+  目的在觀察資金是否持續性買超特定類股，或極端市況下出現反轉之現象<br>
+  供投資人參考<br>
+  單位:新台幣(億)元 ; D-day 表示公告資料後的最近日
+  </p>
+</figure>
+<hr>
+<figure class="highcharts-figure">
+  <div id="container1"></div>
+  <p class="highcharts-description">
+  本資料係每天五點公佈投信個股進出資訊，依據各公司所屬行業別彙總而得<br>
+  目的在觀察資金是否持續性買超特定類股，或極端市況下出現反轉之現象<br>
+  供投資人參考<br>
+  單位:新台幣(億)元 ; D-day 表示公告資料後的最近日
+  </p>
+</figure>
+<hr>
+<figure class="highcharts-figure">
+  <div id="container2"></div>
+  <p class="highcharts-description">
+    採樣最近13天籌碼資訊<br>
+    過濾 三大法人買超合計數/(扣除法人、董監之流通在外股數) >5%，視為法人短線開始佈局並可能影響股價之評估<br>
+以 13天漲幅 10% 為級距，漲幅>20% 分類為 'hen 強'，共分為 6 個級距<br>
+  個股 若有個股期貨，則標示為 個股-F，若有小型個股期貨，則標示為 個股-m<br>
+  每個個股末端 標示 近13天法人買超金額，以平均價估算<br>
+  係提供投資人於行情開始回升時，參考操作使用 <br>
+  可搭配所屬族群進一步研究基本面 <br>
+  </p>
+</figure>
+
+  <!-- HTML 貼這 end -->
+<script type="text/javascript">
+  /JS 貼這/
+Highcharts.getJSON('https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/foreigner_flow.json', function (data) {
+
+function getPointCategoryName(point, dimension) {
+  var series = point.series,
+    isY = dimension === 'y',
+    axis = series[isY ? 'yAxis' : 'xAxis'];
+  return axis.categories[point[isY ? 'y' : 'x']];
+}
+
+Highcharts.chart('container', {
+
+  chart: {
+    type: 'heatmap',
+    marginTop: 40,
+    marginBottom: 80,
+    plotBorderWidth: 1
+  },
+
+
+  title: {
+    text: '本周外資買賣超資金流'
+  },
+
+  xAxis: {
+    categories: ['電子上游','電子中游','電子下游','金融','食品','紡織','塑膠','鋼鐵','航運','營建','水泥']
+  },
+
+  yAxis: {
+    categories: ['D-4', 'D-3', 'D-2', 'D-1', 'D-day','week_sum'],
+    title: null,
+    reversed: true
+  },
+
+  accessibility: {
+    point: {
+      descriptionFormatter: function (point) {
+        var ix = point.index + 1,
+          xName = getPointCategoryName(point, 'x'),
+          yName = getPointCategoryName(point, 'y'),
+          val = point.value;
+        return ix + '. ' + xName + ' sales ' + yName + ', ' + val + '.';
+      }
+    }
+  },
+
+  colorAxis: {
+    min: -200,
+    minColor: Highcharts.getOptions().colors[2],
+    maxColor: Highcharts.getOptions().colors[8]
+  },
+
+  legend: {
+    align: 'right',
+    layout: 'vertical',
+    margin: 0,
+    verticalAlign: 'top',
+    y: 25,
+    symbolHeight: 280
+  },
+
+  tooltip: {
+    formatter: function () {
+      return '<b>' + getPointCategoryName(this.point, 'x') + '</b> 買超 <br><b>' +
+        this.point.value + '</b> 億 on <br><b>' + getPointCategoryName(this.point, 'y') + '</b>';
+    }
+  },
+
+  series: [{
+    name: 'Sales per employee',
+    borderWidth: 1,
+    data: data,
+    dataLabels: {
+      enabled: true,
+      color: '#000000'
+    }
+  }],
+
+  responsive: {
+    rules: [{
+      condition: {
+        maxWidth: 500
+      },
+      chartOptions: {
+        yAxis: {
+          labels: {
+            formatter: function () {
+              return this.value.charAt(0);
+            }
+          }
+        }
+      }
+    }]
+  }
+
+});
+});
+
+/投信/
+Highcharts.getJSON('https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/investor_flow.json', function (data) {
+
+function getPointCategoryName(point, dimension) {
+  var series = point.series,
+    isY = dimension === 'y',
+    axis = series[isY ? 'yAxis' : 'xAxis'];
+  return axis.categories[point[isY ? 'y' : 'x']];
+}
+
+Highcharts.chart('container1', {
+
+  chart: {
+    type: 'heatmap',
+    marginTop: 40,
+    marginBottom: 80,
+    plotBorderWidth: 1
+  },
+
+
+  title: {
+    text: '本周投信買賣超資金流'
+  },
+
+  xAxis: {
+    categories: ['電子上游','電子中游','電子下游','金融','食品','紡織','塑膠','鋼鐵','航運','營建','水泥']
+  },
+
+  yAxis: {
+    categories: ['D-4', 'D-3', 'D-2', 'D-1', 'D-day','week_sum'],
+    title: null,
+    reversed: true
+  },
+
+  accessibility: {
+    point: {
+      descriptionFormatter: function (point) {
+        var ix = point.index + 1,
+          xName = getPointCategoryName(point, 'x'),
+          yName = getPointCategoryName(point, 'y'),
+          val = point.value;
+        return ix + '. ' + xName + ' sales ' + yName + ', ' + val + '.';
+      }
+    }
+  },
+
+  colorAxis: {
+    min: -50,
+    minColor: Highcharts.getOptions().colors[2],
+    maxColor: Highcharts.getOptions().colors[8]
+  },
+
+  legend: {
+    align: 'right',
+    layout: 'vertical',
+    margin: 0,
+    verticalAlign: 'top',
+    y: 25,
+    symbolHeight: 280
+  },
+
+  tooltip: {
+    formatter: function () {
+      return '<b>' + getPointCategoryName(this.point, 'x') + '</b> 買超 <br><b>' +
+        this.point.value + '</b> 億 on <br><b>' + getPointCategoryName(this.point, 'y') + '</b>';
+    }
+  },
+
+  series: [{
+    name: 'Sales per employee',
+    borderWidth: 1,
+    data: data,
+    dataLabels: {
+      enabled: true,
+      color: '#000000'
+    }
+  }],
+
+  responsive: {
+    rules: [{
+      condition: {
+        maxWidth: 500
+      },
+      chartOptions: {
+        yAxis: {
+          labels: {
+            formatter: function () {
+              return this.value.charAt(0);
+            }
+          }
+        }
+      }
+    }]
+  }
+
+});
+});
+
+/TreeFlow 三大法人集中買超/
+
+// Add the nodes option through an event call. We want to start with the parent
+// item and apply separate colors to each child element, then the same color to
+// grandchildren.
+Highcharts.getJSON('https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/Tree_flow.json', function (data) {
+  
+Highcharts.addEvent(
+  Highcharts.Series,
+  'afterSetOptions',
+  function (e) {
+    var colors = Highcharts.getOptions().colors,
+      i = 0,
+      nodes = {};
+
+    if (
+      this instanceof Highcharts.seriesTypes.networkgraph &&
+      e.options.id === 'lang-tree'
+    ) {
+      e.options.data.forEach(function (link) {
+
+        if (link[0] === 'TWSE') {
+          nodes['TWSE'] = {
+            id: 'TWSE',
+            marker: {
+              radius: 20
+            }
+          };
+          nodes[link[1]] = {
+            id: link[1],
+            marker: {
+              radius: 10
+            },
+            color: colors[i++]
+          };
+        } else if (nodes[link[0]] && nodes[link[0]].color) {
+          nodes[link[1]] = {
+            id: link[1],
+            color: nodes[link[0]].color
+          };
+        }
+      });
+
+      e.options.nodes = Object.keys(nodes).map(function (id) {
+        return nodes[id];
+      });
+    }
+  }
+);
+
+Highcharts.chart('container2', {
+  chart: {
+    type: 'networkgraph',
+    height: '100%'
+  },
+  title: {
+    text: '上市櫃法人集中買超標的'
+  },
+  subtitle: {
+    text: ''
+  },
+  plotOptions: {
+    networkgraph: {
+      keys: ['from', 'to'],
+      layoutAlgorithm: {
+        enableSimulation: true,
+        friction: -0.9
+      }
+    }
+  },
+  series: [{
+    dataLabels: {
+      enabled: true,
+      linkFormat: ''
+    },
+    id: 'lang-tree',
+    data: data
+  }]
+});   
+
+});
+
+
+  /JS 貼這 end/
+</script>
+<!-- 商品熱力圖結束 -->
+
+
+<header></header>
+  <!-- footer -->
+{% include footer %}
+  <!-- footer結束 -->
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-160598077-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-160598077-1');
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="https://getbootstrap.com/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+    </body>
+</html>
