@@ -88,6 +88,22 @@
     .highcharts-data-table tr:hover {
       background: #f1f7ff;
     }
+    
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+      
+      tr:nth-child(odd) {
+        background-color: #ffa500;
+      }
       /*CSS 貼這 end*/
 
 
@@ -148,14 +164,33 @@
 <figure class="highcharts-figure">
   <div id="container2"></div>
   <p class="highcharts-description">
-    採樣最近13天籌碼資訊<br>
-    過濾 三大法人買超合計數/(扣除法人、董監之流通在外股數) >5%，視為法人短線開始佈局並可能影響股價之評估<br>
-以 13天漲幅 10% 為級距，漲幅>20% 分類為 'hen 強'，共分為 6 個級距<br>
-  個股 若有個股期貨，則標示為 個股-F，若有小型個股期貨，則標示為 個股-m<br>
-  每個個股末端 標示 近13天法人買超金額，以平均價估算<br>
-  係提供投資人於行情開始回升時，參考操作使用 <br>
-  可搭配所屬族群進一步研究基本面 <br>
+    <h5>近5日股價漲幅</h5>
+    <table>
+      <tr>
+        <th>很強</th>
+        <th>上漲ing</th>
+        <th>緩緩上漲</th>
+        <th>緩緩下跌</th>
+        <th>下跌ing</th>
+        <th>很弱</th>
+      </tr>
+      <tr>
+        <td>>20%</td>
+        <td>10%~20%</td>
+        <td>0~10%</td>
+        <td>-10%~0</td>
+        <td>-20%~-10%</td>
+        <td><-20%</td>
+      </tr>
+
+    </table>
+    說明：三大法人近5日買超合計數/(扣除法人、董監之流通在外股數) >3%， <br>
+    視為法人短線開始佈局並可能影響股價之評估<br>
+    係提供投資人於行情開始回升時，參考操作使用，可搭配所屬族群進一步研究基本面 <br>
+    P.S.「有股期標的標註◎、有小型股期標的標註 ● 」 <br>
+
   </p>
+  
 </figure>
 
   <!-- HTML 貼這 end -->
