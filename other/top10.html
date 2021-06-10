@@ -1,448 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  {% load static %}
-  <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no"/>
 
-  <link rel="stylesheet" type="text/css" href="{% static 'css/basictable.min.css' %}" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script type="text/javascript" src="{% static 'js/jquery.basictable.min.js' %}"></script>
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('.table').basictable();
-
-      $('#table-breakpoint').basictable({
-        breakpoint: 768
-      });
-
-      $('#table-container-breakpoint').basictable({
-        containerBreakpoint: 485
-      });
-
-      $('#table-swap-axis').basictable({
-        swapAxis: true
-      });
-
-      $('#table-force-off').basictable({
-        forceResponsive: false
-      });
-
-      $('#table-no-resize').basictable({
-        noResize: true
-      });
-
-      $('#table-two-axis').basictable();
-
-      $('#table-max-height').basictable({
-        tableWrap: true
-      });
-    });
-  </script>
- 
-	<style>
-/*
- * Basic Table Demo CSS.
- */
-
-@import url(http://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:400,700);
-
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background: ;
-  color: #636363;
-  font-family: 微軟正黑體;;
-  line-height: 1.5;
-}
-
-#page {
-  padding: 50px 100px;
-}
-
-@media only screen and (max-width: 568px) {
-  #page {
-    padding: 50px 30px;
-  }
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-  line-height: 1.2;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: normal;
-}
-
-h1 {
-  color: #5b8e8d;
-  font-size: 3rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  margin-bottom: 0.75em;
-  text-transform: uppercase;
-}
-
-@media only screen and (max-width: 568px) {
-  h1 {
-    font-size: 2.25rem;
-  }
-}
-
-h2 {
-  color: #82bcba;
-  font-size: 1.75rem;
-  margin-bottom: 0.75em;
-  margin-top: 2em;
-}
-
-h3 {
-  color: #82bcba;
-  font-size: 1.25rem;
-  margin-bottom: 0.75em;
-  margin-top: 2em;
-}
-
-a,
-a:visited,
-a:active {
-  color: #5b8e8d;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #53bcba;
-}
-
-p {
-  font-size: 1.125rem;
-  word-break: break-word;
-}
-
-p.credits {
-  font-size: .8125rem;
-  margin-top: 6em;
-}
-
-@media only screen and (max-width: 568px) {
-  .phone-block {
-    display: block;
-  }
-
-  .phone-hide {
-    display: none;
-  }
-}
-
-code {
-  background: #c6d8d8;
-  border-radius: 5px;
-  color: #3d6969;
-  display: block;
-  margin: 2em 0;
-  padding: 15px;
-  position: relative;
-}
-
-code:after {
-  bottom: 5px;
-  color: #e4ebeb;
-  font-family: 'Lato', sans-serif;
-  font-size: 1rem;
-  position: absolute;
-  right: 10px;
-  text-transform: uppercase;
-}
-
-code.css:after {
-  content: 'css';
-}
-
-code.js:after {
-  content: 'js';
-}
-
-table {
-  background: white;
-  border-collapse: collapse;
-  margin: 1.25em 0 0;
-  width: 100%;
-}
-
-table tr,
-table th,
-table td {
-  border: none;
-  border-bottom: 1px solid #e4ebeb;
-  font-family: 'Lato', sans-serif;
-  font-size: .875rem;
-}
-
-table th,
-table td {
-  padding: 10px 12px;
-  text-align: left;
-}
-
-table th {
-  background: #56a2cf;
-  color: #ffffff;
-  text-transform: uppercase;
-}
-
-table tr td {
-  background: #eaf3f5;
-  color: #999999;
-}
-
-table tr:nth-of-type(2n+2) td {
-  background: #ffffff;
-}
-
-table.bt tfoot th,
-table.bt tfoot td,
-table.bt tbody td {
-  font-size: .8125rem;
-  padding: 0;
-}
-
-table.bt tfoot th:before,
-table.bt tfoot td:before,
-table.bt tbody td:before {
-  background: #56a2cf;
-  color: white;
-  margin-right: 10px;
-  padding: 2px 10px;
-}
-
-table.bt tfoot th .bt-content,
-table.bt tfoot td .bt-content,
-table.bt tbody td .bt-content {
-  display: inline-block;
-  padding: 2px 5px;
-}
-
-table.bt tfoot th:first-of-type:before,
-table.bt tfoot th:first-of-type .bt-content,
-table.bt tfoot td:first-of-type:before,
-table.bt tfoot td:first-of-type .bt-content,
-table.bt tbody td:first-of-type:before,
-table.bt tbody td:first-of-type .bt-content {
-  padding-top: 10px;
-}
-
-table.bt tfoot th:last-of-type:before,
-table.bt tfoot th:last-of-type .bt-content,
-table.bt tfoot td:last-of-type:before,
-table.bt tfoot td:last-of-type .bt-content,
-table.bt tbody td:last-of-type:before,
-table.bt tbody td:last-of-type .bt-content {
-  padding-bottom: 10px;
-}
-
-/*
- * Example 2:
- * Container breakpoint
- */
-.clearfix::before,
-.clearfix::after {
- content: " ";
- display: table;
-}
-
-.clearfix::after {
- clear: both;
-}
-
-.col-sm-3 {
-  padding-top: 1em;
-}
-
-@media (min-width: 768px) {
-  .col-sm-3,
-  .col-sm-9 {
-    float: left;
-  }
-
-  .col-sm-3 {
-    padding-left: 2em;
-    width: 25%;
-  }
-  .col-sm-9 {
-    width: 75%;
-  }
-}
-
-/*
- * Example 5:
- * Media query over js resize
- */
-@media only screen and (max-width: 568px) {
-  #table-no-resize thead {
-    display: none;
-  }
-
-  #table-no-resize tbody td {
-    border: none !important;
-    display: block;
-    font-size: .8125rem;
-    padding: 0;
-    vertical-align: top;
-
-    /* IE 9 */
-    float: left\9;
-    width: 100%\9;
-  }
-
-  #table-no-resize tbody td:before {
-    background: #56a2cf;
-    content: attr(data-th) ": ";
-    color: white;
-    display: inline-block;
-    font-weight: bold;
-    margin-right: 10px;
-    padding: 2px 10px;
-    width: 6.5em;
-  }
-
-  #table-no-resize tbody td .bt-content {
-    display: inline-block;
-    padding: 2px 5px;
-  }
-
-  #table-no-resize tbody td:first-of-type:before,
-  #table-no-resize tbody td:first-of-type .bt-content {
-    padding-top: 10px;
-  }
-
-  #table-no-resize tbody td:last-of-type:before,
-  #table-no-resize tbody td:last-of-type .bt-content {
-    padding-bottom: 10px;
-  }
-}
-
-/*
- * Example 6:
- * Two axis styling
- */
-table.two-axis tr td:first-of-type {
-  background: #cadde1;
-}
-
-@media only screen and (max-width: 568px) {
-  table.two-axis tr td:first-of-type,
-  table.two-axis tr:nth-of-type(2n+2) td:first-of-type,
-  table.two-axis tr td:first-of-type:before {
-    background: #3584b3;
-    color: #ffffff;
-  }
-
-  table.two-axis tr td:first-of-type {
-    border-bottom: 1px solid #e4ebeb;
-  }
-
-  table.two-axis tr td:first-of-type:before {
-    padding-bottom: 10px;
-  }
-}
-
-/*
- * Example 7:
- * Max height
- */
-.bt-wrapper.active {
-  margin-top: 1.5em;
-}
-.bt-wrapper.active table {
-  margin: 0;
-}
+<style>
 
 
 table {
-  width: 100%;
-}
-.table {
-  margin: 30px 0;
-  border-collapse: collapse;
-  border-spacing: 0;
-  empty-cells: show;
-  border: 1px solid #e0e0e0;
-}
-.table caption {
-  color: #333;
-  font-style: italic;
-  font-size: 85%;
-  line-height: 1;
-  padding: 1em 0;
-  text-align: center;
-}
-.table td,
-.table th {
-  border-left: 1px solid #e0e0e0;
-  border-width: 0 0 0 1px;
-  font-size: inherit;
-  margin: 0;
-  overflow: visible;
-  padding: 0.5em 1em;
-  font-weight: normal;
-}
-.table td:first-child,
-.table th:first-child {
-  border-left-width: 0;
-}
-.table thead,
-.table tfoot {
-  background-color: #f05050;
-  color: #fff;
-  text-align: left;
-  vertical-align: bottom;
-}
-.table thead td,
-.table tfoot td,
-.table thead th,
-.table tfoot th {
-  border-color: #fff;
-}
-.table td {
-  background-color: transparent;
-}
-.table_striped tr:nth-child(2n-1) td {
-  background-color: #ececec;
-}
-.table_bordered td {
-  border-bottom: 1px solid #e0e0e0;
-}
-.table_bordered tbody > tr:last-child > td,
-.table_bordered thead > tr:last-child > td {
-  border-bottom-width: 0;
-}
-.table_horizontal td,
-.table_horizontal th {
-  border-width: 0 0 1px 0;
-  border-bottom: 1px solid #e0e0e0;
-}
-.table_horizontal tbody > tr:last-child > td,
-.table_horizontal thead > tr:last-child > td {
-  border-bottom-width: 0;
+    *border-collapse: collapse; /* IE7 and lower */
+    border-spacing: 0;
+    width: ;    
 }
 
-</style>
+
+
+/*----------------------*/
+.zebra{
+
+}
+.zebra td, .zebra th {
+    padding: 10px;
+    border-bottom: 1px solid #f2f2f2;    
+}
+
+.zebra tbody tr:nth-child(even) {
+    background: #f5f5f5;
+    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset; 
+    -moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset;  
+    box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;        
+}
+
+.zebra th {
+    text-align: left;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5); 
+    border-bottom: 1px solid #ccc;
+    background-color: #eee;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#eee));
+    background-image: -webkit-linear-gradient(top, #f5f5f5, #eee);
+    background-image:    -moz-linear-gradient(top, #f5f5f5, #eee);
+    background-image:     -ms-linear-gradient(top, #f5f5f5, #eee);
+    background-image:      -o-linear-gradient(top, #f5f5f5, #eee); 
+    background-image:         linear-gradient(top, #f5f5f5, #eee);
+}
+
+.zebra th:first-child {
+    -moz-border-radius: 6px 0 0 0;
+    -webkit-border-radius: 6px 0 0 0;
+    border-radius: 6px 0 0 0;  
+}
+
+.zebra th:last-child {
+    -moz-border-radius: 0 6px 0 0;
+    -webkit-border-radius: 0 6px 0 0;
+    border-radius: 0 6px 0 0;
+}
+
+.zebra th:only-child{
+    -moz-border-radius: 6px 6px 0 0;
+    -webkit-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0;
+}
+
+.zebra tfoot td {
+    border-bottom: 0;
+    border-top: 1px solid #fff;
+    background-color: #f1f1f1;  
+}
+
+.zebra tfoot td:first-child {
+    -moz-border-radius: 0 0 0 6px;
+    -webkit-border-radius: 0 0 0 6px;
+    border-radius: 0 0 0 6px;
+}
+
+.zebra tfoot td:last-child {
+    -moz-border-radius: 0 0 6px 0;
+    -webkit-border-radius: 0 0 6px 0;
+    border-radius: 0 0 6px 0;
+}
+
+.zebra tfoot td:only-child{
+    -moz-border-radius: 0 0 6px 6px;
+    -webkit-border-radius: 0 0 6px 6px
+    border-radius: 0 0 6px 6px
+}
+  
+</style> 
 
 </head>
-
-<body>
 <h4 id="timer" align="right" ></h4>
-  <table class="table">
-    <thead>
-      <tr>
+<table class="zebra"  width="100%" >
+  <thead>
+    <tr>
       <th scope="col">股票代號</th>
       <th scope="col">股票期貨</th>
       <th scope="col">現價</th>
@@ -453,9 +101,33 @@ table {
       <th scope="col">原始保證金</th>
       <th scope="col">時間</th>
     </tr>
-    </thead>
-	   <tbody id="top_10" style="text-align:"> </toody>
-	   </table>
+  </thead>
+  <tbody id="top_10" style="text-align:">
+    
+  </tbody>
+
+
+<!--
+  <table class="zebra">
+  <thead>
+    <tr>
+      <th scope="col">股票代號</th>
+      <th scope="col">股票期貨</th>
+      <th scope="col">現價</th>
+      <th scope="col">漲跌</th>
+      <th scope="col">漲跌幅</th>
+      <th scope="col">震幅</th>
+      <th scope="col">成交量</th>
+      <th scope="col">原始保證金</th>
+      <th scope="col">時間</th>
+    </tr>
+  </thead>
+  <tbody id="under1W_top_10" style="text-align:center">
+    
+  </tbody>
+</table>
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
   stockf_top10();
   //under1W_top10();
@@ -471,20 +143,48 @@ table {
                     } else if ( data.change[i] < 0 ) {
                       color='<font color="green">';
                     }
-                tableData+="<tr>"+"<td data-th='股票代號'>"+data.stock_code[i]+"</td>"+
-                                  "<td data-th='股票期貨'>"+data.stock_name[i]+"</td>"+
-                                  "<td data-th='現價'>"+data.price[i]+"</td>"+
-                                  "<td data-th='漲跌'>"+color+data.change[i]+"</td>"+    
-                                  "<td data-th='漲跌幅'>"+color+data.change_p[i]+"%</td>"+  
-                                  "<td data-th='震幅'>"+data.highlow_p[i]+"%</td>"+                           
-                                  "<td data-th='成交量'>"+data.volume[i]+"</td>"+
-                                  "<td data-th='原始保證金'>"+data.origin_money[i]+"</td>"+
-                                  "<td data-th='時間'>"+data.time[i]+"</td>"+"</tr>"
+                tableData+="<tr>"+"<td>"+data.stock_code[i]+"</td>"+
+                                  "<td>"+data.stock_name[i]+"</td>"+
+                                  "<td>"+data.price[i]+"</td>"+
+                                  "<td>"+color+data.change[i]+"</td>"+    
+                                  "<td>"+color+data.change_p[i]+"%</td>"+  
+                                  "<td>"+data.highlow_p[i]+"%</td>"+                           
+                                  "<td>"+data.volume[i]+"</td>"+
+                                  "<td>"+data.origin_money[i]+"</td>"+
+                                  "<td>"+data.time[i]+"</td>"+"</tr>"
                }
                //tableData+="</tr>"
                //現在tableData已經生成好了，把他賦值給上面的tbody
                //console.log(tableData)
                $('#top_10').html(tableData)            //$("td").attr("href", "http://www.google.com/")
+               //console.log(tableData)
+  })};
+    function under1W_top10(){
+          $.getJSON('https://deeptrade.pfcf.com.tw/pfcf/stockf/under1W_top10', function (data) {
+              var tableData='';
+              var color='';
+               //動態增加5個td,並且把data陣列的五個值賦給每個td
+               for(var i=0;i<10;i++){
+                  //console.log(temp.symbol_eg[i]);
+                  if (data.change[i] > 0 ) {
+                      color='<font color="red">';
+                    } else if ( data.change[i] < 0 ) {
+                      color='<font color="green">';
+                    }
+                tableData+="<tr>"+"<td>"+data.stock_code[i]+"</td>"+
+                                  "<td>"+data.stock_name[i]+"</td>"+
+                                  "<td>"+data.price[i]+"</td>"+
+                                  "<td>"+color+data.change[i]+"</td>"+    
+                                  "<td>"+color+data.change_p[i]+"%</td>"+  
+                                  "<td>"+data.highlow_p[i]+"%</td>"+                           
+                                  "<td>"+data.volume[i]+"</td>"+
+                                  "<td>"+data.origin_money[i]+"</td>"+
+                                  "<td>"+data.time[i]+"</td>"+"</tr>"
+               }
+               //tableData+="</tr>"
+               //現在tableData已經生成好了，把他賦值給上面的tbody
+               //console.log(tableData)
+               $('#under1W_top_10').html(tableData)            //$("td").attr("href", "http://www.google.com/")
                //console.log(tableData)
   })};
   function timer() {
@@ -506,8 +206,4 @@ $(document).ready(function (){
        window.setInterval(timer,11000);   
 });
 </script>
-
-
-        
-</body>
 </html>
