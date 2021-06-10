@@ -104,6 +104,40 @@
       tr:nth-child(odd) {
         background-color: #ffa500;
       }
+      
+      .highcharts-figure, .highcharts-data-table table {
+        min-width: 320px; 
+        max-width: 800px;
+        margin: 1em auto;
+      }
+      
+      .highcharts-data-table table {
+      	font-family: Verdana, sans-serif;
+      	border-collapse: collapse;
+      	border: 1px solid #EBEBEB;
+      	margin: 10px auto;
+      	text-align: center;
+      	width: 100%;
+      	max-width: 500px;
+      }
+      .highcharts-data-table caption {
+        padding: 1em 0;
+        font-size: 1.2em;
+        color: #555;
+      }
+      .highcharts-data-table th {
+      	font-weight: 600;
+        padding: 0.5em;
+      }
+      .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+        padding: 0.5em;
+      }
+      .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+        background: #f8f8f8;
+      }
+      .highcharts-data-table tr:hover {
+        background: #f1f7ff;
+      }
       /*CSS 貼這 end*/
 
 
@@ -120,6 +154,10 @@
 
     <script src="https://code.highcharts.com/modules/networkgraph.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+    
       <!-- HTML 貼這 end -->
     <!-- highcharts結束 -->
   </head>
@@ -191,6 +229,14 @@
 
   </p>
   
+</figure>
+
+<figure class="highcharts-figure">
+  <div id="container3"></div>
+  <p class="highcharts-description">
+    以近五日累積賣超金額表示，
+    賣超 100億 為滿圓，則賣超20億的圓的大小為 賣超百億 之20%
+  </p>
 </figure>
 
   <!-- HTML 貼這 end -->
@@ -447,7 +493,7 @@ Highcharts.chart('container2', {
     height: '100%'
   },
   title: {
-    text: '上市櫃法人集中買超標的'
+    text: '近五日上市櫃法人集中買超標的'
   },
   subtitle: {
     text: ''
@@ -473,6 +519,66 @@ Highcharts.chart('container2', {
 
 });
 
+/Bubble/
+
+Highcharts.getJSON("https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/Bubble.json", function (data) {
+Highcharts.chart('container3', {
+  chart: {
+    type: 'packedbubble',
+    height: '100%'
+  },
+  title: {
+    text: '近五日法人賣超分類泡泡圖'
+  },
+  tooltip: {
+    useHTML: true,
+    pointFormat: '<b>{point.name}:</b> {point.value}億元</s>'
+  },
+  plotOptions: {
+    packedbubble: {
+      minSize: '100%',
+      maxSize: '20%',
+      zMin: -100,
+      zMax: 0,
+      layoutAlgorithm: {
+        gravitationalConstant: 0.05,
+        splitSeries: true,
+        seriesInteraction: false,
+        dragBetweenSeries: true,
+        parentNodeLimit: true
+      },
+      dataLabels: {
+        enabled: true,
+        format: '{point.name}',
+        filter: {
+          property: 'y',
+          operator: '<',
+          value: -20
+        },
+        style: {
+          color: 'black',
+          textOutline: 'none',
+          fontWeight: 'normal'
+        }
+      }
+    }
+  },
+  series: [{
+    name: '緩緩下跌',
+    data: data.list1},
+   {name: '下跌ing',
+    data: data.list2},
+   {name: '很弱',
+    data: data.list3},
+   {name: '緩緩上漲',
+    data: data.list4},
+   {name: '上漲ing',
+    data: data.list5},
+   {name: '很強',
+    data: data.list6}]
+  
+});
+});
 
   /JS 貼這 end/
 </script>
