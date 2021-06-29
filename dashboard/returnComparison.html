@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="zh-tw" class="h-100">
+{% load static %}
+  <head>
+    <meRachel Chenta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="統一期貨-Deep Trade | 深度交易平台以視覺化呈現全球經濟的關鍵數據與事件研究，提供完整的市場概況分析。再以AI 模型萃取各類標的的技術面趨勢，輔助投資人解析市場動向，有效提高投資效率。">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>統一期貨-Deep Trade | 深度交易</title><!-- 為每個頁面設定唯一的標題 -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family==Noto+Sans+TC&display=swap">
+    <!-- fontawesome icon -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+    <!-- common CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common.css' %}">
+    <style>
+/*CSS 貼這*/
+      .highcharts-figure, .highcharts-data-table table {
+        min-width: 310px; 
+        max-width: 800px;
+        margin: 1em auto;
+      }
+
+      .highcharts-data-table table {
+        font-family: Verdana, sans-serif;
+        border-collapse: collapse;
+        border: 1px solid #EBEBEB;
+        margin: 10px auto;
+        text-align: center;
+        width: 100%;
+        max-width: 500px;
+      }
+      .highcharts-data-table caption {
+        padding: 1em 0;
+        font-size: 1.2em;
+        color: #555;
+      }
+      .highcharts-data-table th {
+        font-weight: 600;
+        padding: 0.5em;
+      }
+      .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+        padding: 0.5em;
+      }
+      .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+        background: #f8f8f8;
+      }
+      .highcharts-data-table tr:hover {
+        background: #f1f7ff;
+      }
+      /*CSS 貼這 end*/
+
+
+    </style>
+    
+    <!-- highcharts -->
+   <!-- HTML 貼這 -->
+    
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+
+
+
+      <!-- HTML 貼這 end -->
+    <!-- highcharts結束 -->
+  </head>
+  
+  <body class="d-flex flex-column h-100">
+  <!-- 導覽列 -->
+  {% include header %}
+  <!-- 導覽列結束 -->
+
+
+<div>
+  <div style="margin-left:auto;margin-right:auto;"><img src="{% static 'img/home/banner-01.png' %}" width="100%"></div>
+</div>
+
+<main role="main" class="container">
+<hr>
+<header></header>
+
+<!-- 商品熱力圖 -->
+  <!-- HTML 貼這 -->
+<figure class="highcharts-figure">
+  <H2>各類主要商品報酬比較圖</H2>
+<div id="container_mix" style="height: 400px; min-width: 310px"></div>
+</figure>
+<hr>
+
+<figure class="highcharts-figure">
+  <H2>股市報酬比較圖</H2>
+<div id="container" style="height: 400px; min-width: 310px"></div>
+</figure>
+<hr>
+
+<figure class="highcharts-figure">
+  <H2>匯市報酬比較圖</H2>
+<div id="container1" style="height: 400px; min-width: 310px"></div>
+</figure>
+<hr>
+
+<figure class="highcharts-figure">
+  <H2>油市報酬比較圖</H2>
+<div id="container2" style="height: 400px; min-width: 310px"></div>
+</figure>
+<hr>
+
+<figure class="highcharts-figure">
+  <H2>金屬報酬比較圖</H2>
+<div id="container3" style="height: 400px; min-width: 310px"></div>
+</figure>
+<hr>
+
+<figure class="highcharts-figure">
+  <H2>農產品報酬比較圖</H2>
+<div id="container4" style="height: 400px; min-width: 310px"></div>
+</figure>
+
+  <!-- HTML 貼這 end -->
+<script type="text/javascript">
+  /JS 貼這/
+
+var mixOptions = [], mixCounter = 0, mixnames = ['那斯達克','歐元','輕原油','金','玉米'];
+var stockOptions = [], stockCounter = 0, stocknames = ['道瓊','標普500','那斯達克','台灣加權'];
+var fxOptions = [], fxCounter = 0, fxnames = ['歐元','日圓','英鎊','加幣','瑞郎','澳幣'];
+var oilOptions = [], oilCounter = 0, oilnames = ['輕原油','天然氣','無鉛汽油','熱燃油'];
+var metalsOptions = [], metalsCounter = 0, metalsnames = ['金','銀','銅','鉑','鈀'];
+var agriOptions = [], agriCounter = 0, agrinames = ['黃豆','小麥','玉米'];
+
+/**
+ * Create the chart when all data is loaded
+ * @returns {undefined}
+ */ 
+function createMixs() {
+
+  Highcharts.stockChart('container_mix', {
+
+    rangeSelector: {
+      selected: 4
+    },
+
+    yAxis: {
+      labels: {
+        formatter: function () {
+          return (this.value > 0 ? ' + ' : '') + this.value + '%';
+        }
+      },
+      plotLines: [{
+        value: 0,
+        width: 2,
+        color: 'silver'
+      }]
+    },
+
+    plotOptions: {
+      series: {
+        compare: 'percent',
+        showInNavigator: false
+      }
+    },
+
+    tooltip: {
+      pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+      valueDecimals: 2,
+      split: true
+    },
+
+    series: mixOptions
+  });
+}
+
+function createStocks() {
+
+  Highcharts.stockChart('container', {
+
+    rangeSelector: {
+      selected: 4
+    },
+
+    yAxis: {
+      labels: {
+        formatter: function () {
+          return (this.value > 0 ? ' + ' : '') + this.value + '%';
+        }
+      },
+      plotLines: [{
+        value: 0,
+        width: 2,
+        color: 'silver'
+      }]
+    },
+
+    plotOptions: {
+      series: {
+        compare: 'percent',
+        showInNavigator: false
+      }
+    },
+
+    tooltip: {
+      pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+      valueDecimals: 2,
+      split: true
+    },
+
+    series: stockOptions
+  });
+}
+
+function createFxs() {
+
+  Highcharts.stockChart('container1', {
+
+    rangeSelector: {
+      selected: 4
+    },
+
+    yAxis: {
+      labels: {
+        formatter: function () {
+          return (this.value > 0 ? ' + ' : '') + this.value + '%';
+        }
+      },
+      plotLines: [{
+        value: 0,
+        width: 2,
+        color: 'silver'
+      }]
+    },
+
+    plotOptions: {
+      series: {
+        compare: 'percent',
+        showInNavigator: false
+      }
+    },
+
+    tooltip: {
+      pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+      valueDecimals: 2,
+      split: true
+    },
+
+    series: fxOptions
+  });
+}
+
+function createOils() {
+
+  Highcharts.stockChart('container2', {
+
+    rangeSelector: {
+      selected: 4
+    },
+
+    yAxis: {
+      labels: {
+        formatter: function () {
+          return (this.value > 0 ? ' + ' : '') + this.value + '%';
+        }
+      },
+      plotLines: [{
+        value: 0,
+        width: 2,
+        color: 'silver'
+      }]
+    },
+
+    plotOptions: {
+      series: {
+        compare: 'percent',
+        showInNavigator: false
+      }
+    },
+
+    tooltip: {
+      pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+      valueDecimals: 2,
+      split: true
+    },
+
+    series: oilOptions
+  });
+}
+
+function createMetals() {
+
+  Highcharts.stockChart('container3', {
+
+    rangeSelector: {
+      selected: 4
+    },
+
+    yAxis: {
+      labels: {
+        formatter: function () {
+          return (this.value > 0 ? ' + ' : '') + this.value + '%';
+        }
+      },
+      plotLines: [{
+        value: 0,
+        width: 2,
+        color: 'silver'
+      }]
+    },
+
+    plotOptions: {
+      series: {
+        compare: 'percent',
+        showInNavigator: false
+      }
+    },
+
+    tooltip: {
+      pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+      valueDecimals: 2,
+      split: true
+    },
+
+    series: metalsOptions
+  });
+}
+
+function createAgris() {
+
+  Highcharts.stockChart('container4', {
+
+    rangeSelector: {
+      selected: 4
+    },
+
+    yAxis: {
+      labels: {
+        formatter: function () {
+          return (this.value > 0 ? ' + ' : '') + this.value + '%';
+        }
+      },
+      plotLines: [{
+        value: 0,
+        width: 2,
+        color: 'silver'
+      }]
+    },
+
+    plotOptions: {
+      series: {
+        compare: 'percent',
+        showInNavigator: false
+      }
+    },
+
+    tooltip: {
+      pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+      valueDecimals: 2,
+      split: true
+    },
+
+    series: agriOptions
+  });
+}
+
+function mixs(data) {
+  var name = this.url.match(/(那斯達克|歐元|輕原油|金|玉米)/)[0].toUpperCase();
+  var i = mixnames.indexOf(name);
+  mixOptions[i] = {
+    name: name,
+    data: data
+  };
+
+  mixCounter += 1;
+
+  if (mixCounter === mixnames.length) {
+    createMixs();
+  }
+}
+
+function stocks(data) {
+  var name = this.url.match(/(道瓊|標普500|那斯達克|台灣加權)/)[0].toUpperCase();
+  var i = stocknames.indexOf(name);
+  stockOptions[i] = {
+    name: name,
+    data: data
+  };
+
+  stockCounter += 1;
+
+  if (stockCounter === stocknames.length) {
+    createStocks();
+  }
+}
+
+function fxs(data) {
+  var name = this.url.match(/(歐元|日圓|英鎊|加幣|瑞郎|澳幣)/)[0].toUpperCase();
+  var i = fxnames.indexOf(name);
+  fxOptions[i] = {
+    name: name,
+    data: data
+  };
+
+  fxCounter += 1;
+
+  if (fxCounter === fxnames.length) {
+    createFxs();
+  }
+}
+
+function oils(data) {
+  var name = this.url.match(/(輕原油|天然氣|無鉛汽油|熱燃油)/)[0].toUpperCase();
+  var i = oilnames.indexOf(name);
+  oilOptions[i] = {
+    name: name,
+    data: data
+  };
+
+  oilCounter += 1;
+
+  if (oilCounter === oilnames.length) {
+    createOils();
+  }
+}
+
+function metals(data) {
+  var name = this.url.match(/(金|銀|銅|鉑|鈀)/)[0].toUpperCase();
+  var i = metalsnames.indexOf(name);
+  metalsOptions[i] = {
+    name: name,
+    data: data
+  };
+
+  metalsCounter += 1;
+
+  if (metalsCounter === metalsnames.length) {
+    createMetals();
+  }
+}
+
+function agris(data) {
+  var name = this.url.match(/(黃豆|小麥|玉米)/)[0].toUpperCase();
+  var i = agrinames.indexOf(name);
+  agriOptions[i] = {
+    name: name,
+    data: data
+  };
+
+  agriCounter += 1;
+
+  if (agriCounter === agrinames.length) {
+    createAgris();
+  }
+}
+
+
+/*'道瓊','標普500','那斯達克','台灣加權'*/
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/道瓊.json',
+  stocks
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/標普500.json',
+  stocks
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/那斯達克.json',
+  stocks
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/那斯達克.json',
+  mixs
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/台灣加權.json',
+  stocks
+);
+
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/歐元.json',
+  fxs
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/歐元.json',
+  mixs
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/日圓.json',
+  fxs
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/英鎊.json',
+  fxs
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/加幣.json',
+  fxs
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/瑞郎.json',
+  fxs
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/澳幣.json',
+  fxs
+);
+/*'輕原油','天然氣','無鉛汽油','熱燃油'*/
+
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/輕原油.json',
+  oils
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/輕原油.json',
+  mixs
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/天然氣.json',
+  oils
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/無鉛汽油.json',
+  oils
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/熱燃油.json',
+  oils
+);
+
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/金.json',
+  metals
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/金.json',
+  mixs
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/銀.json',
+  metals
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/銅.json',
+  metals
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/鉑.json',
+  metals
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/鈀.json',
+  metals
+);
+/*'黃豆','小麥','玉米'*/
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/黃豆.json',
+  agris
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/小麥.json',
+  agris
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/玉米.json',
+  agris
+);
+Highcharts.getJSON(
+  'https://raw.githubusercontent.com/pfcfai/autocommit/main/EXCEL_AutoUpdate/玉米.json',
+  mixs
+);
+
+  /JS 貼這 end/
+</script>
+<!-- 商品熱力圖結束 -->
+
+
+<header></header>
+  <!-- footer -->
+{% include footer %}
+  <!-- footer結束 -->
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-160598077-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-160598077-1');
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="https://getbootstrap.com/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+    </body>
+</html>
