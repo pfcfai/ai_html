@@ -18,6 +18,7 @@ table {
 
 }
 .zebra td, .zebra th {
+    text-align: center;
     padding: 10px;
     border-bottom: 1px solid #f2f2f2;    
 }
@@ -30,7 +31,7 @@ table {
 }
 
 .zebra th {
-    text-align: left;
+    text-align: center;
     text-shadow: 0 1px 0 rgba(255,255,255,.5); 
     border-bottom: 1px solid #ccc;
     background-color: #eee;
@@ -99,6 +100,7 @@ table {
       <th scope="col">震幅</th>
       <th scope="col">成交量</th>
       <th scope="col">原始保證金</th>
+      <th scope="col">原始保證金<br>適用比例</th>
       <th scope="col">時間</th>
     </tr>
   </thead>
@@ -143,15 +145,16 @@ table {
                     } else if ( data.change[i] < 0 ) {
                       color='<font color="green">';
                     }
-                tableData+="<tr>"+"<td>"+data.stock_code[i]+"</td>"+
-                                  "<td>"+data.stock_name[i]+"</td>"+
-                                  "<td>"+data.price[i]+"</td>"+
-                                  "<td>"+color+data.change[i]+"</td>"+    
-                                  "<td>"+color+data.change_p[i]+"%</td>"+  
-                                  "<td>"+data.highlow_p[i]+"%</td>"+                           
-                                  "<td>"+data.volume[i]+"</td>"+
-                                  "<td>"+data.origin_money[i]+"</td>"+
-                                  "<td>"+data.time[i]+"</td>"+"</tr>"
+                tableData+="<tr>"+"<td >"+data.stock_code[i]+"</td>"+
+                                  "<td >"+data.stock_name[i]+"</td>"+
+                                  "<td >"+data.price[i]+"</td>"+
+                                  "<td >"+color+data.change[i]+"</td>"+    
+                                  "<td >"+color+data.change_p[i]+"%</td>"+  
+                                  "<td >"+data.highlow_p[i]+"%</td>"+                           
+                                  "<td >"+data.volume[i]+"</td>"+
+                                  "<td >"+data.origin_money[i]+"</td>"+
+                                  "<td >"+data.money_percent[i]*100+"%</td>"+
+                                  "<td >"+data.time[i]+"</td>"+"</tr>"
                }
                //tableData+="</tr>"
                //現在tableData已經生成好了，把他賦值給上面的tbody
@@ -178,7 +181,7 @@ table {
                                   "<td>"+color+data.change_p[i]+"%</td>"+  
                                   "<td>"+data.highlow_p[i]+"%</td>"+                           
                                   "<td>"+data.volume[i]+"</td>"+
-                                  "<td>"+data.origin_money[i]+"</td>"+
+                                  "<td>"+data.origin_money[i]+"</td>"+                                  
                                   "<td>"+data.time[i]+"</td>"+"</tr>"
                }
                //tableData+="</tr>"
