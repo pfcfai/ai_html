@@ -106,6 +106,7 @@
       <th scope="col">平均跌幅%</th>
       <th scope="col">最大跌幅%</th>
       <th scope="col">做多勝率%</th>
+      <th scope="col">做空勝率%</th>
       <th scope="col">最大漲點</th>
       <th scope="col">最大跌點</th>
     </tr>
@@ -137,6 +138,7 @@
       <th scope="col">平均跌幅%</th>
       <th scope="col">最大跌幅%</th>
       <th scope="col">做多勝率%</th>
+      <th scope="col">做空勝率%</th>
       <th scope="col">最大漲點</th>
       <th scope="col">最大跌點</th>
     </tr>
@@ -161,7 +163,7 @@
               for(var j=0;j<16;j++){
                   var tableData="<tr>";
                   var temp_color ='';
-                  for(var k=0;k<10;k++){
+                  for(var k=0;k<11;k++){
                     if (k == 0){
                       var date = temp[j][k].toString();
                       temp_color+='<td><font color="black">'+date+"</font></td>";
