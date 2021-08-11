@@ -103,31 +103,9 @@ table {
     
   </tbody>
 
-
-<!--
-  <table class="zebra">
-  <thead>
-    <tr>
-      <th scope="col">股票代號</th>
-      <th scope="col">股票期貨</th>
-      <th scope="col">現價</th>
-      <th scope="col">漲跌</th>
-      <th scope="col">漲跌幅</th>
-      <th scope="col">震幅</th>
-      <th scope="col">成交量</th>
-      <th scope="col">原始保證金</th>
-      <th scope="col">時間</th>
-    </tr>
-  </thead>
-  <tbody id="under1W_top_10" style="text-align:center">
-    
-  </tbody>
-</table>
--->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
   stockf_top10();
-  //under1W_top10();
   function stockf_top10(){
           $.getJSON("{% url 'stockf_under1W_Top10' money %}", function (data) {
               var tableData='';
