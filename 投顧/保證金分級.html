@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+
+
+table {
+    *border-collapse: collapse; /* IE7 and lower */
+    border-spacing: 0;
+    width: ;    
+}
+
+
+
+/*----------------------*/
+.zebra{
+
+}
+.zebra td, .zebra th {
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid #f2f2f2;    
+}
+
+.zebra tbody tr:nth-child(even) {
+    background: #f5f5f5;
+    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset; 
+    -moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset;  
+    box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;        
+}
+
+.zebra th {
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5); 
+    border-bottom: 1px solid #ccc;
+    background-color: #eee;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#eee));
+    background-image: -webkit-linear-gradient(top, #f5f5f5, #eee);
+    background-image:    -moz-linear-gradient(top, #f5f5f5, #eee);
+    background-image:     -ms-linear-gradient(top, #f5f5f5, #eee);
+    background-image:      -o-linear-gradient(top, #f5f5f5, #eee); 
+    background-image:         linear-gradient(top, #f5f5f5, #eee);
+}
+
+.zebra th:first-child {
+    -moz-border-radius: 6px 0 0 0;
+    -webkit-border-radius: 6px 0 0 0;
+    border-radius: 6px 0 0 0;  
+}
+
+.zebra th:last-child {
+    -moz-border-radius: 0 6px 0 0;
+    -webkit-border-radius: 0 6px 0 0;
+    border-radius: 0 6px 0 0;
+}
+
+.zebra th:only-child{
+    -moz-border-radius: 6px 6px 0 0;
+    -webkit-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0;
+}
+
+.zebra tfoot td {
+    border-bottom: 0;
+    border-top: 1px solid #fff;
+    background-color: #f1f1f1;  
+}
+
+.zebra tfoot td:first-child {
+    -moz-border-radius: 0 0 0 6px;
+    -webkit-border-radius: 0 0 0 6px;
+    border-radius: 0 0 0 6px;
+}
+
+.zebra tfoot td:last-child {
+    -moz-border-radius: 0 0 6px 0;
+    -webkit-border-radius: 0 0 6px 0;
+    border-radius: 0 0 6px 0;
+}
+
+.zebra tfoot td:only-child{
+    -moz-border-radius: 0 0 6px 6px;
+    -webkit-border-radius: 0 0 6px 6px
+    border-radius: 0 0 6px 6px
+}
+  
+</style> 
+
+</head>
+<h4 id="timer" align="right" ></h4>
+<table class="zebra"  width="100%" >
+  <thead>
+    <tr>
+      <th scope="col">股票代號</th>
+      <th scope="col">股票期貨</th>
+      <th scope="col">成交量</th>
+      <th scope="col">原始保證金</th>
+    </tr>
+  </thead>
+  <tbody id="top_10" style="text-align:">
+    
+  </tbody>
+
+
+<!--
+  <table class="zebra">
+  <thead>
+    <tr>
+      <th scope="col">股票代號</th>
+      <th scope="col">股票期貨</th>
+      <th scope="col">現價</th>
+      <th scope="col">漲跌</th>
+      <th scope="col">漲跌幅</th>
+      <th scope="col">震幅</th>
+      <th scope="col">成交量</th>
+      <th scope="col">原始保證金</th>
+      <th scope="col">時間</th>
+    </tr>
+  </thead>
+  <tbody id="under1W_top_10" style="text-align:center">
+    
+  </tbody>
+</table>
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  stockf_top10();
+  //under1W_top10();
+  function stockf_top10(){
+          $.getJSON("{% url 'stockf_under1W_Top10' money %}", function (data) {
+              var tableData='';
+               //動態增加5個td,並且把data陣列的五個值賦給每個td
+               for(var i=0;i<10;i++){
+                tableData+="<tr>"+"<td data-th='股票代號'>"+data.stock_code[i]+"</td>"+
+                                  "<td data-th='股票期貨'>"+data.stock_name[i]+"</td>"+  
+                                  "<td data-th='成交量'>"+data.volume[i]+"</td>"+
+                                  "<td data-th='原始保證金'>"+data.origin_money[i].toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"</td>"
+                                  
+               }
+               //tableData+="</tr>"
+               //現在tableData已經生成好了，把他賦值給上面的tbody
+               //console.log(tableData)
+               $('#top_10').html(tableData)            //$("td").attr("href", "http://www.google.com/")
+               //console.log(tableData)
+  })};
+
+</script>
+
+
+        
+</body>
+</html>
